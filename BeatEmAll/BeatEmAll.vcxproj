@@ -88,13 +88,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\SFML-2.3.2-windows-vc14-32-bit\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\BeatEmAll Project\BeatEmAll\Catch;C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\BeatEmAll Project\BeatEmAll;C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\BeatEmAll Project\Box2DDeps;C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\SFML-2.3.2-windows-vc14-32-bit\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\SFML-2.3.2-windows-vc14-32-bit\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\BeatEmAll Project\Box2DDeps;C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\SFML-2.3.2-windows-vc14-32-bit\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Box2D.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,6 +151,124 @@
     <ClCompile Include="Main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\SFML-2.3.2-windows-vc14-32-bit\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Tests\TestCatch.cpp" />
+    <ClCompile Include="Tests\TestLayerTile.cpp" />
+    <ClCompile Include="Tests\TiledParser\SmallMap\TestLittleMap.cpp" />
+    <ClCompile Include="Tiled\TiledLayerTile.cpp" />
+    <ClCompile Include="Tiled\TiledLayer.cpp" />
+    <ClCompile Include="Tiled\TiledMap.cpp" />
+    <ClCompile Include="Tiled\TiledParser\TiledMapParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Catch\catch.hpp" />
+    <ClInclude Include="Catch\catch_session.hpp" />
+    <ClInclude Include="Catch\catch_with_main.hpp" />
+    <ClInclude Include="Catch\external\clara.h" />
+    <ClInclude Include="Catch\external\tbc_text_format.h" />
+    <ClInclude Include="Catch\internal\catch_approx.hpp" />
+    <ClInclude Include="Catch\internal\catch_assertionresult.h" />
+    <ClInclude Include="Catch\internal\catch_assertionresult.hpp" />
+    <ClInclude Include="Catch\internal\catch_capture.hpp" />
+    <ClInclude Include="Catch\internal\catch_clara.h" />
+    <ClInclude Include="Catch\internal\catch_commandline.hpp" />
+    <ClInclude Include="Catch\internal\catch_common.h" />
+    <ClInclude Include="Catch\internal\catch_common.hpp" />
+    <ClInclude Include="Catch\internal\catch_compiler_capabilities.h" />
+    <ClInclude Include="Catch\internal\catch_config.hpp" />
+    <ClInclude Include="Catch\internal\catch_console_colour.hpp" />
+    <ClInclude Include="Catch\internal\catch_console_colour_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_context.h" />
+    <ClInclude Include="Catch\internal\catch_context_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_debugger.h" />
+    <ClInclude Include="Catch\internal\catch_debugger.hpp" />
+    <ClInclude Include="Catch\internal\catch_default_main.hpp" />
+    <ClInclude Include="Catch\internal\catch_evaluate.hpp" />
+    <ClInclude Include="Catch\internal\catch_exception_translator_registry.hpp" />
+    <ClInclude Include="Catch\internal\catch_expression_lhs.hpp" />
+    <ClInclude Include="Catch\internal\catch_fatal_condition.hpp" />
+    <ClInclude Include="Catch\internal\catch_generators.hpp" />
+    <ClInclude Include="Catch\internal\catch_generators_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_interfaces_capture.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_config.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_exception.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_generators.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_registry_hub.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_reporter.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_runner.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_tag_alias_registry.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_testcase.h" />
+    <ClInclude Include="Catch\internal\catch_legacy_reporter_adapter.h" />
+    <ClInclude Include="Catch\internal\catch_legacy_reporter_adapter.hpp" />
+    <ClInclude Include="Catch\internal\catch_list.hpp" />
+    <ClInclude Include="Catch\internal\catch_matchers.hpp" />
+    <ClInclude Include="Catch\internal\catch_message.h" />
+    <ClInclude Include="Catch\internal\catch_message.hpp" />
+    <ClInclude Include="Catch\internal\catch_notimplemented_exception.h" />
+    <ClInclude Include="Catch\internal\catch_notimplemented_exception.hpp" />
+    <ClInclude Include="Catch\internal\catch_objc.hpp" />
+    <ClInclude Include="Catch\internal\catch_objc_arc.hpp" />
+    <ClInclude Include="Catch\internal\catch_option.hpp" />
+    <ClInclude Include="Catch\internal\catch_platform.h" />
+    <ClInclude Include="Catch\internal\catch_ptr.hpp" />
+    <ClInclude Include="Catch\internal\catch_reenable_warnings.h" />
+    <ClInclude Include="Catch\internal\catch_registry_hub.hpp" />
+    <ClInclude Include="Catch\internal\catch_reporter_registrars.hpp" />
+    <ClInclude Include="Catch\internal\catch_reporter_registry.hpp" />
+    <ClInclude Include="Catch\internal\catch_result_builder.h" />
+    <ClInclude Include="Catch\internal\catch_result_builder.hpp" />
+    <ClInclude Include="Catch\internal\catch_result_type.h" />
+    <ClInclude Include="Catch\internal\catch_run_context.hpp" />
+    <ClInclude Include="Catch\internal\catch_section.h" />
+    <ClInclude Include="Catch\internal\catch_section.hpp" />
+    <ClInclude Include="Catch\internal\catch_section_info.h" />
+    <ClInclude Include="Catch\internal\catch_section_info.hpp" />
+    <ClInclude Include="Catch\internal\catch_stream.h" />
+    <ClInclude Include="Catch\internal\catch_stream.hpp" />
+    <ClInclude Include="Catch\internal\catch_streambuf.h" />
+    <ClInclude Include="Catch\internal\catch_suppress_warnings.h" />
+    <ClInclude Include="Catch\internal\catch_tag_alias.h" />
+    <ClInclude Include="Catch\internal\catch_tag_alias_registry.h" />
+    <ClInclude Include="Catch\internal\catch_tag_alias_registry.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_case_info.h" />
+    <ClInclude Include="Catch\internal\catch_test_case_info.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_case_registry_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_case_tracker.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_registry.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_spec.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_spec_parser.hpp" />
+    <ClInclude Include="Catch\internal\catch_text.h" />
+    <ClInclude Include="Catch\internal\catch_timer.h" />
+    <ClInclude Include="Catch\internal\catch_timer.hpp" />
+    <ClInclude Include="Catch\internal\catch_tostring.h" />
+    <ClInclude Include="Catch\internal\catch_tostring.hpp" />
+    <ClInclude Include="Catch\internal\catch_totals.hpp" />
+    <ClInclude Include="Catch\internal\catch_version.h" />
+    <ClInclude Include="Catch\internal\catch_version.hpp" />
+    <ClInclude Include="Catch\internal\catch_wildcard_pattern.hpp" />
+    <ClInclude Include="Catch\internal\catch_xmlwriter.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_bases.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_compact.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_console.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_junit.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_multi.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_teamcity.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_xml.hpp" />
+    <ClInclude Include="GameObjects\Tile.h" />
+    <ClInclude Include="RapidXML\rapidxml.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_iterators.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_print.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_utils.hpp" />
+    <ClInclude Include="Tiled\TiledLayerTile.h" />
+    <ClInclude Include="Tiled\TiledLayer.h" />
+    <ClInclude Include="Tiled\TiledImageTile.h" />
+    <ClInclude Include="Tiled\TiledMap.h" />
+    <ClInclude Include="Tiled\TiledParser\TiledMapParser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tests\TiledParser\SmallMap\littletestmap.tmx">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
