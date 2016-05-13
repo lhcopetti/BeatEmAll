@@ -1,5 +1,9 @@
 #include <iostream>
 
+#include "Tiled\TiledParser\TiledMapParser.h"
+#include "Tiled\TiledMap.h"
+#include "GameObjects\TileMap.h"
+
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
 #include <Windows.h>
@@ -11,27 +15,27 @@ void createBox(b2World& world, int mouseX, int mouseY);
 
 const float SCALE = 30.f;
 
-int mainss(int oldMain)
+#ifndef RUN_UNIT_TEST
+int main(int oldMain)
 {
 	bool mouseLeftPressed = false;
 	bool mouseRightPressed = false;
 	sf::RenderWindow rw(sf::VideoMode(1280, 640), "SFML Works! YAY!");
 
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	TiledMapParser mapParser("assets\\tileMap_1280_640.tmx");
+	TiledMap tiledMap;
+	if (!mapParser.parse(tiledMap))
+	{
+		int xx = 0;
+	}
 
-	b2Vec2 gravity(0.f, 9.8f);
-	b2World myWorld(gravity);
+	TileMap newTileMap;
+	if (!TileMap::newTileMap(tiledMap, newTileMap, std::string("assets\\")))
+	{
+		int xx = 0;
+	}
 
-	createGround(myWorld, 400.f, 500.f);
-
-	sf::Texture ground;
-	sf::Texture box;
-	sf::Texture pokeBall;
-	ground.loadFromFile("assets\\ground.png");
-	box.loadFromFile("assets\\box.png");
-	pokeBall.loadFromFile("assets\\pokeball.png");
-
+	
 	while (rw.isOpen())
 	{
 		sf::Event event;
@@ -41,52 +45,15 @@ int mainss(int oldMain)
 				rw.close();
 		}
 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			mouseLeftPressed = true;
-		}
-		else if (mouseLeftPressed)
-		{
-			int mouseX = sf::Mouse::getPosition(rw).x;
-			int mouseY = sf::Mouse::getPosition(rw).y;
-			createBox(myWorld, mouseX, mouseY);
-			mouseLeftPressed = false;
-		}
 
-
-		myWorld.Step(1 / 60.f, 8, 3);
-
-		rw.clear(sf::Color::White);
-
-		for (b2Body* bodyIterator = myWorld.GetBodyList(); bodyIterator != 0; bodyIterator = bodyIterator->GetNext())
-		{
-			if (bodyIterator->GetType() == b2_dynamicBody)
-			{
-				sf::Sprite sprite;
-				sprite.setTexture(pokeBall);
-				sprite.setOrigin(16.f, 16.f);
-				sprite.setPosition(SCALE * bodyIterator->GetPosition().x, SCALE * bodyIterator->GetPosition().y);
-				sprite.setRotation(bodyIterator->GetAngle() * 180 / b2_pi);
-				rw.draw(sprite);
-			}
-			else
-			{
-				sf::Sprite groundSprite;
-				groundSprite.setTexture(ground);
-				groundSprite.setOrigin(400.f, 8.f);
-				groundSprite.setPosition(bodyIterator->GetPosition().x * SCALE, bodyIterator->GetPosition().y * SCALE);
-				groundSprite.setRotation(180 / b2_pi * bodyIterator->GetAngle());
-				rw.draw(groundSprite);
-			}
-		}
-
-		rw.draw(shape);
+		rw.draw(newTileMap);
 		rw.display();
 		Sleep(10);
 	}
 
 	return 0;
 }
+#endif
 
 void createGround(b2World& world, float X, float Y)
 {

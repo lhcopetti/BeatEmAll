@@ -1,6 +1,6 @@
 #include "Tiled\TiledMap.h"
 
-void TiledMap::addToImageTiles(std::string idKey, TiledImageTile* imageTiles)
+void TiledMap::addToImageTiles(int idKey, TiledImageTile* imageTiles)
 {
 	_imageTiles[idKey] = imageTiles;
 }

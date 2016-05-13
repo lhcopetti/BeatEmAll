@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="left-up" width="20" height="10" tilewidth="64" tileheight="64" nextobjectid="1">
- <tileset firstgid="1" name="gametiles" tilewidth="64" tileheight="64" tilecount="20" columns="0">
+ <tileset firstgid="1" name="gametiles" tilewidth="64" tileheight="64" tilecount="21" columns="0">
   <tile id="0">
    <image width="64" height="64" source="Tiles/tile_01.png"/>
   </tile>
@@ -61,10 +61,13 @@
   <tile id="21">
    <image width="64" height="64" source="Tiles/tile_117.png"/>
   </tile>
+  <tile id="22">
+   <image width="64" height="64" source="Tiles/tile_138.png"/>
+  </tile>
  </tileset>
  <layer name="DefaultMap" width="20" height="10">
   <data>
-   <tile gid="3221225479"/>
+   <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -118,10 +121,10 @@
    <tile gid="9"/>
    <tile gid="9"/>
    <tile gid="9"/>
+   <tile gid="10"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="14"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="2"/>
@@ -132,22 +135,22 @@
    <tile gid="2"/>
    <tile gid="2"/>
    <tile gid="1"/>
+   <tile gid="10"/>
+   <tile gid="10"/>
+   <tile gid="10"/>
+   <tile gid="10"/>
+   <tile gid="10"/>
+   <tile gid="10"/>
+   <tile gid="10"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="9"/>
-   <tile gid="9"/>
-   <tile gid="9"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="23"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="2"/>
    <tile gid="7"/>
-   <tile gid="2684354563"/>
-   <tile gid="2684354563"/>
+   <tile gid="5"/>
+   <tile gid="5"/>
    <tile gid="8"/>
    <tile gid="2"/>
    <tile gid="2"/>
@@ -161,14 +164,14 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="23"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="2"/>
    <tile gid="3"/>
    <tile gid="13"/>
    <tile gid="13"/>
-   <tile gid="4"/>
+   <tile gid="2147483651"/>
    <tile gid="2"/>
    <tile gid="2"/>
    <tile gid="1"/>
@@ -181,14 +184,14 @@
    <tile gid="2684354581"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="23"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="2"/>
    <tile gid="3"/>
-   <tile gid="1610612742"/>
+   <tile gid="2147483654"/>
    <tile gid="6"/>
-   <tile gid="4"/>
+   <tile gid="2147483651"/>
    <tile gid="2"/>
    <tile gid="2"/>
    <tile gid="1"/>
@@ -201,14 +204,14 @@
    <tile gid="13"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="23"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="2"/>
    <tile gid="3"/>
    <tile gid="3221225478"/>
-   <tile gid="2684354566"/>
-   <tile gid="4"/>
+   <tile gid="1073741830"/>
+   <tile gid="2147483651"/>
    <tile gid="2"/>
    <tile gid="2"/>
    <tile gid="1"/>
@@ -221,14 +224,14 @@
    <tile gid="13"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="23"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="2"/>
    <tile gid="3"/>
    <tile gid="13"/>
    <tile gid="13"/>
-   <tile gid="3221225475"/>
+   <tile gid="2147483651"/>
    <tile gid="2"/>
    <tile gid="2"/>
    <tile gid="1"/>
@@ -241,13 +244,13 @@
    <tile gid="3221225493"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="1073741838"/>
+   <tile gid="2147483662"/>
    <tile gid="1"/>
    <tile gid="2"/>
    <tile gid="1610612743"/>
-   <tile gid="1610612739"/>
-   <tile gid="1610612739"/>
+   <tile gid="1073741829"/>
+   <tile gid="1073741829"/>
    <tile gid="3221225479"/>
    <tile gid="2"/>
    <tile gid="2"/>
@@ -257,12 +260,12 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="1073741838"/>
+   <tile gid="16"/>
+   <tile gid="16"/>
+   <tile gid="16"/>
+   <tile gid="16"/>
+   <tile gid="3221225486"/>
    <tile gid="1"/>
   </data>
  </layer>

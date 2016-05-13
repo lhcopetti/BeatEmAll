@@ -19,11 +19,17 @@ bool TiledMapParser::parse(TiledMap& tiledMap)
 
 	rapidxml::xml_node<> *pRoot = doc.first_node();
 
+	int width = std::stoi(pRoot->first_attribute("width")->value());
+	int height = std::stoi(pRoot->first_attribute("height")->value());
+
+	tiledMap._width = width;
+	tiledMap._height = height;
+
 	rapidxml::xml_node<> *tileSet = pRoot->first_node("tileset");
 
 	for (rapidxml::xml_node<> *tileSetNode = tileSet->first_node("tile"); tileSetNode; tileSetNode = tileSetNode->next_sibling())
 	{
-		std::string id = tileSetNode->first_attribute("id")->value();
+		int id = std::stoi(tileSetNode->first_attribute("id")->value());
 
 		rapidxml::xml_node<> *tile = tileSetNode->first_node();
 		std::string height = tile->first_attribute("height")->value();
@@ -38,7 +44,8 @@ bool TiledMapParser::parse(TiledMap& tiledMap)
 	for (rapidxml::xml_node<>* layerTile = layerNode->first_node("data")->first_node("tile"); layerTile; layerTile = layerTile->next_sibling())
 	{
 		std::string cgid = layerTile->first_attribute("gid")->value();
-		unsigned int gid = std::stoi(cgid);
+		/* stoll? Really? */
+		unsigned int gid = std::stoll(cgid);
 		TiledLayerTile* tile = new TiledLayerTile(gid);
 		tiledMap.addToLayerTile(tile);
 	}
