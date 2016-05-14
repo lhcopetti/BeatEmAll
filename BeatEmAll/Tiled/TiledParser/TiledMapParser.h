@@ -14,4 +14,6 @@ public:
 	TiledMapParser(const std::string& tileMap) { _xmlLocation = tileMap; };
 
 	bool parse(TiledMap& tiledMap);
+
+	std::string getXmlLocation() const { return _xmlLocation; };
 };

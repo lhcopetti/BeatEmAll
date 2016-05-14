@@ -4,6 +4,10 @@
 #include "Tiled\TiledMap.h"
 #include "GameObjects\TileMap.h"
 
+#include "GameObjects\Player.h"
+
+#include "GameMachine\MainGameState.h"
+
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
 #include <Windows.h>
@@ -15,45 +19,42 @@ void createBox(b2World& world, int mouseX, int mouseY);
 
 const float SCALE = 30.f;
 
-#ifndef RUN_UNIT_TEST
+#ifdef MAIN
 int main(int oldMain)
 {
-	bool mouseLeftPressed = false;
-	bool mouseRightPressed = false;
-	sf::RenderWindow rw(sf::VideoMode(1280, 640), "SFML Works! YAY!");
+	sf::Clock clock;
+	sf::Time accumulator = sf::Time::Zero;
+	sf::Time ups = sf::seconds(1.f / 60.f);
 
-	TiledMapParser mapParser("assets\\tileMap_1280_640.tmx");
-	TiledMap tiledMap;
-	if (!mapParser.parse(tiledMap))
-	{
-		int xx = 0;
-	}
+	GameMachine::MainGameState mainGameState;
 
-	TileMap newTileMap;
-	if (!TileMap::newTileMap(tiledMap, newTileMap, std::string("assets\\")))
-	{
-		int xx = 0;
-	}
+	mainGameState.init();
 
-	
-	while (rw.isOpen())
+	while (mainGameState.isRunning())
 	{
-		sf::Event event;
-		while(rw.pollEvent(event))
+		mainGameState.processEvents();
+
+		while (accumulator > ups)
 		{
-			if (event.type == sf::Event::Closed)
-				rw.close();
+			accumulator -= ups;
+			mainGameState.step(ups.asSeconds());
 		}
 
+		mainGameState.draw();
 
-		rw.draw(newTileMap);
-		rw.display();
-		Sleep(10);
+		accumulator += clock.restart();
 	}
+
+	mainGameState.shutdown();
 
 	return 0;
 }
 #endif
+
+void startGame()
+{
+
+}
 
 void createGround(b2World& world, float X, float Y)
 {
