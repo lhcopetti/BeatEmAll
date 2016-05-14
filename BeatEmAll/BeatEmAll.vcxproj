@@ -209,6 +209,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp" />
+    <ClCompile Include="DebugBoxDraw\WorldConstants.cpp" />
     <ClCompile Include="GameMachine\MainGameState.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
@@ -318,6 +320,8 @@
     <ClInclude Include="Catch\reporters\catch_reporter_multi.hpp" />
     <ClInclude Include="Catch\reporters\catch_reporter_teamcity.hpp" />
     <ClInclude Include="Catch\reporters\catch_reporter_xml.hpp" />
+    <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h" />
+    <ClInclude Include="DebugBoxDraw\WorldConstants.h" />
     <ClInclude Include="GameMachine\MainGameState.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player.h" />

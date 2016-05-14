@@ -6,6 +6,10 @@
 #include "GameObjects\Player.h"
 
 #include "Box2D\Box2D.h"
+#include "DebugBoxDraw\SFMLDebugDraw.h"
+
+#define BOX2D_VELOCITY_ITERATIONS 8 // how strongly to correct velocity
+#define BOX2D_POSITION_ITERATIONS 3 // how strongly to correct position
 
 namespace GameMachine
 {
@@ -19,6 +23,8 @@ namespace GameMachine
 		TileMap* _tileMap;
 
 		b2World* _world;
+		SFMLDebugDraw _debugDraw;
+
 
 		GameComponent::Player _player;
 

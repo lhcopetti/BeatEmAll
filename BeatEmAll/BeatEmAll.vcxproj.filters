@@ -48,6 +48,12 @@
     <ClCompile Include="GameMachine\MainGameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugBoxDraw\WorldConstants.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObjects\Tile.h">
@@ -381,6 +387,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameMachine\MainGameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugBoxDraw\WorldConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,6 +10,7 @@
 
 #include <iostream>
 
+#include "DebugBoxDraw\WorldConstants.h"
 
 using namespace GameMachine;
 
@@ -46,17 +47,41 @@ bool MainGameState::init()
 	b2Vec2 gravity(.0f, 9.8f);
 	_world = new b2World(gravity);
 
+	_debugDraw.setRenderWindow(_window);
+	_debugDraw.SetFlags(b2Draw::e_shapeBit);
+	_world->SetDebugDraw(&_debugDraw);
+
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_staticBody;
+	bodyDef.position = WorldConstants::sfmlToPhysics(sf::Vector2f(250.f, 250.f));
+
+	b2Body* body = _world->CreateBody(&bodyDef);
+
+	b2PolygonShape shape;
+	shape.SetAsBox(32.f / 2 / 30, 32.f / 2 / 30);
+
+	b2FixtureDef fix;
+	fix.shape = &shape;
+	fix.density = 1;
+
+	body->CreateFixture(&fix);
 }
 
 void MainGameState::step(float delta)
 {
 	_player.update(delta);
+
+	_world->Step(delta, 8, 3);
+	_world->ClearForces();
 }
 
 void MainGameState::draw()
 {
 	_window.draw(*_tileMap);
 	_window.draw(_player);
+
+	_world->DrawDebugData();
+
 	_window.display();
 }
 
