@@ -54,6 +54,12 @@
     <ClCompile Include="DebugBoxDraw\WorldConstants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Animation\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard\KeyboardManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObjects\Tile.h">
@@ -368,9 +374,6 @@
     <ClInclude Include="Tiled\TiledParser\TiledMapParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces\Drawable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjects\TileMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -393,6 +396,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DebugBoxDraw\WorldConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse\MouseListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard\KeyboardListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard\KeyboardManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

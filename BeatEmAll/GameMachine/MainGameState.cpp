@@ -17,6 +17,9 @@ using namespace GameMachine;
 MainGameState::MainGameState()
 {
 	_running = true;
+	_mouseLeftClicked = false;
+	_mouseRightClicked = false;
+	_mousePointer = sf::Vector2i(.0f, .0f);
 }
 
 MainGameState::~MainGameState()
@@ -78,6 +81,8 @@ bool MainGameState::init()
 
 void MainGameState::step(float delta)
 {
+	_player.handleMouse(_mousePointer, _mouseLeftClicked, _mouseRightClicked);
+	_player.handleKeyboard(_keyManager.keys());
 	_player.update(delta);
 
 	_world->Step(delta, 8, 3);
@@ -111,4 +116,10 @@ void MainGameState::processEvents()
 			_running = false;
 		}
 	}
+
+	_mouseLeftClicked = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+	_mouseRightClicked = sf::Mouse::isButtonPressed(sf::Mouse::Button::Right);
+	_mousePointer = sf::Mouse::getPosition(_window);
+
+	_keyManager.update();
 }
