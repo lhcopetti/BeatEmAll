@@ -6,6 +6,12 @@
 class SFMLDebugDraw : public b2Draw
 {
 private:
+	/*
+	* https://github.com/MrPlow442/Box2D-SFML2-Debug-Draw
+	* https://github.com/slok/Box2D-and-SFML-demo
+	* https://bitbucket.org/GuigasGit/highorderninja
+	*/
+
 	sf::RenderWindow* _window;
 
 public:
@@ -21,6 +27,6 @@ public:
 	void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color);
 	void DrawTransform(const b2Transform& xf);
 
-	sf::Color b2SfColor(const b2Color &color, int alpha);
-	//void drawMouseJoint(b2Vec2& p1, b2Vec2& p2, const b2Color &boxColor, const b2Color &lineColor);
+	/* Default alpha value: opaque */
+	sf::Color boxToSfColor(const b2Color &color, sf::Uint8 alpha = 255);
 };

@@ -65,6 +65,15 @@ bool MainGameState::init()
 	fix.density = 1;
 
 	body->CreateFixture(&fix);
+
+	bodyDef.position = WorldConstants::sfmlToPhysics(sf::Vector2f(500.f, 500.f));
+	b2Body* circ = _world->CreateBody(&bodyDef);
+
+	b2CircleShape circle;
+	circle.m_radius = 32.f / 2 / WorldConstants::SCALE;
+	fix.shape = &circle;
+
+	circ->CreateFixture(&fix);
 }
 
 void MainGameState::step(float delta)
