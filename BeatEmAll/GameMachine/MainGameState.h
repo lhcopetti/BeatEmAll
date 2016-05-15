@@ -44,6 +44,8 @@ namespace GameMachine
 
 		void createBoundingBox(b2World& _world, float height, float width);
 
+		void updateGameObject(GameComponent::GameObject& gO, float delta, std::vector<GameComponent::GameObject*>& children);
+
 	public:
 		MainGameState();
 		~MainGameState();

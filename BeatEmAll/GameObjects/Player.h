@@ -17,19 +17,16 @@ namespace GameComponent
 		sf::Texture _texture;
 		sf::Sprite _sprite;
 
-		b2World* _world;
-		b2Body* _body;
-
 		b2Vec2 _nextPlayerVel;
 
 		bool _canShoot;
 		float _canShootCounter;
 
 	public:
-		Player();
+		Player(b2World& world);
 		~Player();
 
-		void init(b2World* world);
+		void init();
 
 		virtual void update(float elapsedTime);
 

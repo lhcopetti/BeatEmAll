@@ -2,11 +2,13 @@
 #include "SFML\Graphics.hpp"
 #include "DebugBoxDraw\WorldConstants.h"
 
+#include "GameObjects\Projectile\Bullet.h"
+
 #include <iostream>
 
 using namespace GameComponent;
 
-Player::Player()
+Player::Player(b2World& world) : GameObject(world)
 {
 	_x = 50;
 	_y = 50;
@@ -21,16 +23,14 @@ Player::Player()
 	_canShootCounter = 0.f;
 }
 
-void Player::init(b2World* world)
+void Player::init()
 {
-	_world = world;
-
 	/* Create fixtures */
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position = WorldConstants::sfmlToPhysics(sf::Vector2f(_x, _y));
 
-	_body = _world->CreateBody(&bodyDef);
+	_body = _world.CreateBody(&bodyDef);
 	
 	b2PolygonShape polygonShape;
 	polygonShape.SetAsBox(27 / 2 / WorldConstants::SCALE, 43 / 2 / WorldConstants::SCALE);
@@ -96,40 +96,24 @@ void Player::handleKeyboard(std::map<Keys::KeyboardManager::KeyAction, bool> key
 		vel.y += PLAYER_VELOCITY;
 
 	_nextPlayerVel = vel;
-
-//	if (keys[KeyboardManager::KeyAction::SHOOT] && _canShoot)
-
-
 }
 
 void Player::shoot()
 {
+	using namespace GameComponent::Projectile;
+
 	_canShoot = false;
 	_canShootCounter = .0f;
 
-	b2BodyDef bulletDef;
-	bulletDef.type = b2_dynamicBody;
-	bulletDef.bullet = true;
-	bulletDef.position = _body->GetPosition();
-
-	b2CircleShape circle;
-	circle.m_radius = 10 / 2 / WorldConstants::SCALE;
-
-	b2FixtureDef bulletFix;
-	bulletFix.density = .1f;
-	bulletFix.shape = &circle;
-	bulletFix.restitution = .5f;
-
-	b2Body* bulletBody = _world->CreateBody(&bulletDef);
-
-	bulletBody->CreateFixture(&bulletFix);
-
-	float ratio = bulletBody->GetMass() * 15.f;
+	//float ratio = _body->GetMass() * 15.f;
 	float radAngle = _body->GetAngle();
 
-	b2Vec2 velChange = b2Vec2(std::cos(radAngle) * ratio, std::sin(radAngle) * ratio);
+	//b2Vec2 velChange = b2Vec2(std::cos(radAngle) * ratio, std::sin(radAngle) * ratio);
 
-	bulletBody->ApplyLinearImpulse(velChange, bulletBody->GetWorldCenter(), true);
+	b2Vec2 velChange = b2Vec2(std::cos(radAngle), std::sin(radAngle));
+
+	Bullet* bullet = new Bullet(_world, 5.f, _body->GetPosition(), velChange);
+	_children.push_back(bullet);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const

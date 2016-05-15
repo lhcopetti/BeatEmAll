@@ -82,8 +82,8 @@ bool MainGameState::init()
 
 	circ->CreateFixture(&fix);
 
-	_player = new GameComponent::Player();
-	_player->init(_world);
+	_player = new GameComponent::Player(*_world);
+	_player->init();
 
 	createBoundingBox(*_world, 1279.0, 639.0);
 
@@ -113,15 +113,15 @@ void MainGameState::createBoundingBox(b2World& _world, float width, float height
 	setPolygon(polyShape, thickness, width, sf::Vector2f(width / 2, thickness/ 2));
 	boundingBox->CreateFixture(&fixDef);
 
-	///* DOWN */
+	/* DOWN */
 	setPolygon(polyShape, thickness, width, sf::Vector2f(width / 2, height - (thickness/ 2)));
 	boundingBox->CreateFixture(&fixDef);
 
-	///* RIGHT */
+	/* RIGHT */
 	setPolygon(polyShape, height, thickness, sf::Vector2f(width - (thickness / 2), height / 2));
 	boundingBox->CreateFixture(&fixDef);
 
-	///* LEFT */
+	/* LEFT */
 	setPolygon(polyShape, height, thickness, sf::Vector2f(thickness / 2, height / 2));
 	boundingBox->CreateFixture(&fixDef);
 }
@@ -166,13 +166,30 @@ void MainGameState::step(float delta)
 		kL->handleKeyboard(keyManager.keys());
 	});
 
-	std::for_each(
-		_gameObjects.begin(),
-		_gameObjects.end(),
-		[delta](GameComponent::GameObject* gO)
+
+
+	std::vector<GameComponent::GameObject*>::iterator gOIterator = _gameObjects.begin();
+	std::vector<GameComponent::GameObject*> newChildren;
+
+	while (gOIterator != _gameObjects.end())
 	{
-		gO->update(delta);
-	});
+		GameComponent::GameObject* gO = *gOIterator;
+		updateGameObject(*gO, delta, newChildren);
+
+		if (gO->isAlive())
+			++gOIterator;
+		else
+		{
+			gOIterator = _gameObjects.erase(gOIterator);
+			delete gO;
+		}
+	}
+
+	for each(GameComponent::GameObject* child in newChildren)
+	{
+		child->init();
+		_gameObjects.push_back(child);
+	}
 
 	_world->Step(delta, 8, 3);
 	_world->ClearForces();
@@ -218,4 +235,19 @@ void MainGameState::processEvents()
 	_mousePointer = sf::Mouse::getPosition(_window);
 
 	_keyManager.update();
+}
+
+void MainGameState::updateGameObject(GameComponent::GameObject& gO, float delta, std::vector<GameComponent::GameObject*>& newChildren)
+{
+	gO.update(delta);
+
+	const std::vector<GameComponent::GameObject*>& children = gO.getChildren();
+
+	if (children.size() > 0)
+	{
+		for each(GameComponent::GameObject* child in children)
+			newChildren.push_back(child);
+
+		gO.clearChildren();
+	}
 }
