@@ -14,7 +14,8 @@
 
 using namespace GameMachine;
 
-static void setEdge(b2EdgeShape& edge, int xBegin, int yBegin, int xEnd, int yEnd);
+static void setPolygon(b2PolygonShape& poly, float sfHeight, float sfWidth, sf::Vector2f center);
+static void setEdge(b2EdgeShape& edge, float xBegin, float yBegin, float xEnd, float yEnd);
 
 MainGameState::MainGameState()
 {
@@ -50,7 +51,6 @@ bool MainGameState::init()
 		return false;
 	}
 
-
 	b2Vec2 gravity(.0f, 0.f);
 	_world = new b2World(gravity);
 
@@ -82,44 +82,51 @@ bool MainGameState::init()
 
 	circ->CreateFixture(&fix);
 
-	_player.init(_world);
+	_player = new GameComponent::Player();
+	_player->init(_world);
 
-	createBoundingBox(*_world, 1279, 639);
+	createBoundingBox(*_world, 1279.0, 639.0);
+
+	_keyboardListeners.push_back(_player);
+	_mouseListeners.push_back(_player);
+	_gameObjects.push_back(_player);
 
 	return true;
 }
 
-void MainGameState::createBoundingBox(b2World& _world, int width, int height)
+void MainGameState::createBoundingBox(b2World& _world, float width, float height)
 {
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody;
 	bodyDef.position.SetZero();
 
 	b2Body* boundingBox = _world.CreateBody(&bodyDef);
-	b2EdgeShape edge;
+	b2PolygonShape polyShape;
 
 	b2FixtureDef fixDef;
 	fixDef.density = 1;
-	fixDef.shape = &edge;
+	fixDef.shape = &polyShape;
+
+	float thickness = 10.f;
 
 	/* TOP */
-	setEdge(edge, 0, 0, width, 0);
+	setPolygon(polyShape, thickness, width, sf::Vector2f(width / 2, thickness/ 2));
 	boundingBox->CreateFixture(&fixDef);
 
-	/* RIGHT */
-	setEdge(edge, width, 0, width, height);
+	///* DOWN */
+	setPolygon(polyShape, thickness, width, sf::Vector2f(width / 2, height - (thickness/ 2)));
 	boundingBox->CreateFixture(&fixDef);
 
-	/* DOWN */
-	setEdge(edge, 0, height, width, height);
+	///* RIGHT */
+	setPolygon(polyShape, height, thickness, sf::Vector2f(width - (thickness / 2), height / 2));
 	boundingBox->CreateFixture(&fixDef);
 
-	/* LEFT */
-	setEdge(edge, 0, 0, 0, height);
+	///* LEFT */
+	setPolygon(polyShape, height, thickness, sf::Vector2f(thickness / 2, height / 2));
 	boundingBox->CreateFixture(&fixDef);
 }
 
-static void setEdge(b2EdgeShape& edge, int xBegin, int yBegin, int xEnd, int yEnd)
+static void setEdge(b2EdgeShape& edge, float xBegin, float yBegin, float xEnd, float yEnd)
 {
 	sf::Vector2f begin(xBegin, yBegin);
 	sf::Vector2f end(xEnd, yEnd);
@@ -127,11 +134,45 @@ static void setEdge(b2EdgeShape& edge, int xBegin, int yBegin, int xEnd, int yEn
 	edge.Set(WorldConstants::sfmlToPhysics(begin), WorldConstants::sfmlToPhysics(end));
 }
 
+static void setPolygon(b2PolygonShape& poly, float sfHeight, float sfWidth, sf::Vector2f center)
+{
+	float b2Height = sfHeight / 2 / WorldConstants::SCALE;
+	float b2Width = sfWidth / 2 / WorldConstants::SCALE;
+	b2Vec2 b2Center = WorldConstants::sfmlToPhysics(center);
+
+	poly.SetAsBox(b2Width, b2Height, b2Center, 0);
+}
+
 void MainGameState::step(float delta)
 {
-	_player.handleMouse(_mousePointer, _mouseLeftClicked, _mouseRightClicked);
-	_player.handleKeyboard(_keyManager.keys());
-	_player.update(delta);
+	const sf::Vector2i mousePointer = _mousePointer;
+	bool leftMouse = _mouseLeftClicked;
+	bool rightMouse = _mouseRightClicked;
+	Keys::KeyboardManager &keyManager = _keyManager;
+
+	std::for_each(
+		_mouseListeners.begin(),
+		_mouseListeners.end(),
+		[&mousePointer, leftMouse, rightMouse](MouseComponent::MouseListener* l)
+	{
+		l->handleMouse(mousePointer, leftMouse, rightMouse);
+	});
+
+	std::for_each(
+		_keyboardListeners.begin(),
+		_keyboardListeners.end(),
+		[keyManager](Keys::KeyboardListener* kL)
+	{
+		kL->handleKeyboard(keyManager.keys());
+	});
+
+	std::for_each(
+		_gameObjects.begin(),
+		_gameObjects.end(),
+		[delta](GameComponent::GameObject* gO)
+	{
+		gO->update(delta);
+	});
 
 	_world->Step(delta, 8, 3);
 	_world->ClearForces();
@@ -139,8 +180,15 @@ void MainGameState::step(float delta)
 
 void MainGameState::draw()
 {
+	/* Capture locally for lambda */
+	RenderWindow* rw = &_window;
+
+	/* Draw the Tile Map */
 	_window.draw(*_tileMap);
-	_window.draw(_player);
+
+	std::for_each(_gameObjects.begin(), _gameObjects.end(), [rw](const GameComponent::GameObject* gO) { rw->draw(*gO); });
+
+	//	_window.draw(_player);
 
 	_world->DrawDebugData();
 

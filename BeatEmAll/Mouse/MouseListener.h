@@ -2,7 +2,11 @@
 
 #include "SFML\System\Vector2.hpp"
 
-class MouseListener
+namespace MouseComponent
 {
-	virtual void handleMouse(const sf::Vector2i vector, bool leftClicked, bool rightClicked) = 0;
-};
+	class MouseListener
+	{
+	public:
+		virtual void handleMouse(const sf::Vector2i vector, bool leftClicked, bool rightClicked) = 0;
+	};
+}

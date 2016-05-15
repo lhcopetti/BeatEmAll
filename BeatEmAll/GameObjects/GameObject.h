@@ -8,7 +8,7 @@ namespace GameComponent
 	class GameObject : public Updatable, public sf::Drawable
 	{
 	protected:
-		int _x, _y;
+		float _x, _y;
 
 
 	public:

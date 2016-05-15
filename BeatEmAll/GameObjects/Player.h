@@ -11,7 +11,7 @@
 
 namespace GameComponent
 {
-	class Player : public GameObject, public MouseListener, public Keys::KeyboardListener
+	class Player : public GameObject, public MouseComponent::MouseListener, public Keys::KeyboardListener
 	{
 	private:
 		sf::Texture _texture;

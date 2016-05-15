@@ -213,6 +213,8 @@
     <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp" />
     <ClCompile Include="DebugBoxDraw\WorldConstants.cpp" />
     <ClCompile Include="GameMachine\MainGameState.cpp" />
+    <ClCompile Include="GameObjects\ChildBearer.cpp" />
+    <ClCompile Include="GameObjects\Projectile\Bullet.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
     <ClCompile Include="GameObjects\Tile.cpp" />
@@ -326,6 +328,8 @@
     <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h" />
     <ClInclude Include="DebugBoxDraw\WorldConstants.h" />
     <ClInclude Include="GameMachine\MainGameState.h" />
+    <ClInclude Include="GameObjects\ChildBearer.h" />
+    <ClInclude Include="GameObjects\Projectile\Bullet.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player.h" />
     <ClInclude Include="GameObjects\Tile.h" />
