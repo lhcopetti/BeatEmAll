@@ -16,7 +16,6 @@ namespace Keys
 			SHOOT
 		};
 
-
 	private:
 		std::map<KeyAction, bool> _keys;
 

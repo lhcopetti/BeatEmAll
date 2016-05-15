@@ -19,7 +19,9 @@ MainGameState::MainGameState()
 	_running = true;
 	_mouseLeftClicked = false;
 	_mouseRightClicked = false;
-	_mousePointer = sf::Vector2i(.0f, .0f);
+	_mousePointer = sf::Vector2i(0, 0);
+
+	_world = nullptr;
 }
 
 MainGameState::~MainGameState()
@@ -47,7 +49,7 @@ bool MainGameState::init()
 	}
 
 
-	b2Vec2 gravity(.0f, 9.8f);
+	b2Vec2 gravity(.0f, 0.f);
 	_world = new b2World(gravity);
 
 	_debugDraw.setRenderWindow(_window);
@@ -77,6 +79,10 @@ bool MainGameState::init()
 	fix.shape = &circle;
 
 	circ->CreateFixture(&fix);
+
+	_player.init(_world);
+
+	return true;
 }
 
 void MainGameState::step(float delta)

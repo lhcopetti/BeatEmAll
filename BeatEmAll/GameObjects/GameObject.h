@@ -10,6 +10,7 @@ namespace GameComponent
 	protected:
 		int _x, _y;
 
+
 	public:
 		GameObject();
 		virtual ~GameObject();
