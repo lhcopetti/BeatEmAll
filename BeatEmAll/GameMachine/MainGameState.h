@@ -37,6 +37,8 @@ namespace GameMachine
 
 		Keys::KeyboardManager _keyManager;
 
+		void createBoundingBox(b2World& _world, int height, int width);
+
 	public:
 		MainGameState();
 		~MainGameState();

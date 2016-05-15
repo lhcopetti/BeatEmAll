@@ -16,6 +16,9 @@ Player::Player()
 	_sprite.setOrigin(14, 21);
 	_sprite.setPosition(_x, _y);
 	_sprite.scale(.8f, .8f);
+
+	_canShoot = false;
+	_canShootCounter = 0.f;
 }
 
 void Player::init(b2World* world)
@@ -52,6 +55,14 @@ void Player::update(float elapsedTime)
 	force.y = _body->GetMass() * velChange.y / (1 / 60.f);
 
 	_body->ApplyForce(force, _body->GetWorldCenter(), true);
+
+	_canShootCounter += elapsedTime;
+
+	if (_canShootCounter > .5f)
+	{
+		_canShootCounter -= .5f;
+		_canShoot = true;
+	}
 }
 
 void Player::handleMouse(const sf::Vector2i vector, bool leftClicked, bool rightClicked)
@@ -64,6 +75,9 @@ void Player::handleMouse(const sf::Vector2i vector, bool leftClicked, bool right
 	_body->SetTransform(_body->GetPosition(), newAngle);
 	_sprite.setRotation(_body->GetAngle() * RADTODEG);
 	_sprite.setPosition(WorldConstants::physicsToSFML(_body->GetPosition()));
+
+	if (leftClicked && _canShoot)
+		shoot();
 }
 
 void Player::handleKeyboard(std::map<Keys::KeyboardManager::KeyAction, bool> keys)
@@ -82,8 +96,40 @@ void Player::handleKeyboard(std::map<Keys::KeyboardManager::KeyAction, bool> key
 		vel.y += PLAYER_VELOCITY;
 
 	_nextPlayerVel = vel;
-	//if (keys[KeyboardManager::KeyAction::MOVE_DOWN])
-	//	std::cout << "Down" << std::endl;
+
+//	if (keys[KeyboardManager::KeyAction::SHOOT] && _canShoot)
+
+
+}
+
+void Player::shoot()
+{
+	_canShoot = false;
+	_canShootCounter = .0f;
+
+	b2BodyDef bulletDef;
+	bulletDef.type = b2_dynamicBody;
+	bulletDef.bullet = true;
+	bulletDef.position = _body->GetPosition();
+
+	b2CircleShape circle;
+	circle.m_radius = 10 / 2 / WorldConstants::SCALE;
+
+	b2FixtureDef bulletFix;
+	bulletFix.density = .1f;
+	bulletFix.shape = &circle;
+	bulletFix.restitution = .5f;
+
+	b2Body* bulletBody = _world->CreateBody(&bulletDef);
+
+	bulletBody->CreateFixture(&bulletFix);
+
+	float ratio = bulletBody->GetMass() * 15.f;
+	float radAngle = _body->GetAngle();
+
+	b2Vec2 velChange = b2Vec2(std::cos(radAngle) * ratio, std::sin(radAngle) * ratio);
+
+	bulletBody->ApplyLinearImpulse(velChange, bulletBody->GetWorldCenter(), true);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const

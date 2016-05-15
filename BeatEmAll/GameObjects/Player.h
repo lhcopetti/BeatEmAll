@@ -22,6 +22,9 @@ namespace GameComponent
 
 		b2Vec2 _nextPlayerVel;
 
+		bool _canShoot;
+		float _canShootCounter;
+
 	public:
 		Player();
 		~Player();
@@ -35,5 +38,7 @@ namespace GameComponent
 		virtual void handleMouse(const sf::Vector2i vector, bool leftClicked, bool rightClicked);
 
 		virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool> keys);
+
+		void shoot();
 	};
 }

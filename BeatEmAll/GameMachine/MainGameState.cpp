@@ -14,6 +14,8 @@
 
 using namespace GameMachine;
 
+static void setEdge(b2EdgeShape& edge, int xBegin, int yBegin, int xEnd, int yEnd);
+
 MainGameState::MainGameState()
 {
 	_running = true;
@@ -82,7 +84,47 @@ bool MainGameState::init()
 
 	_player.init(_world);
 
+	createBoundingBox(*_world, 1279, 639);
+
 	return true;
+}
+
+void MainGameState::createBoundingBox(b2World& _world, int width, int height)
+{
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_staticBody;
+	bodyDef.position.SetZero();
+
+	b2Body* boundingBox = _world.CreateBody(&bodyDef);
+	b2EdgeShape edge;
+
+	b2FixtureDef fixDef;
+	fixDef.density = 1;
+	fixDef.shape = &edge;
+
+	/* TOP */
+	setEdge(edge, 0, 0, width, 0);
+	boundingBox->CreateFixture(&fixDef);
+
+	/* RIGHT */
+	setEdge(edge, width, 0, width, height);
+	boundingBox->CreateFixture(&fixDef);
+
+	/* DOWN */
+	setEdge(edge, 0, height, width, height);
+	boundingBox->CreateFixture(&fixDef);
+
+	/* LEFT */
+	setEdge(edge, 0, 0, 0, height);
+	boundingBox->CreateFixture(&fixDef);
+}
+
+static void setEdge(b2EdgeShape& edge, int xBegin, int yBegin, int xEnd, int yEnd)
+{
+	sf::Vector2f begin(xBegin, yBegin);
+	sf::Vector2f end(xEnd, yEnd);
+
+	edge.Set(WorldConstants::sfmlToPhysics(begin), WorldConstants::sfmlToPhysics(end));
 }
 
 void MainGameState::step(float delta)
