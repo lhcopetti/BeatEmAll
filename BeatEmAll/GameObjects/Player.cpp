@@ -4,9 +4,13 @@
 
 #include "GameObjects\Projectile\Bullet.h"
 
+#include "GameObjects\Actions\MoveAction.h"
+#include "GameObjects\Actions\ShootAction.h"
+
 #include <iostream>
 
 using namespace GameComponent;
+namespace GA = GameComponent::GameActions;
 
 Player::Player(b2World& world) : GameObject(world)
 {
@@ -31,7 +35,7 @@ void Player::init()
 	bodyDef.position = WorldConstants::sfmlToPhysics(sf::Vector2f(_x, _y));
 
 	_body = _world.CreateBody(&bodyDef);
-	
+
 	b2PolygonShape polygonShape;
 	polygonShape.SetAsBox(27 / 2 / WorldConstants::SCALE, 43 / 2 / WorldConstants::SCALE);
 
@@ -49,27 +53,32 @@ Player::~Player()
 
 void Player::update(float elapsedTime)
 {
-	b2Vec2 velChange = _nextPlayerVel - _body->GetLinearVelocity();
-	b2Vec2 force;
-	force.x = _body->GetMass() * velChange.x / (1 / 60.f);
-	force.y = _body->GetMass() * velChange.y / (1 / 60.f);
+	/* Isn't it just beautiful? */
+	auto iter = _actions.begin();
+	while (iter != _actions.end())
+	{
+		(*iter)->execute();
+		delete *iter;
+		iter = _actions.erase(iter);
+	}
 
-	_body->ApplyForce(force, _body->GetWorldCenter(), true);
 
+	/* TODO: How should this state be handled? */
 	_canShootCounter += elapsedTime;
 
-	if (_canShootCounter > .5f)
+	if (_canShootCounter > .2f)
 	{
-		_canShootCounter -= .5f;
+		_canShootCounter -= .2f;
 		_canShoot = true;
 	}
 }
 
 void Player::handleMouse(const sf::Vector2i vector, bool leftClicked, bool rightClicked)
 {
-	sf::Vector2f currentPos = _sprite.getPosition();
-	sf::Vector2f mousePos = sf::Vector2f(vector.x, vector.y);
-	sf::Vector2f toTarget = mousePos - currentPos;
+	const sf::Vector2f currentPos = _sprite.getPosition();
+	/* We can safely assume there will no vector.x as big as MAX_INT. Cast is OK! */
+	const sf::Vector2f mousePosF = sf::Vector2f(static_cast<int>(vector.x), static_cast<int>(vector.y));
+	sf::Vector2f toTarget = mousePosF - currentPos;
 	float newAngle = std::atan2(toTarget.y, toTarget.x);
 
 	_body->SetTransform(_body->GetPosition(), newAngle);
@@ -77,43 +86,43 @@ void Player::handleMouse(const sf::Vector2i vector, bool leftClicked, bool right
 	_sprite.setPosition(WorldConstants::physicsToSFML(_body->GetPosition()));
 
 	if (leftClicked && _canShoot)
-		shoot();
+		shoot(WorldConstants::sfmlToPhysics(sf::Vector2f(mousePosF.x, mousePosF.y)));
 }
 
 void Player::handleKeyboard(std::map<Keys::KeyboardManager::KeyAction, bool> keys)
 {
+	/* TODO: The player should not take any control! */
+	/* What if I wanted the player to be AI Controlled? */
 	using namespace Keys;
 
-	b2Vec2 vel(0.f, 0.f);
+	GA::MoveAction::MoveDirection moveDir;
 
 	if (keys[KeyboardManager::KeyAction::MOVE_UP])
-		vel.y -= PLAYER_VELOCITY;
-	if (keys[KeyboardManager::KeyAction::MOVE_LEFT])
-		vel.x -= PLAYER_VELOCITY;
-	if (keys[KeyboardManager::KeyAction::MOVE_RIGHT])
-		vel.x += PLAYER_VELOCITY;
+		moveDir.yDir = GA::YAxis::UP;
 	if (keys[KeyboardManager::KeyAction::MOVE_DOWN])
-		vel.y += PLAYER_VELOCITY;
+		moveDir.yDir = GA::YAxis::DOWN;
+	if (keys[KeyboardManager::KeyAction::MOVE_LEFT])
+		moveDir.xDir = GA::XAxis::LEFT;
+	if (keys[KeyboardManager::KeyAction::MOVE_RIGHT])
+		moveDir.xDir = GA::XAxis::RIGHT;
 
-	_nextPlayerVel = vel;
+	GA::MoveAction* moveAction = new GA::MoveAction(*this, moveDir);
+	_actions.push_back(moveAction);
 }
 
-void Player::shoot()
+void Player::shoot(const b2Vec2& target)
 {
 	using namespace GameComponent::Projectile;
 
+	/* TODO: How should this state be kept? */
 	_canShoot = false;
 	_canShootCounter = .0f;
 
-	//float ratio = _body->GetMass() * 15.f;
-	float radAngle = _body->GetAngle();
-
-	//b2Vec2 velChange = b2Vec2(std::cos(radAngle) * ratio, std::sin(radAngle) * ratio);
-
-	b2Vec2 velChange = b2Vec2(std::cos(radAngle), std::sin(radAngle));
-
-	Bullet* bullet = new Bullet(_world, 5.f, _body->GetPosition(), velChange);
-	_children.push_back(bullet);
+	/*
+	 * The Player should not be responsible for issuing Actions!
+	 */
+	GA::ShootAction* shootAction = new GA::ShootAction(*this, _body->GetPosition(), target);
+	_actions.push_back(shootAction);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const

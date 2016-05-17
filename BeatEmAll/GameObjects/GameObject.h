@@ -32,7 +32,10 @@ namespace GameComponent
 
 		virtual const std::vector<GameObject*>& getChildren() const;
 		virtual void clearChildren();
+		virtual void addChild(GameObject* child);
 
 		bool isAlive() const { return _alive; };
+
+		b2Body* body() { return _body; };
 	};
 }

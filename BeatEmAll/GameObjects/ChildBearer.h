@@ -14,5 +14,6 @@ namespace GameComponent
 	public:
 		virtual const std::vector<GameComponent::GameObject*>& getChildren() const = 0;
 		virtual void clearChildren() = 0;
+		virtual void addChild(GameObject* child) = 0;
 	};
 }

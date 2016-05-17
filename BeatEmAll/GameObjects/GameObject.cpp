@@ -14,8 +14,14 @@ const std::vector<GameObject*>& GameObject::getChildren() const
 {
 	return _children;
 }
+
 void GameObject::clearChildren()
 {
 	/* Do not free the pointers */
 	_children.clear();
+}
+
+void GameObject::addChild(GameObject* child)
+{
+	_children.push_back(child);
 }
