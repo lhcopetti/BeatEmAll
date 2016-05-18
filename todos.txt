@@ -1,0 +1,5 @@
+
+- Mover pilha de ações para GameObject. (InputComponent deve ser capaz de mandar ações para o player em seu método update).
+	-> inputComponent->update(*this);
+- Unificar o handleMouse e handleKeyboard em uma única ação.
+- Juntar Mouse e Keyboard em um Component do tipo input (Abstração)
