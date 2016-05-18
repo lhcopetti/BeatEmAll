@@ -214,6 +214,7 @@
     <ClCompile Include="DebugBoxDraw\WorldConstants.cpp" />
     <ClCompile Include="GameMachine\MainGameState.cpp" />
     <ClCompile Include="GameObjects\Actions\Action.cpp" />
+    <ClCompile Include="GameObjects\Actions\AimAction.cpp" />
     <ClCompile Include="GameObjects\Actions\MoveAction.cpp" />
     <ClCompile Include="GameObjects\Actions\ShootAction.cpp" />
     <ClCompile Include="GameObjects\ChildBearer.cpp" />
@@ -334,6 +335,7 @@
     <ClInclude Include="DebugBoxDraw\WorldConstants.h" />
     <ClInclude Include="GameMachine\MainGameState.h" />
     <ClInclude Include="GameObjects\Actions\Action.h" />
+    <ClInclude Include="GameObjects\Actions\AimAction.h" />
     <ClInclude Include="GameObjects\Actions\MoveAction.h" />
     <ClInclude Include="GameObjects\Actions\ShootAction.h" />
     <ClInclude Include="GameObjects\ChildBearer.h" />

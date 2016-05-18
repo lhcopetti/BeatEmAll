@@ -17,6 +17,8 @@ namespace GameComponent
 		bool _alive;
 		float _x, _y;
 
+		float _rotationRad;
+
 		std::vector<GameObject*> _children;
 
 	public:
@@ -37,5 +39,7 @@ namespace GameComponent
 		bool isAlive() const { return _alive; };
 
 		b2Body* body() { return _body; };
+		float rotation() const { return _rotationRad; }
+		void rotation(float r) { _rotationRad = r; }
 	};
 }

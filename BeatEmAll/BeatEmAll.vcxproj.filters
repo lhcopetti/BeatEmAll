@@ -23,6 +23,7 @@
     <ClCompile Include="Tiled\TiledParser\TiledMapParser.cpp" />
     <ClCompile Include="Tiled\TiledTransform.cpp" />
     <ClCompile Include="GameObjects\Weapon\Pistol.cpp" />
+    <ClCompile Include="GameObjects\Actions\AimAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -151,5 +152,6 @@
     <ClInclude Include="GameObjects\Projectile\Projectile.h" />
     <ClInclude Include="GameObjects\Weapon\Pistol.h" />
     <ClInclude Include="GameObjects\Weapon\Weapon.h" />
+    <ClInclude Include="GameObjects\Actions\AimAction.h" />
   </ItemGroup>
 </Project>

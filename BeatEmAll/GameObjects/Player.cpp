@@ -7,6 +7,7 @@
 
 #include "GameObjects\Actions\MoveAction.h"
 #include "GameObjects\Actions\ShootAction.h"
+#include "GameObjects\Actions\AimAction.h"
 
 #include <iostream>
 
@@ -65,6 +66,14 @@ void Player::update(float elapsedTime)
 		iter = _actions.erase(iter);
 	}
 
+	/*
+	 * TODO: Update shared state (rotation angle) 
+	 * This will soon be abstracted away by the Component Design Pattern
+	 */
+	_body->SetTransform(_body->GetPosition(), _rotationRad);
+	_sprite.setRotation(_rotationRad * RADTODEG);
+
+	_sprite.setPosition(WorldConstants::physicsToSFML(_body->GetPosition()));
 
 	/* TODO: How should this state be handled? */
 	_canShootCounter += elapsedTime;
@@ -78,15 +87,11 @@ void Player::update(float elapsedTime)
 
 void Player::handleMouse(const sf::Vector2i vector, bool leftClicked, bool rightClicked)
 {
-	const sf::Vector2f currentPos = _sprite.getPosition();
 	/* We can safely assume there will no vector.x as big as MAX_INT. Cast is OK! */
-	const sf::Vector2f mousePosF = sf::Vector2f(static_cast<int>(vector.x), static_cast<int>(vector.y));
-	sf::Vector2f toTarget = mousePosF - currentPos;
-	float newAngle = std::atan2(toTarget.y, toTarget.x);
+	const sf::Vector2f mousePosF = sf::Vector2f(static_cast<float>(vector.x), static_cast<float>(vector.y));
 
-	_body->SetTransform(_body->GetPosition(), newAngle);
-	_sprite.setRotation(_body->GetAngle() * RADTODEG);
-	_sprite.setPosition(WorldConstants::physicsToSFML(_body->GetPosition()));
+	GA::Action* aimAction = new GA::AimAction(*this, _body->GetPosition(), WorldConstants::sfmlToPhysics(mousePosF));
+	_actions.push_back(aimAction);
 
 	if (leftClicked && _canShoot)
 		shoot(WorldConstants::sfmlToPhysics(sf::Vector2f(mousePosF.x, mousePosF.y)));

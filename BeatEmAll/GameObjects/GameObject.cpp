@@ -8,6 +8,7 @@ GameObject::GameObject(b2World& world) :
 {
 	_alive = true;
 	_body = nullptr;
+	_rotationRad = 0.f;
 }
 
 const std::vector<GameObject*>& GameObject::getChildren() const
