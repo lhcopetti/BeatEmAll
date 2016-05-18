@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObjects\Actions\Action.h"
+#include "GameObjects\Player.h"
 
 namespace GameComponent
 {
@@ -8,7 +9,7 @@ namespace GameComponent
 		class ShootAction : public Action
 		{
 		public:
-			ShootAction(GameComponent::GameObject& target, b2Vec2 originTarget, b2Vec2 shotTarget);
+			ShootAction(GameComponent::Player& target, b2Vec2 originTarget, b2Vec2 shotTarget);
 
 			virtual ~ShootAction();
 			virtual void execute();

@@ -1,426 +1,155 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp" />
+    <ClCompile Include="DebugBoxDraw\WorldConstants.cpp" />
+    <ClCompile Include="GameMachine\MainGameState.cpp" />
+    <ClCompile Include="GameObjects\Actions\Action.cpp" />
+    <ClCompile Include="GameObjects\Actions\MoveAction.cpp" />
+    <ClCompile Include="GameObjects\Actions\ShootAction.cpp" />
+    <ClCompile Include="GameObjects\ChildBearer.cpp" />
+    <ClCompile Include="GameObjects\Defs\PlayerDefinition.cpp" />
+    <ClCompile Include="GameObjects\Projectile\Bullet.cpp" />
+    <ClCompile Include="GameObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\Player.cpp" />
+    <ClCompile Include="GameObjects\Tile.cpp" />
+    <ClCompile Include="GameObjects\TileMap.cpp" />
+    <ClCompile Include="Keyboard\KeyboardManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Tiled\TiledLayerTile.cpp" />
+    <ClCompile Include="Tiled\TiledLayer.cpp" />
+    <ClCompile Include="Tiled\TiledMap.cpp" />
+    <ClCompile Include="Tiled\TiledParser\TiledMapParser.cpp" />
+    <ClCompile Include="Tiled\TiledTransform.cpp" />
+    <ClCompile Include="GameObjects\Weapon\Pistol.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tiled\TiledMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tiled\TiledLayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tiled\TiledLayerTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tiled\TiledParser\TiledMapParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\TileMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tiled\TiledTransform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMachine\MainGameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugBoxDraw\WorldConstants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Keyboard\KeyboardManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\Projectile\Bullet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects\ChildBearer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GameObjects\Tile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RapidXML\rapidxml.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RapidXML\rapidxml_iterators.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RapidXML\rapidxml_print.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RapidXML\rapidxml_utils.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\catch.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\catch_session.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\catch_with_main.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\external\clara.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\external\tbc_text_format.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_approx.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_assertionresult.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_assertionresult.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_capture.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_clara.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_commandline.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_compiler_capabilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_config.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_console_colour.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_console_colour_impl.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_context_impl.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_debugger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_debugger.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_default_main.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_evaluate.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_exception_translator_registry.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_expression_lhs.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_fatal_condition.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_generators.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_generators_impl.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_impl.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_capture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_exception.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_generators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_registry_hub.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_reporter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_runner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_tag_alias_registry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_interfaces_testcase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_legacy_reporter_adapter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_legacy_reporter_adapter.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_list.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_matchers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_message.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_notimplemented_exception.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_notimplemented_exception.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_objc.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_objc_arc.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_option.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_platform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_ptr.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_reenable_warnings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_registry_hub.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_reporter_registrars.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_reporter_registry.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_result_builder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_result_builder.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_result_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_run_context.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_section.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_section.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_section_info.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_section_info.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_stream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_stream.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_streambuf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_suppress_warnings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_tag_alias.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_tag_alias_registry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_tag_alias_registry.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_test_case_info.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_test_case_info.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_test_case_registry_impl.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_test_case_tracker.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_test_registry.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_test_spec.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_test_spec_parser.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_text.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_timer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_tostring.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_tostring.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_totals.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_version.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_wildcard_pattern.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\internal\catch_xmlwriter.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\reporters\catch_reporter_bases.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\reporters\catch_reporter_compact.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\reporters\catch_reporter_console.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\reporters\catch_reporter_junit.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\reporters\catch_reporter_multi.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\reporters\catch_reporter_teamcity.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Catch\reporters\catch_reporter_xml.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tiled\TiledImageTile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tiled\TiledMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tiled\TiledLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tiled\TiledLayerTile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tiled\TiledParser\TiledMapParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\TileMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tiled\TiledTransform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Updatable\Updatable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMachine\MainGameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugBoxDraw\WorldConstants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mouse\MouseListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Keyboard\KeyboardListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Keyboard\KeyboardManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\Projectile\Bullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects\ChildBearer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="Animation\Animation.h" />
+    <ClInclude Include="Catch\catch.hpp" />
+    <ClInclude Include="Catch\catch_session.hpp" />
+    <ClInclude Include="Catch\catch_with_main.hpp" />
+    <ClInclude Include="Catch\external\clara.h" />
+    <ClInclude Include="Catch\external\tbc_text_format.h" />
+    <ClInclude Include="Catch\internal\catch_approx.hpp" />
+    <ClInclude Include="Catch\internal\catch_assertionresult.h" />
+    <ClInclude Include="Catch\internal\catch_assertionresult.hpp" />
+    <ClInclude Include="Catch\internal\catch_capture.hpp" />
+    <ClInclude Include="Catch\internal\catch_clara.h" />
+    <ClInclude Include="Catch\internal\catch_commandline.hpp" />
+    <ClInclude Include="Catch\internal\catch_common.h" />
+    <ClInclude Include="Catch\internal\catch_common.hpp" />
+    <ClInclude Include="Catch\internal\catch_compiler_capabilities.h" />
+    <ClInclude Include="Catch\internal\catch_config.hpp" />
+    <ClInclude Include="Catch\internal\catch_console_colour.hpp" />
+    <ClInclude Include="Catch\internal\catch_console_colour_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_context.h" />
+    <ClInclude Include="Catch\internal\catch_context_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_debugger.h" />
+    <ClInclude Include="Catch\internal\catch_debugger.hpp" />
+    <ClInclude Include="Catch\internal\catch_default_main.hpp" />
+    <ClInclude Include="Catch\internal\catch_evaluate.hpp" />
+    <ClInclude Include="Catch\internal\catch_exception_translator_registry.hpp" />
+    <ClInclude Include="Catch\internal\catch_expression_lhs.hpp" />
+    <ClInclude Include="Catch\internal\catch_fatal_condition.hpp" />
+    <ClInclude Include="Catch\internal\catch_generators.hpp" />
+    <ClInclude Include="Catch\internal\catch_generators_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_interfaces_capture.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_config.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_exception.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_generators.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_registry_hub.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_reporter.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_runner.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_tag_alias_registry.h" />
+    <ClInclude Include="Catch\internal\catch_interfaces_testcase.h" />
+    <ClInclude Include="Catch\internal\catch_legacy_reporter_adapter.h" />
+    <ClInclude Include="Catch\internal\catch_legacy_reporter_adapter.hpp" />
+    <ClInclude Include="Catch\internal\catch_list.hpp" />
+    <ClInclude Include="Catch\internal\catch_matchers.hpp" />
+    <ClInclude Include="Catch\internal\catch_message.h" />
+    <ClInclude Include="Catch\internal\catch_message.hpp" />
+    <ClInclude Include="Catch\internal\catch_notimplemented_exception.h" />
+    <ClInclude Include="Catch\internal\catch_notimplemented_exception.hpp" />
+    <ClInclude Include="Catch\internal\catch_objc.hpp" />
+    <ClInclude Include="Catch\internal\catch_objc_arc.hpp" />
+    <ClInclude Include="Catch\internal\catch_option.hpp" />
+    <ClInclude Include="Catch\internal\catch_platform.h" />
+    <ClInclude Include="Catch\internal\catch_ptr.hpp" />
+    <ClInclude Include="Catch\internal\catch_reenable_warnings.h" />
+    <ClInclude Include="Catch\internal\catch_registry_hub.hpp" />
+    <ClInclude Include="Catch\internal\catch_reporter_registrars.hpp" />
+    <ClInclude Include="Catch\internal\catch_reporter_registry.hpp" />
+    <ClInclude Include="Catch\internal\catch_result_builder.h" />
+    <ClInclude Include="Catch\internal\catch_result_builder.hpp" />
+    <ClInclude Include="Catch\internal\catch_result_type.h" />
+    <ClInclude Include="Catch\internal\catch_run_context.hpp" />
+    <ClInclude Include="Catch\internal\catch_section.h" />
+    <ClInclude Include="Catch\internal\catch_section.hpp" />
+    <ClInclude Include="Catch\internal\catch_section_info.h" />
+    <ClInclude Include="Catch\internal\catch_section_info.hpp" />
+    <ClInclude Include="Catch\internal\catch_stream.h" />
+    <ClInclude Include="Catch\internal\catch_stream.hpp" />
+    <ClInclude Include="Catch\internal\catch_streambuf.h" />
+    <ClInclude Include="Catch\internal\catch_suppress_warnings.h" />
+    <ClInclude Include="Catch\internal\catch_tag_alias.h" />
+    <ClInclude Include="Catch\internal\catch_tag_alias_registry.h" />
+    <ClInclude Include="Catch\internal\catch_tag_alias_registry.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_case_info.h" />
+    <ClInclude Include="Catch\internal\catch_test_case_info.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_case_registry_impl.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_case_tracker.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_registry.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_spec.hpp" />
+    <ClInclude Include="Catch\internal\catch_test_spec_parser.hpp" />
+    <ClInclude Include="Catch\internal\catch_text.h" />
+    <ClInclude Include="Catch\internal\catch_timer.h" />
+    <ClInclude Include="Catch\internal\catch_timer.hpp" />
+    <ClInclude Include="Catch\internal\catch_tostring.h" />
+    <ClInclude Include="Catch\internal\catch_tostring.hpp" />
+    <ClInclude Include="Catch\internal\catch_totals.hpp" />
+    <ClInclude Include="Catch\internal\catch_version.h" />
+    <ClInclude Include="Catch\internal\catch_version.hpp" />
+    <ClInclude Include="Catch\internal\catch_wildcard_pattern.hpp" />
+    <ClInclude Include="Catch\internal\catch_xmlwriter.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_bases.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_compact.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_console.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_junit.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_multi.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_teamcity.hpp" />
+    <ClInclude Include="Catch\reporters\catch_reporter_xml.hpp" />
+    <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h" />
+    <ClInclude Include="DebugBoxDraw\WorldConstants.h" />
+    <ClInclude Include="GameMachine\MainGameState.h" />
+    <ClInclude Include="GameObjects\Actions\Action.h" />
+    <ClInclude Include="GameObjects\Actions\MoveAction.h" />
+    <ClInclude Include="GameObjects\Actions\ShootAction.h" />
+    <ClInclude Include="GameObjects\ChildBearer.h" />
+    <ClInclude Include="GameObjects\Defs\PlayerDefinition.h" />
+    <ClInclude Include="GameObjects\Projectile\Bullet.h" />
+    <ClInclude Include="GameObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\Player.h" />
+    <ClInclude Include="GameObjects\Tile.h" />
+    <ClInclude Include="GameObjects\TileMap.h" />
+    <ClInclude Include="Keyboard\KeyboardListener.h" />
+    <ClInclude Include="Keyboard\KeyboardManager.h" />
+    <ClInclude Include="Mathematics\GameMath.h" />
+    <ClInclude Include="Mouse\MouseListener.h" />
+    <ClInclude Include="RapidXML\rapidxml.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_iterators.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_print.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_utils.hpp" />
+    <ClInclude Include="Tiled\TiledLayerTile.h" />
+    <ClInclude Include="Tiled\TiledLayer.h" />
+    <ClInclude Include="Tiled\TiledImageTile.h" />
+    <ClInclude Include="Tiled\TiledMap.h" />
+    <ClInclude Include="Tiled\TiledParser\TiledMapParser.h" />
+    <ClInclude Include="Tiled\TiledTransform.h" />
+    <ClInclude Include="Updatable\Updatable.h" />
+    <ClInclude Include="GameObjects\Projectile\Projectile.h" />
+    <ClInclude Include="GameObjects\Weapon\Pistol.h" />
+    <ClInclude Include="GameObjects\Weapon\Weapon.h" />
   </ItemGroup>
 </Project>

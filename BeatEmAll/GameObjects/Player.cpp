@@ -3,6 +3,7 @@
 #include "DebugBoxDraw\WorldConstants.h"
 
 #include "GameObjects\Projectile\Bullet.h"
+#include "GameObjects\Weapon\Pistol.h"
 
 #include "GameObjects\Actions\MoveAction.h"
 #include "GameObjects\Actions\ShootAction.h"
@@ -44,6 +45,8 @@ void Player::init()
 	fixture.shape = &polygonShape;
 
 	_body->CreateFixture(&fixture);
+
+	_weapon = new GameComponent::Weapons::Pistol(_world, 30, 30);
 }
 
 Player::~Player()
@@ -112,7 +115,7 @@ void Player::handleKeyboard(std::map<Keys::KeyboardManager::KeyAction, bool> key
 
 void Player::shoot(const b2Vec2& target)
 {
-	using namespace GameComponent::Projectile;
+	using namespace GameComponent::Projectiles;
 
 	/* TODO: How should this state be kept? */
 	_canShoot = false;

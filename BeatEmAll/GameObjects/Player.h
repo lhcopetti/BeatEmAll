@@ -2,7 +2,9 @@
 #include "Updatable\Updatable.h"
 
 #include "GameObjects\GameObject.h"
+
 #include "GameObjects\Actions\Action.h"
+#include "GameObjects\Weapon\Weapon.h"
 
 #include "Mouse\MouseListener.h"
 #include "Keyboard\KeyboardListener.h"
@@ -25,6 +27,8 @@ namespace GameComponent
 
 		std::vector<GA::Action*> _actions;
 
+		GameComponent::Weapons::Weapon* _weapon;
+
 		bool _canShoot;
 		float _canShootCounter;
 
@@ -33,6 +37,8 @@ namespace GameComponent
 		~Player();
 
 		void init();
+
+		GameComponent::Weapons::Weapon& weapon() const { return *_weapon; }
 
 		virtual void update(float elapsedTime);
 

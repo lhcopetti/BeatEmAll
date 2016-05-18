@@ -32,10 +32,10 @@ int main(int oldMain)
 
 	while (mainGameState.isRunning())
 	{
-		mainGameState.processEvents();
 
 		while (accumulator > ups)
 		{
+			mainGameState.processEvents();
 			accumulator -= ups;
 			mainGameState.step(ups.asSeconds());
 		}

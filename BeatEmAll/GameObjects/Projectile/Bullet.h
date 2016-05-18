@@ -1,15 +1,16 @@
 #pragma once
 
 #include "GameObjects\GameObject.h"
+#include "GameObjects\Projectile\Projectile.h"
 #include "Box2D\Box2D.h"
 
 #define BULLET_SPEED 15.f
 
 namespace GameComponent
 {
-	namespace Projectile
+	namespace Projectiles
 	{
-		class Bullet : public GameComponent::GameObject
+		class Bullet : public GameComponent::Projectiles::Projectile
 		{
 		private:
 			const float _lifeTime;
@@ -22,10 +23,10 @@ namespace GameComponent
 
 		public:
 			Bullet(b2World& world, float lifeTime, b2Vec2 initialPos, b2Vec2 initialVel);
+			~Bullet();
 
 			void init();
 
-			~Bullet();
 			virtual void update(float elapsedTime);
 			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		};

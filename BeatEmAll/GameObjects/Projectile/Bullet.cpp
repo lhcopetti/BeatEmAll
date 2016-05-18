@@ -2,7 +2,7 @@
 #include "GameObjects\Projectile\Bullet.h"
 #include "DebugBoxDraw\WorldConstants.h"
 
-using namespace GameComponent::Projectile;
+using namespace GameComponent::Projectiles;
 
 Bullet::~Bullet()
 {
@@ -11,7 +11,7 @@ Bullet::~Bullet()
 }
 
 Bullet::Bullet(b2World& world, float lifeTime, b2Vec2 initialPos, b2Vec2 initialVel) :
-	GameComponent::GameObject(world),
+	GameComponent::Projectiles::Projectile(world),
 	_lifeTime(lifeTime),
 	_initialPos(initialPos),
 	_initialVel(initialVel)
