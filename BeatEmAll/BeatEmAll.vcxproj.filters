@@ -24,6 +24,7 @@
     <ClCompile Include="Tiled\TiledTransform.cpp" />
     <ClCompile Include="GameObjects\Weapon\Pistol.cpp" />
     <ClCompile Include="GameObjects\Actions\AimAction.cpp" />
+    <ClCompile Include="Component\KeyboardInputComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -153,5 +154,7 @@
     <ClInclude Include="GameObjects\Weapon\Pistol.h" />
     <ClInclude Include="GameObjects\Weapon\Weapon.h" />
     <ClInclude Include="GameObjects\Actions\AimAction.h" />
+    <ClInclude Include="Component\InputComponent.h" />
+    <ClInclude Include="Component\KeyboardInputComponent.h" />
   </ItemGroup>
 </Project>

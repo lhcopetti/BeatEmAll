@@ -6,6 +6,8 @@
 #include "GameObjects\Player.h"
 #include "GameObjects\GameObject.h"
 
+#include "Component\KeyboardInputComponent.h"
+
 #include "Box2D\Box2D.h"
 
 #include <iostream>
@@ -25,11 +27,15 @@ MainGameState::MainGameState()
 	_mousePointer = sf::Vector2i(0, 0);
 
 	_world = nullptr;
+	_inputComponent = nullptr;
 }
 
 MainGameState::~MainGameState()
 {
+	delete _inputComponent;
+	_inputComponent = nullptr;
 	delete _world;
+	_world = nullptr;
 }
 
 bool MainGameState::init()
@@ -82,7 +88,8 @@ bool MainGameState::init()
 
 	circ->CreateFixture(&fix);
 
-	_player = new GameComponent::Player(*_world);
+	_inputComponent = new Components::KeyboardInputComponent();
+	_player = new GameComponent::Player(*_world, *_inputComponent);
 	_player->init();
 
 	createBoundingBox(*_world, 1279.0, 639.0);

@@ -31,6 +31,7 @@ namespace GameMachine
 		SFMLDebugDraw _debugDraw;
 
 		GameComponent::Player* _player;
+		Components::InputComponent* _inputComponent;
 
 		sf::Vector2i _mousePointer;
 		bool _mouseLeftClicked;

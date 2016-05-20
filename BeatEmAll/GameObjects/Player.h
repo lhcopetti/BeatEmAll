@@ -9,6 +9,8 @@
 #include "Mouse\MouseListener.h"
 #include "Keyboard\KeyboardListener.h"
 
+#include "Component\InputComponent.h"
+
 #include "Box2D\Box2D.h"
 
 #define PLAYER_VELOCITY 5.f
@@ -23,6 +25,8 @@ namespace GameComponent
 		sf::Texture _texture;
 		sf::Sprite _sprite;
 
+		Components::InputComponent& _inputComponent;
+
 		b2Vec2 _nextPlayerVel;
 
 		std::vector<GA::Action*> _actions;
@@ -33,7 +37,7 @@ namespace GameComponent
 		float _canShootCounter;
 
 	public:
-		Player(b2World& world);
+		Player(b2World& world, Components::InputComponent& inputComponent);
 		~Player();
 
 		void init();
@@ -49,5 +53,7 @@ namespace GameComponent
 		virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool> keys);
 
 		void shoot(const b2Vec2& mousePos);
+
+		void addAction(GameActions::Action* action);
 	};
 }

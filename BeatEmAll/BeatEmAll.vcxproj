@@ -210,6 +210,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Component\KeyboardInputComponent.cpp" />
     <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp" />
     <ClCompile Include="DebugBoxDraw\WorldConstants.cpp" />
     <ClCompile Include="GameMachine\MainGameState.cpp" />
@@ -331,6 +332,8 @@
     <ClInclude Include="Catch\reporters\catch_reporter_multi.hpp" />
     <ClInclude Include="Catch\reporters\catch_reporter_teamcity.hpp" />
     <ClInclude Include="Catch\reporters\catch_reporter_xml.hpp" />
+    <ClInclude Include="Component\InputComponent.h" />
+    <ClInclude Include="Component\KeyboardInputComponent.h" />
     <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h" />
     <ClInclude Include="DebugBoxDraw\WorldConstants.h" />
     <ClInclude Include="GameMachine\MainGameState.h" />

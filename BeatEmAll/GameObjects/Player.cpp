@@ -9,12 +9,14 @@
 #include "GameObjects\Actions\ShootAction.h"
 #include "GameObjects\Actions\AimAction.h"
 
+#include "Component\KeyboardInputComponent.h"
+
 #include <iostream>
 
 using namespace GameComponent;
 namespace GA = GameComponent::GameActions;
 
-Player::Player(b2World& world) : GameObject(world)
+Player::Player(b2World& world, Components::InputComponent& inputComponent) : GameObject(world), _inputComponent(inputComponent)
 {
 	_x = 50;
 	_y = 50;
@@ -57,6 +59,10 @@ Player::~Player()
 
 void Player::update(float elapsedTime)
 {
+	/* Update Components */
+	_inputComponent.update(*this);
+
+
 	/* Isn't it just beautiful? */
 	auto iter = _actions.begin();
 	while (iter != _actions.end())
@@ -71,7 +77,7 @@ void Player::update(float elapsedTime)
 	 * This will soon be abstracted away by the Component Design Pattern
 	 */
 	_body->SetTransform(_body->GetPosition(), _rotationRad);
-	_sprite.setRotation(_rotationRad * RADTODEG);
+	_sprite.setRotation(_body->GetAngle() * RADTODEG);
 
 	_sprite.setPosition(WorldConstants::physicsToSFML(_body->GetPosition()));
 
@@ -90,8 +96,8 @@ void Player::handleMouse(const sf::Vector2i vector, bool leftClicked, bool right
 	/* We can safely assume there will no vector.x as big as MAX_INT. Cast is OK! */
 	const sf::Vector2f mousePosF = sf::Vector2f(static_cast<float>(vector.x), static_cast<float>(vector.y));
 
-	GA::Action* aimAction = new GA::AimAction(*this, _body->GetPosition(), WorldConstants::sfmlToPhysics(mousePosF));
-	_actions.push_back(aimAction);
+	//GA::Action* aimAction = new GA::AimAction(*this, _body->GetPosition(), WorldConstants::sfmlToPhysics(mousePosF));
+	//_actions.push_back(aimAction);
 
 	if (leftClicked && _canShoot)
 		shoot(WorldConstants::sfmlToPhysics(sf::Vector2f(mousePosF.x, mousePosF.y)));
@@ -114,8 +120,8 @@ void Player::handleKeyboard(std::map<Keys::KeyboardManager::KeyAction, bool> key
 	if (keys[KeyboardManager::KeyAction::MOVE_RIGHT])
 		moveDir.xDir = GA::XAxis::RIGHT;
 
-	GA::MoveAction* moveAction = new GA::MoveAction(*this, moveDir);
-	_actions.push_back(moveAction);
+	//GA::MoveAction* moveAction = new GA::MoveAction(*this, moveDir);
+	//_actions.push_back(moveAction);
 }
 
 void Player::shoot(const b2Vec2& target)
@@ -129,11 +135,16 @@ void Player::shoot(const b2Vec2& target)
 	/*
 	 * The Player should not be responsible for issuing Actions!
 	 */
-	GA::ShootAction* shootAction = new GA::ShootAction(*this, _body->GetPosition(), target);
-	_actions.push_back(shootAction);
+	//GA::ShootAction* shootAction = new GA::ShootAction(*this, _body->GetPosition(), target);
+	//_actions.push_back(shootAction);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_sprite);
+}
+
+void Player::addAction(GameActions::Action* action)
+{
+	_actions.push_back(action);
 }
