@@ -25,7 +25,7 @@ Player::Player(b2World& world, Components::InputComponent& inputComponent) : Gam
 	_sprite.setTexture(_texture);
 	_sprite.setOrigin(14, 21);
 	_sprite.setPosition(_x, _y);
-	_sprite.scale(.8f, .8f);
+	_sprite.scale(.6f, .6f);
 
 	_canShoot = false;
 	_canShootCounter = 0.f;
