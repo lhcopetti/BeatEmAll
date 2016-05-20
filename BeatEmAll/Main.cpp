@@ -12,6 +12,8 @@
 #include "Box2D\Box2D.h"
 #include <Windows.h>
 
+#include <stdlib.h>
+#include <time.h>
 
 
 void createGround(b2World& world, float x, float y);
@@ -25,6 +27,8 @@ int main(int oldMain)
 	sf::Clock clock;
 	sf::Time accumulator = sf::Time::Zero;
 	sf::Time ups = sf::seconds(1.f / 60.f);
+
+	srand(time(nullptr));
 
 	GameMachine::MainGameState mainGameState;
 

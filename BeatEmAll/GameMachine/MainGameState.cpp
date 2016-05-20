@@ -6,6 +6,9 @@
 #include "GameObjects\Player.h"
 #include "GameObjects\GameObject.h"
 
+#include "Component\KeyboardInputComponent.h"
+#include "Component\RandomInputComponent.h"
+
 #include "Box2D\Box2D.h"
 
 #include <iostream>
@@ -19,17 +22,16 @@ static void setEdge(b2EdgeShape& edge, float xBegin, float yBegin, float xEnd, f
 
 MainGameState::MainGameState()
 {
-	_running = true;
-	_mouseLeftClicked = false;
-	_mouseRightClicked = false;
-	_mousePointer = sf::Vector2i(0, 0);
-
 	_world = nullptr;
+	_inputComponent = nullptr;
 }
 
 MainGameState::~MainGameState()
 {
+	delete _inputComponent;
+	_inputComponent = nullptr;
 	delete _world;
+	_world = nullptr;
 }
 
 bool MainGameState::init()
@@ -82,14 +84,20 @@ bool MainGameState::init()
 
 	circ->CreateFixture(&fix);
 
-	_player = new GameComponent::Player(*_world);
+	_mouseManager.window(&_window);
+	_inputComponent = new Components::KeyboardInputComponent(_keyManager, _mouseManager);
+
+	_player = new GameComponent::Player(*_world, *_inputComponent);
 	_player->init();
+	_gameObjects.push_back(_player);
 
 	createBoundingBox(*_world, 1279.0, 639.0);
 
-	_keyboardListeners.push_back(_player);
-	_mouseListeners.push_back(_player);
-	_gameObjects.push_back(_player);
+	Components::InputComponent* randInput = new Components::RandomInputComponent;
+	GameComponent::GameObject* enemy = new GameComponent::Player(*_world, *randInput);
+	enemy->position(100.f, 100.f);
+	enemy->init();
+	_gameObjects.push_back(enemy);
 
 	return true;
 }
@@ -145,29 +153,6 @@ static void setPolygon(b2PolygonShape& poly, float sfHeight, float sfWidth, sf::
 
 void MainGameState::step(float delta)
 {
-	const sf::Vector2i mousePointer = _mousePointer;
-	bool leftMouse = _mouseLeftClicked;
-	bool rightMouse = _mouseRightClicked;
-	Keys::KeyboardManager &keyManager = _keyManager;
-
-	std::for_each(
-		_mouseListeners.begin(),
-		_mouseListeners.end(),
-		[&mousePointer, leftMouse, rightMouse](MouseComponent::MouseListener* l)
-	{
-		l->handleMouse(mousePointer, leftMouse, rightMouse);
-	});
-
-	std::for_each(
-		_keyboardListeners.begin(),
-		_keyboardListeners.end(),
-		[keyManager](Keys::KeyboardListener* kL)
-	{
-		kL->handleKeyboard(keyManager.keys());
-	});
-
-
-
 	std::vector<GameComponent::GameObject*>::iterator gOIterator = _gameObjects.begin();
 	std::vector<GameComponent::GameObject*> newChildren;
 
@@ -229,12 +214,6 @@ void MainGameState::processEvents()
 			_running = false;
 		}
 	}
-
-	_mouseLeftClicked = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
-	_mouseRightClicked = sf::Mouse::isButtonPressed(sf::Mouse::Button::Right);
-	_mousePointer = sf::Mouse::getPosition(_window);
-
-	_keyManager.update();
 }
 
 void MainGameState::updateGameObject(GameComponent::GameObject& gO, float delta, std::vector<GameComponent::GameObject*>& newChildren)

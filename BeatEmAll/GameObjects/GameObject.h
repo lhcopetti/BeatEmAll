@@ -41,5 +41,7 @@ namespace GameComponent
 		b2Body* body() { return _body; };
 		float rotation() const { return _rotationRad; }
 		void rotation(float r) { _rotationRad = r; }
+
+		void position(float x, float y);
 	};
 }
