@@ -19,7 +19,7 @@ namespace GA = GameComponent::GameActions;
 
 namespace GameComponent
 {
-	class Player : public GameObject, public MouseComponent::MouseListener, public Keys::KeyboardListener
+	class Player : public GameObject
 	{
 	private:
 		sf::Texture _texture;
@@ -47,12 +47,6 @@ namespace GameComponent
 		virtual void update(float elapsedTime);
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-		virtual void handleMouse(const sf::Vector2i vector, bool leftClicked, bool rightClicked);
-
-		virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool> keys);
-
-		void shoot(const b2Vec2& mousePos);
 
 		void addAction(GameActions::Action* action);
 	};

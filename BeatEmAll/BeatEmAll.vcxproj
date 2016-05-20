@@ -230,6 +230,7 @@
     <ClCompile Include="Main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\SFML-2.3.2-windows-vc14-32-bit\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Mouse\MouseManager.cpp" />
     <ClCompile Include="Tiled\TiledLayerTile.cpp" />
     <ClCompile Include="Tiled\TiledLayer.cpp" />
     <ClCompile Include="Tiled\TiledMap.cpp" />
@@ -355,6 +356,7 @@
     <ClInclude Include="Keyboard\KeyboardManager.h" />
     <ClInclude Include="Mathematics\GameMath.h" />
     <ClInclude Include="Mouse\MouseListener.h" />
+    <ClInclude Include="Mouse\MouseManager.h" />
     <ClInclude Include="RapidXML\rapidxml.hpp" />
     <ClInclude Include="RapidXML\rapidxml_iterators.hpp" />
     <ClInclude Include="RapidXML\rapidxml_print.hpp" />

@@ -25,6 +25,7 @@
     <ClCompile Include="GameObjects\Weapon\Pistol.cpp" />
     <ClCompile Include="GameObjects\Actions\AimAction.cpp" />
     <ClCompile Include="Component\KeyboardInputComponent.cpp" />
+    <ClCompile Include="Mouse\MouseManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -156,5 +157,6 @@
     <ClInclude Include="GameObjects\Actions\AimAction.h" />
     <ClInclude Include="Component\InputComponent.h" />
     <ClInclude Include="Component\KeyboardInputComponent.h" />
+    <ClInclude Include="Mouse\MouseManager.h" />
   </ItemGroup>
 </Project>
