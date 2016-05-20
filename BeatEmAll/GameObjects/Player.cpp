@@ -50,6 +50,7 @@ void Player::init()
 	_body->CreateFixture(&fixture);
 
 	_weapon = new GameComponent::Weapons::Pistol(_world, 30, 30);
+	addChild(_weapon);
 }
 
 Player::~Player()

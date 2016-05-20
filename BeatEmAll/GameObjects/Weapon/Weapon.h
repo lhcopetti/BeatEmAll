@@ -21,6 +21,8 @@ namespace GameComponent
 
 			virtual GameComponent::Projectiles::Projectile* shoot(b2Vec2 initialPos, b2Vec2 initialVel) = 0;
 
+			virtual bool canShoot() const = 0;
+
 			int bulletCount() const { return _bulletCount; }
 			int cartridgeSize() const { return _cartdrigeSize; }
 
