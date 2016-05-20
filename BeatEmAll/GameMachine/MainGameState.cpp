@@ -7,6 +7,7 @@
 #include "GameObjects\GameObject.h"
 
 #include "Component\KeyboardInputComponent.h"
+#include "Component\RandomInputComponent.h"
 
 #include "Box2D\Box2D.h"
 
@@ -88,9 +89,15 @@ bool MainGameState::init()
 
 	_player = new GameComponent::Player(*_world, *_inputComponent);
 	_player->init();
+	_gameObjects.push_back(_player);
 
 	createBoundingBox(*_world, 1279.0, 639.0);
-	_gameObjects.push_back(_player);
+
+	Components::InputComponent* randInput = new Components::RandomInputComponent;
+	GameComponent::GameObject* enemy = new GameComponent::Player(*_world, *randInput);
+	enemy->position(100.f, 100.f);
+	enemy->init();
+	_gameObjects.push_back(enemy);
 
 	return true;
 }
