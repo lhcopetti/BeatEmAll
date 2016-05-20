@@ -19,15 +19,14 @@ void ShootAction::execute()
 {
 	using namespace GameComponent::Projectiles;
 
-	b2Body* body = _target.body();
-	float radAngle = body->GetAngle();
-
 	GameComponent::Player& player = static_cast<GameComponent::Player&>(_target);
 	GameComponent::Weapons::Weapon& weapon = player.weapon();
 
-	b2Vec2 velChange = b2Vec2(std::cos(radAngle), std::sin(radAngle));
+	b2Vec2 velChange2 = _shotTarget - _originTarget;
+	velChange2.Normalize();
+	velChange2 *= 2;
 
-	GameComponent::Projectiles::Projectile* projectile = weapon.shoot(_originTarget, velChange);
+	GameComponent::Projectiles::Projectile* projectile = weapon.shoot(_originTarget, velChange2);
 
 	if (nullptr != projectile)
 		_target.addChild(projectile);
