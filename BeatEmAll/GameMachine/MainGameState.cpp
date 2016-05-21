@@ -10,6 +10,7 @@
 #include "Component\RandomInputComponent.h"
 
 #include "Component\PlayerComponents\PlayerGraphicsComponent.h"
+#include "Component\EnemyComponents\EnemyGraphicComponent.h"
 
 #include "Box2D\Box2D.h"
 
@@ -90,7 +91,7 @@ bool MainGameState::init()
 
 	/* TODO: Add Component for enemy*/
 	_graphicsComponent = new Components::PlayerComponents::PlayerGraphicsComponent();
-	_graphicsEnemy = new Components::PlayerComponents::PlayerGraphicsComponent();
+	_graphicsEnemy = new Components::EnemyComponents::EnemyGraphicComponent();
 
 	_player = new GameComponent::Player(*_world, *_inputComponent, *_graphicsComponent);
 	_player->init();

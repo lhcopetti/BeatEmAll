@@ -210,6 +210,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
     <ClCompile Include="Component\GraphicsComponent.cpp" />
     <ClCompile Include="Component\KeyboardInputComponent.cpp" />
     <ClCompile Include="Component\PlayerComponents\PlayerGraphicsComponent.cpp" />
@@ -336,6 +337,7 @@
     <ClInclude Include="Catch\reporters\catch_reporter_multi.hpp" />
     <ClInclude Include="Catch\reporters\catch_reporter_teamcity.hpp" />
     <ClInclude Include="Catch\reporters\catch_reporter_xml.hpp" />
+    <ClInclude Include="Component\EnemyComponents\EnemyGraphicComponent.h" />
     <ClInclude Include="Component\GraphicsComponent.h" />
     <ClInclude Include="Component\InputComponent.h" />
     <ClInclude Include="Component\KeyboardInputComponent.h" />

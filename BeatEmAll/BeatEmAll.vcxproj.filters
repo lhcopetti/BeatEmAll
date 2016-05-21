@@ -29,6 +29,7 @@
     <ClCompile Include="Component\RandomInputComponent.cpp" />
     <ClCompile Include="Component\GraphicsComponent.cpp" />
     <ClCompile Include="Component\PlayerComponents\PlayerGraphicsComponent.cpp" />
+    <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -165,5 +166,6 @@
     <ClInclude Include="Component\RandomInputComponent.h" />
     <ClInclude Include="Component\GraphicsComponent.h" />
     <ClInclude Include="Component\PlayerComponents\PlayerGraphicsComponent.h" />
+    <ClInclude Include="Component\EnemyComponents\EnemyGraphicComponent.h" />
   </ItemGroup>
 </Project>
