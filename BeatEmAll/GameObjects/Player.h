@@ -10,6 +10,7 @@
 #include "Keyboard\KeyboardListener.h"
 
 #include "Component\InputComponent.h"
+#include "Component\GraphicsComponent.h"
 
 #include "Box2D\Box2D.h"
 
@@ -22,10 +23,11 @@ namespace GameComponent
 	class Player : public GameObject
 	{
 	private:
-		sf::Texture _texture;
-		sf::Sprite _sprite;
+		//sf::Texture _texture;
+		//sf::Sprite _sprite;
 
 		Components::InputComponent& _inputComponent;
+		Components::GraphicsComponent& _graphicsComponent;
 
 		b2Vec2 _nextPlayerVel;
 
@@ -37,7 +39,9 @@ namespace GameComponent
 		float _canShootCounter;
 
 	public:
-		Player(b2World& world, Components::InputComponent& inputComponent);
+		Player(b2World& world, 
+			Components::InputComponent& inputComponent,
+			Components::GraphicsComponent& graphicsComponent);
 		~Player();
 
 		void init();

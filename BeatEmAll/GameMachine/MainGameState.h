@@ -14,6 +14,8 @@
 #include "Mouse\MouseListener.h"
 #include "Mouse\MouseManager.h"
 
+#include "Component\GraphicsComponent.h"
+
 #define BOX2D_VELOCITY_ITERATIONS 8 // how strongly to correct velocity
 #define BOX2D_POSITION_ITERATIONS 3 // how strongly to correct position
 
@@ -33,6 +35,9 @@ namespace GameMachine
 
 		GameComponent::Player* _player;
 		Components::InputComponent* _inputComponent;
+
+		Components::GraphicsComponent* _graphicsComponent;
+		Components::GraphicsComponent* _graphicsEnemy;
 
 		Keys::KeyboardManager _keyManager;
 		MouseComponent::MouseManager _mouseManager;

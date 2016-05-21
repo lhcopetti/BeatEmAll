@@ -1,5 +1,4 @@
 #include "GameObjects\Player.h"
-#include "SFML\Graphics.hpp"
 #include "DebugBoxDraw\WorldConstants.h"
 
 #include "GameObjects\Projectile\Bullet.h"
@@ -16,17 +15,16 @@
 using namespace GameComponent;
 namespace GA = GameComponent::GameActions;
 
-Player::Player(b2World& world, Components::InputComponent& inputComponent) : GameObject(world), _inputComponent(inputComponent)
+Player::Player(b2World& world, 
+	Components::InputComponent& inputComponent,
+	Components::GraphicsComponent& graphicsComponent) 
+	: 
+	GameObject(world), 
+	_inputComponent(inputComponent),
+	_graphicsComponent(graphicsComponent)
 {
 	_x = 50;
 	_y = 50;
-
-	_texture.loadFromFile("assets\\player1\\manBlue_silencer.png");
-	_sprite.setTexture(_texture);
-	_sprite.setOrigin(14, 21);
-	_sprite.setPosition(_x, _y);
-	_sprite.scale(.6f, .6f);
-
 	_canShoot = false;
 	_canShootCounter = 0.f;
 }
@@ -60,8 +58,13 @@ Player::~Player()
 
 void Player::update(float elapsedTime)
 {
+	sf::Vector2f bodyPos = WorldConstants::physicsToSFML(_body->GetPosition());
+	_x = bodyPos.x;
+	_y = bodyPos.y;
+
 	/* Update Components */
 	_inputComponent.update(*this);
+	_graphicsComponent.update(*this);
 
 
 	/* Isn't it just beautiful? */
@@ -78,9 +81,9 @@ void Player::update(float elapsedTime)
 	 * This will soon be abstracted away by the Component Design Pattern
 	 */
 	_body->SetTransform(_body->GetPosition(), _rotationRad);
-	_sprite.setRotation(_body->GetAngle() * RADTODEG);
 
-	_sprite.setPosition(WorldConstants::physicsToSFML(_body->GetPosition()));
+	//_sprite.setRotation(_body->GetAngle() * RADTODEG);
+	//_sprite.setPosition(WorldConstants::physicsToSFML(_body->GetPosition()));
 
 	/* TODO: How should this state be handled? */
 	_canShootCounter += elapsedTime;
@@ -94,7 +97,8 @@ void Player::update(float elapsedTime)
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(_sprite);
+	_graphicsComponent.draw(target, states);
+	//target.draw(_sprite);
 }
 
 void Player::addAction(GameActions::Action* action)

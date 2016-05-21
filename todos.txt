@@ -5,4 +5,7 @@ OK! - Juntar Mouse e Keyboard em um Component do tipo input (Abstração)
 OK!	- Sprite Rotation != Body Rotation. (angularVelocity(0);)
 
 
+- Implement GraphicsComponent
 - Run Leak Test
+- Remove _canShoot counter from player
+- Add component for enemy

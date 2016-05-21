@@ -9,6 +9,8 @@
 #include "Component\KeyboardInputComponent.h"
 #include "Component\RandomInputComponent.h"
 
+#include "Component\PlayerComponents\PlayerGraphicsComponent.h"
+
 #include "Box2D\Box2D.h"
 
 #include <iostream>
@@ -28,10 +30,9 @@ MainGameState::MainGameState()
 
 MainGameState::~MainGameState()
 {
-	delete _inputComponent;
-	_inputComponent = nullptr;
-	delete _world;
-	_world = nullptr;
+	delete _graphicsComponent; _graphicsComponent = nullptr;
+	delete _inputComponent; _inputComponent = nullptr;
+	delete _world; _world = nullptr;
 }
 
 bool MainGameState::init()
@@ -87,14 +88,18 @@ bool MainGameState::init()
 	_mouseManager.window(&_window);
 	_inputComponent = new Components::KeyboardInputComponent(_keyManager, _mouseManager);
 
-	_player = new GameComponent::Player(*_world, *_inputComponent);
+	/* TODO: Add Component for enemy*/
+	_graphicsComponent = new Components::PlayerComponents::PlayerGraphicsComponent();
+	_graphicsEnemy = new Components::PlayerComponents::PlayerGraphicsComponent();
+
+	_player = new GameComponent::Player(*_world, *_inputComponent, *_graphicsComponent);
 	_player->init();
 	_gameObjects.push_back(_player);
 
 	createBoundingBox(*_world, 1279.0, 639.0);
 
 	Components::InputComponent* randInput = new Components::RandomInputComponent;
-	GameComponent::GameObject* enemy = new GameComponent::Player(*_world, *randInput);
+	GameComponent::GameObject* enemy = new GameComponent::Player(*_world, *randInput, *_graphicsEnemy);
 	enemy->position(100.f, 100.f);
 	enemy->init();
 	_gameObjects.push_back(enemy);

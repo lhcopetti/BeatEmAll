@@ -42,6 +42,11 @@ namespace GameComponent
 		float rotation() const { return _rotationRad; }
 		void rotation(float r) { _rotationRad = r; }
 
+
+		float x() const { return _x; }
+		float y() const { return _y; }
+
 		void position(float x, float y);
+		sf::Vector2f position() const { return sf::Vector2f(_x, _y); }
 	};
 }

@@ -27,6 +27,8 @@
     <ClCompile Include="Component\KeyboardInputComponent.cpp" />
     <ClCompile Include="Mouse\MouseManager.cpp" />
     <ClCompile Include="Component\RandomInputComponent.cpp" />
+    <ClCompile Include="Component\GraphicsComponent.cpp" />
+    <ClCompile Include="Component\PlayerComponents\PlayerGraphicsComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -161,5 +163,7 @@
     <ClInclude Include="Mouse\MouseManager.h" />
     <ClInclude Include="Component\NullInputComponent.h" />
     <ClInclude Include="Component\RandomInputComponent.h" />
+    <ClInclude Include="Component\GraphicsComponent.h" />
+    <ClInclude Include="Component\PlayerComponents\PlayerGraphicsComponent.h" />
   </ItemGroup>
 </Project>
