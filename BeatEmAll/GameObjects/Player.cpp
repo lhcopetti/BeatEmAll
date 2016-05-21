@@ -25,8 +25,6 @@ Player::Player(b2World& world,
 {
 	_x = 50;
 	_y = 50;
-	_canShoot = false;
-	_canShootCounter = 0.f;
 }
 
 void Player::init()
@@ -81,24 +79,11 @@ void Player::update(float elapsedTime)
 	 * This will soon be abstracted away by the Component Design Pattern
 	 */
 	_body->SetTransform(_body->GetPosition(), _rotationRad);
-
-	//_sprite.setRotation(_body->GetAngle() * RADTODEG);
-	//_sprite.setPosition(WorldConstants::physicsToSFML(_body->GetPosition()));
-
-	/* TODO: How should this state be handled? */
-	_canShootCounter += elapsedTime;
-
-	if (_canShootCounter > .2f)
-	{
-		_canShootCounter -= .2f;
-		_canShoot = true;
-	}
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	_graphicsComponent.draw(target, states);
-	//target.draw(_sprite);
 }
 
 void Player::addAction(GameActions::Action* action)

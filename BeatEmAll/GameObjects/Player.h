@@ -23,20 +23,11 @@ namespace GameComponent
 	class Player : public GameObject
 	{
 	private:
-		//sf::Texture _texture;
-		//sf::Sprite _sprite;
-
 		Components::InputComponent& _inputComponent;
 		Components::GraphicsComponent& _graphicsComponent;
 
-		b2Vec2 _nextPlayerVel;
-
 		std::vector<GA::Action*> _actions;
-
 		GameComponent::Weapons::Weapon* _weapon;
-
-		bool _canShoot;
-		float _canShootCounter;
 
 	public:
 		Player(b2World& world, 
@@ -49,7 +40,6 @@ namespace GameComponent
 		GameComponent::Weapons::Weapon& weapon() const { return *_weapon; }
 
 		virtual void update(float elapsedTime);
-
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 		void addAction(GameActions::Action* action);
