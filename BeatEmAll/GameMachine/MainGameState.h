@@ -16,6 +16,8 @@
 
 #include "Component\GraphicsComponent.h"
 
+#include "IA\Steering\SteeringManager.h"
+
 #define BOX2D_VELOCITY_ITERATIONS 8 // how strongly to correct velocity
 #define BOX2D_POSITION_ITERATIONS 3 // how strongly to correct position
 
@@ -35,6 +37,8 @@ namespace GameMachine
 
 		GameComponent::Player* _player;
 		Components::InputComponent* _inputComponent;
+
+		IA::Steering::SteeringManager* _steeringManager;
 
 		Components::GraphicsComponent* _graphicsComponent;
 		Components::GraphicsComponent* _graphicsEnemy;

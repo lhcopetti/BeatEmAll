@@ -11,6 +11,7 @@
 
 #include "Component\PlayerComponents\PlayerGraphicsComponent.h"
 #include "Component\EnemyComponents\EnemyGraphicComponent.h"
+#include "Component\EnemyComponents\SteeringInputComponent.h"
 
 #include "Box2D\Box2D.h"
 
@@ -99,10 +100,15 @@ bool MainGameState::init()
 
 	createBoundingBox(*_world, 1279.0, 639.0);
 
-	Components::InputComponent* randInput = new Components::RandomInputComponent;
-	GameComponent::GameObject* enemy = new GameComponent::Player(*_world, *randInput, *_graphicsEnemy);
+	_steeringManager = new IA::Steering::SteeringManager;
+	Components::EnemyComponents::SteeringInputComponent* randInput = 
+		new Components::EnemyComponents::SteeringInputComponent(*_steeringManager, &_window);
+	
+	GameComponent::Player* enemy = new GameComponent::Player(*_world, *randInput, *_graphicsEnemy);
 	enemy->position(100.f, 100.f);
 	enemy->init();
+	_steeringManager->setPlayer(enemy);
+
 	_gameObjects.push_back(enemy);
 
 	return true;

@@ -30,6 +30,9 @@
     <ClCompile Include="Component\GraphicsComponent.cpp" />
     <ClCompile Include="Component\PlayerComponents\PlayerGraphicsComponent.cpp" />
     <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
+    <ClCompile Include="IA\Steering\SteeringManager.cpp" />
+    <ClCompile Include="Component\EnemyComponents\SteeringInputComponent.cpp" />
+    <ClCompile Include="GameObjects\Actions\VelocityAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -167,5 +170,9 @@
     <ClInclude Include="Component\GraphicsComponent.h" />
     <ClInclude Include="Component\PlayerComponents\PlayerGraphicsComponent.h" />
     <ClInclude Include="Component\EnemyComponents\EnemyGraphicComponent.h" />
+    <ClInclude Include="IA\Steering\Steerable.h" />
+    <ClInclude Include="IA\Steering\SteeringManager.h" />
+    <ClInclude Include="Component\EnemyComponents\SteeringInputComponent.h" />
+    <ClInclude Include="GameObjects\Actions\VelocityAction.h" />
   </ItemGroup>
 </Project>

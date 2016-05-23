@@ -9,3 +9,4 @@ OK! - Implement GraphicsComponent
 - Run Leak Test
 - Remove _canShoot counter from player
 - Add component for enemy
+- The target for an action should be passed as parameter in the execute function.
