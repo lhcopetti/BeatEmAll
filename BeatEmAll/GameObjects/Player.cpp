@@ -69,7 +69,7 @@ void Player::update(float elapsedTime)
 	auto iter = _actions.begin();
 	while (iter != _actions.end())
 	{
-		(*iter)->execute();
+		(*iter)->execute(*this);
 		delete *iter;
 		iter = _actions.erase(iter);
 	}

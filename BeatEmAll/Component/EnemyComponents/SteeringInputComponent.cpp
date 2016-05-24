@@ -21,7 +21,7 @@ void SteeringInputComponent::update(GameComponent::Player& player)
 
 	b2Vec2 steeringVel = _manager.getSteering();
 
-	GA::VelocityAction* velocityAction = new GA::VelocityAction(player, steeringVel);
+	GA::VelocityAction* velocityAction = new GA::VelocityAction(steeringVel);
 	player.addAction(velocityAction);
 	player.rotation(atan2(steeringVel.y, steeringVel.x));
 }

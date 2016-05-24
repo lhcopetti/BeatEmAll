@@ -33,6 +33,8 @@
     <ClCompile Include="IA\Steering\SteeringManager.cpp" />
     <ClCompile Include="Component\EnemyComponents\SteeringInputComponent.cpp" />
     <ClCompile Include="GameObjects\Actions\VelocityAction.cpp" />
+    <ClCompile Include="IA\Steering\SeekBehavior.cpp" />
+    <ClCompile Include="IA\Steering\Steerable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -174,5 +176,7 @@
     <ClInclude Include="IA\Steering\SteeringManager.h" />
     <ClInclude Include="Component\EnemyComponents\SteeringInputComponent.h" />
     <ClInclude Include="GameObjects\Actions\VelocityAction.h" />
+    <ClInclude Include="IA\Steering\SteeringBehavior.h" />
+    <ClInclude Include="IA\Steering\SeekBehavior.h" />
   </ItemGroup>
 </Project>

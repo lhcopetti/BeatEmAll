@@ -1,5 +1,6 @@
 
 #include "IA\Steering\SteeringManager.h"
+#include "IA\Steering\SeekBehavior.h"
 
 using namespace IA::Steering;
 
@@ -14,15 +15,9 @@ void SteeringManager::seek(b2Vec2 position)
 	if (!_player)
 		return;
 
-	b2Vec2 desiredVel = (position - _player->body()->GetPosition());
-	desiredVel.Normalize();
-	desiredVel *= 3.f /* Velocity */;
+	SeekBehavior seek(position, 10.f);
 
-	_steering = b2Vec2_zero;
-	_steering = desiredVel - _player->body()->GetLinearVelocity();
-	_steering = truncate(_steering, 3.f);
-
-	_steering = truncate(_player->body()->GetLinearVelocity() + _steering, 3.f);
+	_steering = seek.compute(*_player);
 }
 
 b2Vec2 SteeringManager::doSeek(b2Vec2 position)

@@ -9,10 +9,10 @@ namespace GameComponent
 		class AimAction : public Action
 		{
 		public:
-			AimAction(GameComponent::Player& target, b2Vec2 origin, b2Vec2 aimTarget);
+			AimAction(b2Vec2 origin, b2Vec2 aimTarget);
 
 			virtual ~AimAction();
-			virtual void execute();
+			virtual void execute(GameComponent::GameObject& target);
 
 		private:
 			const b2Vec2 _origin;

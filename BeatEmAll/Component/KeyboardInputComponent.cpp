@@ -48,7 +48,7 @@ void KeyboardInputComponent::handleKeyboard(GameComponent::Player& player, const
 	if (keys.at(KeyboardManager::KeyAction::MOVE_RIGHT))
 		moveDir.xDir = GA::XAxis::RIGHT;
 
-	GA::MoveAction* moveAction = new GA::MoveAction(player, moveDir);
+	GA::MoveAction* moveAction = new GA::MoveAction(moveDir);
 	player.addAction(moveAction);
 }
 
@@ -57,13 +57,13 @@ void KeyboardInputComponent::handleMouse(GameComponent::Player& player, MouseCom
 	/* We can safely assume there will no vector.x as big as MAX_INT. Cast is OK! */
 	const sf::Vector2f mousePosF = sf::Vector2f(static_cast<float>(mouse.mousePos().x), static_cast<float>(mouse.mousePos().y));
 
-	GA::Action* aimAction = new GA::AimAction(player, player.body()->GetPosition(), WorldConstants::sfmlToPhysics(mousePosF));
+	GA::Action* aimAction = new GA::AimAction(player.body()->GetPosition(), WorldConstants::sfmlToPhysics(mousePosF));
 	player.addAction(aimAction);
 
 	if (mouse.left())
 	{
 		b2Vec2 target = WorldConstants::sfmlToPhysics(mousePosF);
-		GA::ShootAction* shootAction = new GA::ShootAction(player, player.body()->GetPosition(), target);
+		GA::ShootAction* shootAction = new GA::ShootAction(player.body()->GetPosition(), target);
 		player.addAction(shootAction);
 	}
 }

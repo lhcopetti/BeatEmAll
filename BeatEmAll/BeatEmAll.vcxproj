@@ -232,6 +232,8 @@
     <ClCompile Include="GameObjects\Tile.cpp" />
     <ClCompile Include="GameObjects\TileMap.cpp" />
     <ClCompile Include="GameObjects\Weapon\Pistol.cpp" />
+    <ClCompile Include="IA\Steering\SeekBehavior.cpp" />
+    <ClCompile Include="IA\Steering\Steerable.cpp" />
     <ClCompile Include="IA\Steering\SteeringManager.cpp" />
     <ClCompile Include="Keyboard\KeyboardManager.cpp" />
     <ClCompile Include="Main.cpp">
@@ -366,7 +368,9 @@
     <ClInclude Include="GameObjects\TileMap.h" />
     <ClInclude Include="GameObjects\Weapon\Pistol.h" />
     <ClInclude Include="GameObjects\Weapon\Weapon.h" />
+    <ClInclude Include="IA\Steering\SeekBehavior.h" />
     <ClInclude Include="IA\Steering\Steerable.h" />
+    <ClInclude Include="IA\Steering\SteeringBehavior.h" />
     <ClInclude Include="IA\Steering\SteeringManager.h" />
     <ClInclude Include="Keyboard\KeyboardListener.h" />
     <ClInclude Include="Keyboard\KeyboardManager.h" />

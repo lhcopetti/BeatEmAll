@@ -34,6 +34,6 @@ void RandomInputComponent::update(GameComponent::Player& player)
 		_lastMove = moveDir;
 	}
 
-	GA::MoveAction* moveAction = new GA::MoveAction(player, moveDir);
+	GA::MoveAction* moveAction = new GA::MoveAction(moveDir);
 	player.addAction(moveAction);
 }

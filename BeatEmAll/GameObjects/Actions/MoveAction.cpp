@@ -3,8 +3,8 @@
 
 using namespace GameComponent::GameActions;
 
-MoveAction::MoveAction(GameComponent::GameObject& gameObject, MoveDirection moveDirection)
-	: _moveDir(moveDirection), Action(gameObject)
+MoveAction::MoveAction(MoveDirection moveDirection)
+	: _moveDir(moveDirection)
 {
 }
 
@@ -13,9 +13,9 @@ MoveAction::~MoveAction()
 
 }
 
-void MoveAction::execute()
+void MoveAction::execute(GameComponent::GameObject& target)
 {
-	b2Body* body = _target.body();
+	b2Body* body = target.body();
 
 	float pVelocity = GameComponent::Definitions::PlayerDefinition::MOVE_VELOCITY;
 	b2Vec2 nextVel(_moveDir.xDir * pVelocity, _moveDir.yDir * pVelocity);

@@ -3,8 +3,8 @@
 
 using namespace GameComponent::GameActions;
 
-VelocityAction::VelocityAction(GameComponent::GameObject& gameObject, b2Vec2 newVelocity)
-	: Action(gameObject), _newVelocity(newVelocity)
+VelocityAction::VelocityAction(b2Vec2 newVelocity)
+	: _newVelocity(newVelocity)
 {
 }
 
@@ -13,9 +13,9 @@ VelocityAction::~VelocityAction()
 
 }
 
-void VelocityAction::execute()
+void VelocityAction::execute(GameComponent::GameObject& target)
 {
-	b2Body* body = _target.body();
+	b2Body* body = target.body();
 	b2Vec2 velChange = _newVelocity - body->GetLinearVelocity();
 
 	b2Vec2 force = b2Vec2_zero;

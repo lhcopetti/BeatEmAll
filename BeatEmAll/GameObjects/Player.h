@@ -14,13 +14,15 @@
 
 #include "Box2D\Box2D.h"
 
+#include "IA\Steering\Steerable.h"
+
 #define PLAYER_VELOCITY 5.f
 
 namespace GA = GameComponent::GameActions;
 
 namespace GameComponent
 {
-	class Player : public GameObject
+	class Player : public GameObject, public IA::Steering::Steerable
 	{
 	private:
 		Components::InputComponent& _inputComponent;
@@ -43,5 +45,12 @@ namespace GameComponent
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 		void addAction(GameActions::Action* action);
+
+
+		virtual b2Vec2 getCurrentVelocity() const { return _body->GetLinearVelocity(); }
+		virtual float getMaximumVelocity() const { return 4.f; }
+		virtual b2Vec2 getCurrentPosition() const { return _body->GetPosition(); }
+		virtual float getMass() const { return _body->GetMass(); }
+
 	};
 }

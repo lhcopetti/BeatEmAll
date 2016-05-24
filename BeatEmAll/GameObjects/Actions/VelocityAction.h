@@ -8,10 +8,10 @@ namespace GameComponent
 		class VelocityAction : public Action
 		{
 		public:
-			VelocityAction(GameComponent::GameObject& target, b2Vec2 newVelocity);
+			VelocityAction(b2Vec2 newVelocity);
 
 			virtual ~VelocityAction();
-			virtual void execute();
+			virtual void execute(GameComponent::GameObject& target);
 
 		private:
 			b2Vec2 _newVelocity;
