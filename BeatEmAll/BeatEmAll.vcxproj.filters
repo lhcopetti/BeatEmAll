@@ -35,6 +35,7 @@
     <ClCompile Include="GameObjects\Actions\VelocityAction.cpp" />
     <ClCompile Include="IA\Steering\SeekBehavior.cpp" />
     <ClCompile Include="IA\Steering\Steerable.cpp" />
+    <ClCompile Include="IA\Steering\WanderBehavior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -178,5 +179,6 @@
     <ClInclude Include="GameObjects\Actions\VelocityAction.h" />
     <ClInclude Include="IA\Steering\SteeringBehavior.h" />
     <ClInclude Include="IA\Steering\SeekBehavior.h" />
+    <ClInclude Include="IA\Steering\WanderBehavior.h" />
   </ItemGroup>
 </Project>

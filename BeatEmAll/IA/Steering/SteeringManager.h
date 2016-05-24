@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObjects\Player.h"
+#include "IA\Steering\WanderBehavior.h"
 
 namespace IA
 {
@@ -16,8 +17,10 @@ namespace IA
 
 			b2Vec2 truncate(b2Vec2 vector, float maxValue) const;
 
+			WanderBehavior _wander;
+
 		public:
-			SteeringManager()
+			SteeringManager() : _wander(8.f)
 			{
 				_steering = b2Vec2_zero;
 				_player = nullptr;

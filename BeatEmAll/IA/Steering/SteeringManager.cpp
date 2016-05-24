@@ -1,6 +1,7 @@
 
 #include "IA\Steering\SteeringManager.h"
 #include "IA\Steering\SeekBehavior.h"
+#include "DebugBoxDraw\WorldConstants.h"
 
 using namespace IA::Steering;
 
@@ -15,9 +16,11 @@ void SteeringManager::seek(b2Vec2 position)
 	if (!_player)
 		return;
 
-	SeekBehavior seek(position, 10.f);
-
+	SeekBehavior seek(position, WorldConstants::sfmlToPhysics(64));
 	_steering = seek.compute(*_player);
+
+	//WanderBehavior wander(2.f);
+	//_steering = _wander.compute(*_player);
 }
 
 b2Vec2 SteeringManager::doSeek(b2Vec2 position)

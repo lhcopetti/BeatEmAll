@@ -8,20 +8,18 @@ namespace IA
 {
 	namespace Steering
 	{
-		class SeekBehavior : IA::Steering::SteeringBehavior
+		class WanderBehavior : public IA::Steering::SteeringBehavior
 		{
-		private:
-			const b2Vec2 _target;
-			float _slowingRadius;
 
 		public:
-			SeekBehavior(b2Vec2 target, float slowingRadius = 0) 
-				: _target(target),
-				_slowingRadius(slowingRadius)
-			{}
+			WanderBehavior(float circleRadius);
 			virtual b2Vec2 compute(const IA::Steering::Steerable& steerable);
 
 		private:
+			const float _circleRadius;
+			b2Vec2 _displacement;
+			float _wanderAngle;
+			static float _wanderAngleChange;
 		};
 	}
 }

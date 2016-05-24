@@ -12,3 +12,8 @@ const b2Vec2 WorldConstants::sfmlToPhysics(sf::Vector2f vector)
 {
 	return b2Vec2(vector.x / WorldConstants::SCALE, vector.y / WorldConstants::SCALE);
 }
+
+const float WorldConstants::sfmlToPhysics(float x)
+{
+	return x / WorldConstants::SCALE;
+}

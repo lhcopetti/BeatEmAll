@@ -15,7 +15,7 @@ namespace IA
 			SteeringBehavior() {}
 			virtual ~SteeringBehavior() {}
 
-			virtual b2Vec2 compute(const IA::Steering::Steerable& steerable) const = 0;
+			virtual b2Vec2 compute(const IA::Steering::Steerable& steerable) = 0;
 
 			static b2Vec2 SteeringBehavior::truncate(b2Vec2 vector, float maxValue)
 			{
