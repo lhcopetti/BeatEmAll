@@ -12,13 +12,13 @@ PlayerGraphicsComponent::PlayerGraphicsComponent()
 	_sprite.scale(.6f, .6f);
 }
 
-void PlayerGraphicsComponent::update(GameComponent::Player& player)
+void PlayerGraphicsComponent::update(GameComponent::GameObject& player)
 {
 	_sprite.setPosition(player.position());
 	_sprite.setRotation(player.rotation() * RADTODEG);
 }
 
-void PlayerGraphicsComponent::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void PlayerGraphicsComponent::draw(const GameComponent::GameObject& gameObject, sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_sprite);
 }

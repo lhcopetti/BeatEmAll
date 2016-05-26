@@ -12,16 +12,18 @@
 
 using namespace Components::EnemyComponents;
 
-void SteeringInputComponent::update(GameComponent::Player& player)
+void SteeringInputComponent::update(GameComponent::GameObject& player)
 {
 	sf::Vector2i vec = sf::Mouse::getPosition(*_window);
 	sf::Vector2f vecF = sf::Vector2f(vec.x, vec.y);
 
-	_manager.seek(WorldConstants::sfmlToPhysics(vecF));
+	_manager->seek(WorldConstants::sfmlToPhysics(vecF));
 
-	b2Vec2 steeringVel = _manager.getSteering();
+	b2Vec2 steeringVel = _manager->getSteering();
 
 	GA::VelocityAction* velocityAction = new GA::VelocityAction(steeringVel);
-	player.addAction(velocityAction);
-	player.rotation(atan2(steeringVel.y, steeringVel.x));
+
+	GameComponent::Player& p = static_cast<GameComponent::Player&>(player);
+	p.addAction(velocityAction);
+	p.rotation(atan2(steeringVel.y, steeringVel.x));
 }

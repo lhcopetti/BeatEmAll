@@ -12,15 +12,15 @@ namespace Components
 		class SteeringInputComponent : public Components::InputComponent
 		{
 		private:
-			IA::Steering::SteeringManager& _manager;
+			IA::Steering::SteeringManager* _manager;
 			sf::RenderWindow* _window;
 
 		public:
-			SteeringInputComponent(IA::Steering::SteeringManager& manager, sf::RenderWindow* window)
+			SteeringInputComponent(IA::Steering::SteeringManager* manager, sf::RenderWindow* window)
 				: _manager(manager), _window(window)
 			{}
 
-			virtual void update(GameComponent::Player& player);
+			virtual void update(GameComponent::GameObject& player);
 		};
 	}
 }

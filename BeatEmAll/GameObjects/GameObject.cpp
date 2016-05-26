@@ -1,15 +1,52 @@
 
 #include "GameObjects\GameObject.h"
+#include "DebugBoxDraw\WorldConstants.h"
 
 using namespace GameComponent;
 
-GameObject::GameObject(b2World& world) :
+GameObject::GameObject(b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC) :
 	_world(world)
 {
-	_alive = true;
+	_inputComponent = inputC;
+	_graphicsComponent = graphicsC;
 	_body = nullptr;
+
+	_alive = true;
 	_rotationRad = 0.f;
 	_x = _y = 0.f;
+}
+
+GameObject::~GameObject()
+{
+	if (_inputComponent)
+		delete _inputComponent;
+
+	if (_graphicsComponent)
+		delete _graphicsComponent;
+
+	_inputComponent = nullptr;
+	_graphicsComponent = nullptr;
+}
+
+void GameObject::update(float elapsedTime)
+{
+	sf::Vector2f bodyPos = WorldConstants::physicsToSFML(_body->GetPosition());
+	_x = bodyPos.x;
+	_y = bodyPos.y;
+
+	if (_inputComponent)
+		_inputComponent->update(*this);
+
+	if (_graphicsComponent)
+		_graphicsComponent->update(*this);
+
+	doUpdate(elapsedTime);
+}
+
+void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	if (_graphicsComponent)
+		_graphicsComponent->draw(*this, target, states);
 }
 
 const std::vector<GameObject*>& GameObject::getChildren() const

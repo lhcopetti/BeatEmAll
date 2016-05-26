@@ -15,8 +15,8 @@ namespace Components
 
 		public:
 			EnemyGraphicComponent();
-			virtual void update(GameComponent::Player& player);
-			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+			virtual void update(GameComponent::GameObject& player);
+			virtual void draw(const GameComponent::GameObject& gameObject, sf::RenderTarget& target, sf::RenderStates states) const;
 		};
 	}
 }

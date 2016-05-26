@@ -28,8 +28,8 @@ uint16 Bullet::getMaskBits() const
 	return _maskBits;
 }
 
-Bullet::Bullet(b2World& world, float lifeTime, b2Vec2 initialPos, b2Vec2 initialVel) :
-	GameComponent::Projectiles::Projectile(world),
+Bullet::Bullet(b2World& world, Components::GraphicsComponent* gComponent, float lifeTime, b2Vec2 initialPos, b2Vec2 initialVel) :
+	GameComponent::Projectiles::Projectile(world, GameObject::nullInput(), gComponent),
 	_lifeTime(lifeTime),
 	_initialPos(initialPos),
 	_initialVel(initialVel)
@@ -64,7 +64,7 @@ void Bullet::init()
 	_body->ApplyLinearImpulse(impulse, _body->GetWorldCenter(), true);
 }
 
-void Bullet::update(float elapsedTime)
+void Bullet::doUpdate(float elapsedTime)
 {
 	_lifeTimeCounter += elapsedTime;
 
@@ -72,23 +72,23 @@ void Bullet::update(float elapsedTime)
 		_alive = false;
 }
 
-void Bullet::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	/* Drawing will be handled (for now) by debugDraw from Box2D */
-	float circleRadius = _body->GetFixtureList()[0].GetShape()->m_radius * WorldConstants::SCALE;
-
-	sf::CircleShape circle(circleRadius);
-
-	sf::Vector2f pos = WorldConstants::physicsToSFML(_body->GetPosition());
-	circle.setOrigin(sf::Vector2f(circleRadius / 2.f, circleRadius / 2.f));
-	circle.setPosition(pos);
-
-	int ratio = std::floor(255 * _lifeTimeCounter / _lifeTime);
-
-	circle.setFillColor(sf::Color(255, 255 - ratio, 255 - ratio));
-
-	target.draw(circle);
-}
+//void Bullet::draw(sf::RenderTarget& target, sf::RenderStates states) const
+//{
+//	/* Drawing will be handled (for now) by debugDraw from Box2D */
+//	float circleRadius = _body->GetFixtureList()[0].GetShape()->m_radius * WorldConstants::SCALE;
+//
+//	sf::CircleShape circle(circleRadius);
+//
+//	sf::Vector2f pos = WorldConstants::physicsToSFML(_body->GetPosition());
+//	circle.setOrigin(sf::Vector2f(circleRadius / 2.f, circleRadius / 2.f));
+//	circle.setPosition(pos);
+//
+//	int ratio = std::floor(255 * _lifeTimeCounter / _lifeTime);
+//
+//	circle.setFillColor(sf::Color(255, 255 - ratio, 255 - ratio));
+//
+//	target.draw(circle);
+//}
 
 void Bullet::beginContact(Collidable* other, b2Contact* contact)
 {

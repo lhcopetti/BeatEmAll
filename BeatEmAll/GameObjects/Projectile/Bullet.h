@@ -28,13 +28,12 @@ namespace GameComponent
 			static uint16 _maskBits;
 
 		public:
-			Bullet(b2World& world, float lifeTime, b2Vec2 initialPos, b2Vec2 initialVel);
+			Bullet(b2World& world, Components::GraphicsComponent* gComponent, float lifeTime, b2Vec2 initialPos, b2Vec2 initialVel);
 			~Bullet();
 
 			void init();
 
-			virtual void update(float elapsedTime);
-			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+			virtual void doUpdate(float elapsedTime);
 
 			virtual void beginContact(Collidable* other, b2Contact* contact);
 			virtual uint16 getCategoryType() const;

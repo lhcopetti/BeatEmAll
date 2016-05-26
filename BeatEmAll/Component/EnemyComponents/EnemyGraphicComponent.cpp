@@ -12,13 +12,13 @@ EnemyGraphicComponent::EnemyGraphicComponent()
 	_sprite.scale(.6f, .6f);
 }
 
-void EnemyGraphicComponent::update(GameComponent::Player& player)
+void EnemyGraphicComponent::update(GameComponent::GameObject& player)
 {
 	_sprite.setPosition(player.position());
 	_sprite.setRotation(player.rotation() * RADTODEG);
 }
 
-void EnemyGraphicComponent::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void EnemyGraphicComponent::draw(const GameComponent::GameObject& gameObject, sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(_sprite);
 }

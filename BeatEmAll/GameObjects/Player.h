@@ -25,24 +25,20 @@ namespace GameComponent
 	class Player : public GameObject, public IA::Steering::Steerable
 	{
 	private:
-		Components::InputComponent& _inputComponent;
-		Components::GraphicsComponent& _graphicsComponent;
-
 		std::vector<GA::Action*> _actions;
 		GameComponent::Weapons::Weapon* _weapon;
 
 	public:
 		Player(b2World& world, 
-			Components::InputComponent& inputComponent,
-			Components::GraphicsComponent& graphicsComponent);
+			Components::InputComponent* inputComponent,
+			Components::GraphicsComponent* graphicsComponent);
 		~Player();
 
 		void init();
 
 		GameComponent::Weapons::Weapon& weapon() const { return *_weapon; }
 
-		virtual void update(float elapsedTime);
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		virtual void doUpdate(float elapsedTime);
 
 		void addAction(GameActions::Action* action);
 

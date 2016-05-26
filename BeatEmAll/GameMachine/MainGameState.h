@@ -38,12 +38,6 @@ namespace GameMachine
 		SFMLDebugDraw _debugDraw;
 
 		GameComponent::Player* _player;
-		Components::InputComponent* _inputComponent;
-
-		IA::Steering::SteeringManager* _steeringManager;
-
-		Components::GraphicsComponent* _graphicsComponent;
-		Components::GraphicsComponent* _graphicsEnemy;
 
 		Keys::KeyboardManager _keyManager;
 		MouseComponent::MouseManager _mouseManager;

@@ -27,7 +27,6 @@
     <ClCompile Include="Component\KeyboardInputComponent.cpp" />
     <ClCompile Include="Mouse\MouseManager.cpp" />
     <ClCompile Include="Component\RandomInputComponent.cpp" />
-    <ClCompile Include="Component\GraphicsComponent.cpp" />
     <ClCompile Include="Component\PlayerComponents\PlayerGraphicsComponent.cpp" />
     <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
     <ClCompile Include="IA\Steering\SteeringManager.cpp" />
@@ -37,6 +36,7 @@
     <ClCompile Include="IA\Steering\Steerable.cpp" />
     <ClCompile Include="IA\Steering\WanderBehavior.cpp" />
     <ClCompile Include="Collision\ContactListener.cpp" />
+    <ClCompile Include="GameObjects\Projectile\GraphicBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -185,5 +185,6 @@
     <ClInclude Include="Collision\Collidable.h" />
     <ClInclude Include="Collision\CollisionCategory.h" />
     <ClInclude Include="GameObjects\GameObjectTypes.h" />
+    <ClInclude Include="GameObjects\Projectile\GraphicBullet.h" />
   </ItemGroup>
 </Project>

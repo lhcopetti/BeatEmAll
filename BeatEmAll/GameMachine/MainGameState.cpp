@@ -27,13 +27,10 @@ static void setEdge(b2EdgeShape& edge, float xBegin, float yBegin, float xEnd, f
 MainGameState::MainGameState()
 {
 	_world = nullptr;
-	_inputComponent = nullptr;
 }
 
 MainGameState::~MainGameState()
 {
-	delete _graphicsComponent; _graphicsComponent = nullptr;
-	delete _inputComponent; _inputComponent = nullptr;
 	delete _world; _world = nullptr;
 }
 
@@ -88,26 +85,26 @@ bool MainGameState::init()
 	circ->CreateFixture(&fix);
 
 	_mouseManager.window(&_window);
-	_inputComponent = new Components::KeyboardInputComponent(_keyManager, _mouseManager);
 
 	/* TODO: Add Component for enemy*/
-	_graphicsComponent = new Components::PlayerComponents::PlayerGraphicsComponent();
-	_graphicsEnemy = new Components::EnemyComponents::EnemyGraphicComponent();
+	_player = new GameComponent::Player(*_world, 
+		new Components::KeyboardInputComponent(_keyManager, _mouseManager),
+		new Components::PlayerComponents::PlayerGraphicsComponent());
 
-	_player = new GameComponent::Player(*_world, *_inputComponent, *_graphicsComponent);
 	_player->init();
 	_gameObjects.push_back(_player);
 
 	createBoundingBox(*_world, 1279.0, 639.0);
 
-	_steeringManager = new IA::Steering::SteeringManager;
-	Components::EnemyComponents::SteeringInputComponent* randInput = 
-		new Components::EnemyComponents::SteeringInputComponent(*_steeringManager, &_window);
+	IA::Steering::SteeringManager* _steeringManager = new IA::Steering::SteeringManager;
 	
-	GameComponent::Player* enemy = new GameComponent::Player(*_world, *randInput, *_graphicsEnemy);
+	GameComponent::Player* enemy = new GameComponent::Player(*_world,
+		new Components::EnemyComponents::SteeringInputComponent(_steeringManager, &_window),
+		new Components::EnemyComponents::EnemyGraphicComponent());
+	_steeringManager->setPlayer(enemy);
+
 	enemy->position(100.f, 100.f);
 	enemy->init();
-	_steeringManager->setPlayer(enemy);
 
 	_gameObjects.push_back(enemy);
 

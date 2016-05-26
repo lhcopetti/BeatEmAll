@@ -17,13 +17,11 @@
 using namespace GameComponent;
 namespace GA = GameComponent::GameActions;
 
-Player::Player(b2World& world, 
-	Components::InputComponent& inputComponent,
-	Components::GraphicsComponent& graphicsComponent) 
-	: 
-	GameObject(world), 
-	_inputComponent(inputComponent),
-	_graphicsComponent(graphicsComponent)
+Player::Player(b2World& world,
+	Components::InputComponent* inputComponent,
+	Components::GraphicsComponent* graphicsComponent)
+	:
+	GameObject(world, inputComponent, graphicsComponent)
 {
 	_x = 50;
 	_y = 50;
@@ -58,15 +56,13 @@ Player::~Player()
 
 }
 
-void Player::update(float elapsedTime)
+void Player::doUpdate(float elapsedTime)
 {
-	sf::Vector2f bodyPos = WorldConstants::physicsToSFML(_body->GetPosition());
-	_x = bodyPos.x;
-	_y = bodyPos.y;
+
 
 	/* Update Components */
-	_inputComponent.update(*this);
-	_graphicsComponent.update(*this);
+//	_inputComponent->update(*this);
+//	_graphicsComponent->update(*this);
 
 
 	/* Isn't it just beautiful? */
@@ -79,15 +75,10 @@ void Player::update(float elapsedTime)
 	}
 
 	/*
-	 * TODO: Update shared state (rotation angle) 
+	 * TODO: Update shared state (rotation angle)
 	 * This will soon be abstracted away by the Component Design Pattern
 	 */
 	_body->SetTransform(_body->GetPosition(), _rotationRad);
-}
-
-void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	_graphicsComponent.draw(target, states);
 }
 
 void Player::addAction(GameActions::Action* action)

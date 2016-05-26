@@ -5,6 +5,9 @@
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
 
+#include "Component\GraphicsComponent.h"
+#include "Component\InputComponent.h"
+
 namespace GameComponent
 {
 	class GameObject : public Updatable, public sf::Drawable, public GameComponent::ChildBearer
@@ -21,16 +24,21 @@ namespace GameComponent
 
 		std::vector<GameObject*> _children;
 
+		Components::InputComponent* _inputComponent;
+		Components::GraphicsComponent* _graphicsComponent;
+
 	public:
-		GameObject(b2World& world);
-		virtual ~GameObject() {}
+		GameObject(b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC);
+		virtual ~GameObject();
 
 		// TODO: Remove this two-step initialization
 		virtual void init() {}
 
-		virtual void update(float elapsedTime) = 0;
+		void update(float elapsedTime);
+		virtual void doUpdate(float elapsedTime) {}
 
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
+//		virtual void updateGraphics(float elapsedTime);
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 		virtual const std::vector<GameObject*>& getChildren() const;
 		virtual void clearChildren();
@@ -48,5 +56,8 @@ namespace GameComponent
 
 		void position(float x, float y);
 		sf::Vector2f position() const { return sf::Vector2f(_x, _y); }
+
+		static Components::GraphicsComponent* nullGraphics() { return nullptr; }
+		static Components::InputComponent* nullInput() { return nullptr; }
 	};
 }

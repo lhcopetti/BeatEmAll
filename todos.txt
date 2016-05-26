@@ -3,10 +3,11 @@ OK!	-> inputComponent->update(*this);
 OK! - Unificar o handleMouse e handleKeyboard em uma única ação.
 OK! - Juntar Mouse e Keyboard em um Component do tipo input (Abstração)
 OK!	- Sprite Rotation != Body Rotation. (angularVelocity(0);)
-
-
 OK! - Implement GraphicsComponent
+
 - Run Leak Test
 - Remove _canShoot counter from player
 - Add component for enemy
 - The target for an action should be passed as parameter in the execute function.
+
+- Implement a new subclass for GameObject -> GameCharacter. It will abstract all the functionality that living objects would have. Such as the player and the enemy (Maybe? Kind of doubting the approach right now).
