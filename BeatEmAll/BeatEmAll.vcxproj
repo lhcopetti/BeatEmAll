@@ -210,6 +210,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Collision\ContactListener.cpp" />
     <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
     <ClCompile Include="Component\EnemyComponents\SteeringInputComponent.cpp" />
     <ClCompile Include="Component\GraphicsComponent.cpp" />
@@ -343,6 +344,9 @@
     <ClInclude Include="Catch\reporters\catch_reporter_multi.hpp" />
     <ClInclude Include="Catch\reporters\catch_reporter_teamcity.hpp" />
     <ClInclude Include="Catch\reporters\catch_reporter_xml.hpp" />
+    <ClInclude Include="Collision\Collidable.h" />
+    <ClInclude Include="Collision\CollisionCategory.h" />
+    <ClInclude Include="Collision\ContactListener.h" />
     <ClInclude Include="Component\EnemyComponents\EnemyGraphicComponent.h" />
     <ClInclude Include="Component\EnemyComponents\SteeringInputComponent.h" />
     <ClInclude Include="Component\GraphicsComponent.h" />
@@ -361,6 +365,7 @@
     <ClInclude Include="GameObjects\Actions\VelocityAction.h" />
     <ClInclude Include="GameObjects\ChildBearer.h" />
     <ClInclude Include="GameObjects\Defs\PlayerDefinition.h" />
+    <ClInclude Include="GameObjects\GameObjectTypes.h" />
     <ClInclude Include="GameObjects\Projectile\Bullet.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player.h" />

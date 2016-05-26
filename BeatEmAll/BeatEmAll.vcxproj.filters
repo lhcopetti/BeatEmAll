@@ -36,6 +36,7 @@
     <ClCompile Include="IA\Steering\SeekBehavior.cpp" />
     <ClCompile Include="IA\Steering\Steerable.cpp" />
     <ClCompile Include="IA\Steering\WanderBehavior.cpp" />
+    <ClCompile Include="Collision\ContactListener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -180,5 +181,9 @@
     <ClInclude Include="IA\Steering\SteeringBehavior.h" />
     <ClInclude Include="IA\Steering\SeekBehavior.h" />
     <ClInclude Include="IA\Steering\WanderBehavior.h" />
+    <ClInclude Include="Collision\ContactListener.h" />
+    <ClInclude Include="Collision\Collidable.h" />
+    <ClInclude Include="Collision\CollisionCategory.h" />
+    <ClInclude Include="GameObjects\GameObjectTypes.h" />
   </ItemGroup>
 </Project>

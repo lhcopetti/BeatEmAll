@@ -10,6 +10,8 @@
 
 #include "Component\KeyboardInputComponent.h"
 
+#include "Collision\CollisionCategory.h"
+
 #include <iostream>
 
 using namespace GameComponent;
@@ -42,6 +44,8 @@ void Player::init()
 	b2FixtureDef fixture;
 	fixture.density = 1;
 	fixture.shape = &polygonShape;
+	fixture.filter.categoryBits = Collision::CAT_PLAYER;
+	fixture.filter.maskBits = Collision::CAT_ENEMY || Collision::CAT_BOUNDARY;
 
 	_body->CreateFixture(&fixture);
 

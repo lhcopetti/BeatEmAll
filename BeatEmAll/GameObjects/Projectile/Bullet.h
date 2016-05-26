@@ -4,13 +4,16 @@
 #include "GameObjects\Projectile\Projectile.h"
 #include "Box2D\Box2D.h"
 
+#include "Collision\Collidable.h"
+
 #define BULLET_SPEED 15.f
 
 namespace GameComponent
 {
 	namespace Projectiles
 	{
-		class Bullet : public GameComponent::Projectiles::Projectile
+		class Bullet :	public GameComponent::Projectiles::Projectile,
+			public Collision::Collidable
 		{
 		private:
 			const float _lifeTime;
@@ -21,6 +24,9 @@ namespace GameComponent
 
 			sf::CircleShape _circleSprite;
 
+			static uint16 _categoryType;
+			static uint16 _maskBits;
+
 		public:
 			Bullet(b2World& world, float lifeTime, b2Vec2 initialPos, b2Vec2 initialVel);
 			~Bullet();
@@ -29,6 +35,10 @@ namespace GameComponent
 
 			virtual void update(float elapsedTime);
 			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+			virtual void beginContact(Collidable* other, b2Contact* contact);
+			virtual uint16 getCategoryType() const;
+			virtual uint16 getMaskBits() const;
 		};
 	}
 }

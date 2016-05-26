@@ -111,6 +111,9 @@ bool MainGameState::init()
 
 	_gameObjects.push_back(enemy);
 
+	_contactListener = new Collision::ContactListener();
+	_world->SetContactListener(_contactListener);
+
 	return true;
 }
 
