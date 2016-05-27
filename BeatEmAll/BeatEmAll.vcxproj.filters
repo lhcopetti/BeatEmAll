@@ -37,6 +37,7 @@
     <ClCompile Include="IA\Steering\WanderBehavior.cpp" />
     <ClCompile Include="Collision\ContactListener.cpp" />
     <ClCompile Include="GameObjects\Projectile\GraphicBullet.cpp" />
+    <ClCompile Include="GameObjects\Projectile\ProjectileFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -186,5 +187,6 @@
     <ClInclude Include="Collision\CollisionCategory.h" />
     <ClInclude Include="GameObjects\GameObjectTypes.h" />
     <ClInclude Include="GameObjects\Projectile\GraphicBullet.h" />
+    <ClInclude Include="GameObjects\Projectile\ProjectileFactory.h" />
   </ItemGroup>
 </Project>

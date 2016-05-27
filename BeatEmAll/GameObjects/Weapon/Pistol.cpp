@@ -2,6 +2,7 @@
 
 #include "GameObjects\Projectile\Bullet.h"
 #include "GameObjects\Projectile\GraphicBullet.h"
+#include "GameObjects\Projectile\ProjectileFactory.h"
 
 using namespace GameComponent::Weapons;
 
@@ -39,7 +40,8 @@ GameComponent::Projectiles::Projectile* Pistol::shoot(b2Vec2 initialPos, b2Vec2 
 		return nullptr;
 
 	_canShoot = false;
-	return new Bullet(_world, new GameComponent::Projectiles::GraphicBullet, 6.f, initialPos, initialVel);
+
+	return ProjectileFactory::makeNew(ProjectileType::BULLET, _world, initialPos, initialVel);
 }
 
 bool Pistol::canShoot() const

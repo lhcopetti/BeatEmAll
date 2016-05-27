@@ -230,6 +230,7 @@
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
     <ClCompile Include="GameObjects\Projectile\GraphicBullet.cpp" />
+    <ClCompile Include="GameObjects\Projectile\ProjectileFactory.cpp" />
     <ClCompile Include="GameObjects\Tile.cpp" />
     <ClCompile Include="GameObjects\TileMap.cpp" />
     <ClCompile Include="GameObjects\Weapon\Pistol.cpp" />
@@ -371,6 +372,7 @@
     <ClInclude Include="GameObjects\Player.h" />
     <ClInclude Include="GameObjects\Projectile\GraphicBullet.h" />
     <ClInclude Include="GameObjects\Projectile\Projectile.h" />
+    <ClInclude Include="GameObjects\Projectile\ProjectileFactory.h" />
     <ClInclude Include="GameObjects\Tile.h" />
     <ClInclude Include="GameObjects\TileMap.h" />
     <ClInclude Include="GameObjects\Weapon\Pistol.h" />
