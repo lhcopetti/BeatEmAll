@@ -21,8 +21,8 @@ namespace GameComponent
 			//virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 
 		protected:
-			Projectile(b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphics) : 
-				GameObject(world, inputC, graphics) {};
+			Projectile(GameObjectTypes type, b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphics) : 
+				GameObject(type, world, inputC, graphics) {};
 		};
 	}
 }

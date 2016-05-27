@@ -12,8 +12,7 @@ namespace GameComponent
 {
 	namespace Projectiles
 	{
-		class Bullet :	public GameComponent::Projectiles::Projectile,
-			public Collision::Collidable
+		class Bullet :	public GameComponent::Projectiles::Projectile
 		{
 		private:
 			const float _lifeTime;
@@ -35,9 +34,7 @@ namespace GameComponent
 
 			virtual void doUpdate(float elapsedTime);
 
-			virtual void beginContact(Collidable* other, b2Contact* contact);
-			virtual uint16 getCategoryType() const;
-			virtual uint16 getMaskBits() const;
+			virtual void beginContact(GameComponent::GameObject* other, b2Contact* contact);
 		};
 	}
 }

@@ -9,7 +9,7 @@ using namespace GameComponent::Weapons;
 #define PISTOL_FIRERATE .2f
 
 Pistol::Pistol(b2World& world, int cartdrigeSize, int bulletCount) :
-	Weapon(world, cartdrigeSize, bulletCount)
+	Weapon(GameObjectTypes::WEAPON_PISTOL, world, cartdrigeSize, bulletCount)
 {
 	_canShoot = false;
 	_fireRate = PISTOL_FIRERATE;

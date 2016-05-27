@@ -8,6 +8,8 @@ OK! - Remove _canShoot counter from player
 OK! - The target for an action should be passed as parameter in the execute function.
 OK! - Move the Components to GameObject class
 
+- Fix Collision Filtering!!!
+
 - Run Leak Test
 - Add component for enemy
 

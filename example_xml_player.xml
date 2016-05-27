@@ -1,0 +1,28 @@
+<playerDef>
+	<physics>
+		<body>
+			<type>dynamic</type>
+			<bullet>true</bullet>
+		</body>
+
+		 <fixtures>
+		 	<fixture>
+		 		<shape type="polygon">
+		 			<box hx="" hy="" />
+		 		</shape>
+		 		<density>1f</density>
+		 		<restituition />
+		 	</fixture>
+		 </fixtures>
+	</physics>
+
+	<graphic>
+		<sprite>
+			<path>assets\\player1\\manBlue_silencer.png</path>
+		<scale factorX="" factorY="" />
+		</sprite>
+		<origin x="" y="" />
+		<followRotation>true</followRotation>
+	</graphic>
+
+</playerDef>

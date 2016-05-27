@@ -13,6 +13,8 @@
 #include "Component\EnemyComponents\EnemyGraphicComponent.h"
 #include "Component\EnemyComponents\SteeringInputComponent.h"
 
+#include "GameObjects\GameObjectTypes.h"
+
 #include "Box2D\Box2D.h"
 
 #include <iostream>
@@ -87,7 +89,7 @@ bool MainGameState::init()
 	_mouseManager.window(&_window);
 
 	/* TODO: Add Component for enemy*/
-	_player = new GameComponent::Player(*_world, 
+	_player = new GameComponent::Player(GameComponent::GameObjectTypes::PLAYER, *_world, 
 		new Components::KeyboardInputComponent(_keyManager, _mouseManager),
 		new Components::PlayerComponents::PlayerGraphicsComponent());
 
@@ -98,7 +100,7 @@ bool MainGameState::init()
 
 	IA::Steering::SteeringManager* _steeringManager = new IA::Steering::SteeringManager;
 	
-	GameComponent::Player* enemy = new GameComponent::Player(*_world,
+	GameComponent::Player* enemy = new GameComponent::Player(GameComponent::GameObjectTypes::ENEMY_DEFAULT, *_world,
 		new Components::EnemyComponents::SteeringInputComponent(_steeringManager, &_window),
 		new Components::EnemyComponents::EnemyGraphicComponent());
 	_steeringManager->setPlayer(enemy);

@@ -8,12 +8,18 @@
 #include "Component\GraphicsComponent.h"
 #include "Component\InputComponent.h"
 
+#include "GameObjects\GameObjectTypes.h"
+
+#include "Collision\Collidable.h"
+
 namespace GameComponent
 {
-	class GameObject : public Updatable, public sf::Drawable, public GameComponent::ChildBearer
+	class GameObject : public Updatable, public sf::Drawable, public GameComponent::ChildBearer, public Collision::Collidable
 	{
 	protected:
 		
+		const GameObjectTypes _type;
+
 		b2World& _world;
 		b2Body* _body;
 
@@ -28,7 +34,7 @@ namespace GameComponent
 		Components::GraphicsComponent* _graphicsComponent;
 
 	public:
-		GameObject(b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC);
+		GameObject(GameObjectTypes type, b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC);
 		virtual ~GameObject();
 
 		// TODO: Remove this two-step initialization
@@ -43,6 +49,8 @@ namespace GameComponent
 		virtual const std::vector<GameObject*>& getChildren() const;
 		virtual void clearChildren();
 		virtual void addChild(GameObject* child);
+
+		GameObjectTypes type() const { return _type; }
 
 		bool isAlive() const { return _alive; };
 
@@ -59,5 +67,6 @@ namespace GameComponent
 
 		static Components::GraphicsComponent* nullGraphics() { return nullptr; }
 		static Components::InputComponent* nullInput() { return nullptr; }
+
 	};
 }

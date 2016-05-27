@@ -1,0 +1,27 @@
+<bulletDef>
+	<physics>
+		<body>
+			<type>dynamic</type>
+			<bullet>true</bullet>
+		</body>
+
+		 <fixtures>
+		 	<fixture>
+		 		<shape type="circle">
+		 			<radius>5.0</radius>
+		 		</shape>
+		 		<density>.1f</density>
+		 		<restituition>.5f</restituition>
+		 	</fixture>
+		 </fixtures>
+	</physics>
+
+	<graphic>
+		<drawing>
+			<circle radius="5" color="0,0,0,255"></circle>
+		</drawing>
+		<origin x="" y="" />
+		<followRotation>false</followRotation>
+	</graphic>
+
+</bulletDef>

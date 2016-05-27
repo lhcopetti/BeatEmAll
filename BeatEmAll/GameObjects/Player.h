@@ -29,7 +29,7 @@ namespace GameComponent
 		GameComponent::Weapons::Weapon* _weapon;
 
 	public:
-		Player(b2World& world, 
+		Player(GameObjectTypes type, b2World& world, 
 			Components::InputComponent* inputComponent,
 			Components::GraphicsComponent* graphicsComponent);
 		~Player();

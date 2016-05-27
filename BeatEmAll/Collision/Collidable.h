@@ -1,15 +1,18 @@
 #pragma once
 #include "Box2D\Box2D.h"
 
+namespace GameComponent
+{
+	class GameObject;
+}
+
 namespace Collision
 {
 	class Collidable
 	{
 
 	public:
-		virtual void beginContact(Collidable* other, b2Contact* contact) {}
-		virtual void endContact(Collidable* other, b2Contact* contact) {}
-		virtual uint16 getCategoryType() const = 0;
-		virtual uint16 getMaskBits() const = 0;
+		virtual void beginContact(GameComponent::GameObject* other, b2Contact* contact) {}
+		virtual void endContact(GameComponent::GameObject* other, b2Contact* contact) {}
 	};
 }

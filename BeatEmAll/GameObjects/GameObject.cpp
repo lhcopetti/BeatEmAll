@@ -4,8 +4,8 @@
 
 using namespace GameComponent;
 
-GameObject::GameObject(b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC) :
-	_world(world)
+GameObject::GameObject(GameObjectTypes type, b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC) :
+	_world(world), _type(type)
 {
 	_inputComponent = inputC;
 	_graphicsComponent = graphicsC;

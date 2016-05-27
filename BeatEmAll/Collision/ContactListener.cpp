@@ -1,6 +1,7 @@
 
 #include "Collision\ContactListener.h"
 #include "Collision\Collidable.h"
+#include "GameObjects\GameObject.h"
 
 using namespace Collision;
 
@@ -12,8 +13,8 @@ void ContactListener::BeginContact(b2Contact* contact)
 	b2Body* bodyA = contact->GetFixtureA()->GetBody();
 	b2Body* bodyB = contact->GetFixtureB()->GetBody();
 
-	Collision::Collidable* collidableA = ((Collision::Collidable*) bodyA->GetUserData());
-	Collision::Collidable* collidableB = ((Collision::Collidable*) bodyB->GetUserData());
+	GameComponent::GameObject* collidableA = ((GameComponent::GameObject*) bodyA->GetUserData());
+	GameComponent::GameObject* collidableB = ((GameComponent::GameObject*) bodyB->GetUserData());
 
 	if (collidableA)
 		collidableA->beginContact(collidableB, contact);
