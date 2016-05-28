@@ -33,7 +33,7 @@ Projectile* ProjectileFactory::makeNew(
 		Components::GraphicsComponent* graphic = getGraphic(info);
 		const DDD::Projectile::BulletUserDataInfo* b = static_cast<const DDD::Projectile::BulletUserDataInfo*>(info->_userDataInfo);
 
-		return new Bullet(world, graphic, b->_lifeTime, initialPosition, initialVel);
+		return new Bullet(world, graphic, b->_lifeTime, b->_bulletSpeed, initialPosition, initialVel);
 	}
 
 

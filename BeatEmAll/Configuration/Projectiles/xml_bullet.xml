@@ -26,5 +26,6 @@
 
 	<userData>
 		<lifeTime>3.f</lifeTime>
+		<bulletSpeed>5.0</bulletSpeed>
 	</userData>
 </BulletInfo>

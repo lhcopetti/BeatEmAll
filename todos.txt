@@ -10,6 +10,7 @@ OK! - Move the Components to GameObject class
 OK! - Fix Collision Filtering!!! || is not |
 OK! - Create the projectile Factory with the newProjectile method
 OK! - Add types to GameObject so that in collision we will be able to desambiguate what collided with what!
+OK! - BULLET VELOCITY!!! Did you forget?
 
 - Run Leak Test
 - Add component for enemy

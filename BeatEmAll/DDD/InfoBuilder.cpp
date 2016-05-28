@@ -153,7 +153,8 @@ DDD::UserDataInfo* InfoBuilder::parseUserDataInfo(rapidxml::xml_node<>* node)
 UserDataInfo* InfoBuilder::parseBulletInfo(rapidxml::xml_node<>* node)
 {
 	float bulletLifeTime = std::stof(node->first_node("lifeTime")->value());
-	return new DDD::Projectile::BulletUserDataInfo(bulletLifeTime);
+	float bulletSpeed = std::stof(node->first_node("bulletSpeed")->value());
+	return new DDD::Projectile::BulletUserDataInfo(bulletLifeTime, bulletSpeed);
 }
 
 UserDataInfo* InfoBuilder::parsePlayerInfo(rapidxml::xml_node<>* node)

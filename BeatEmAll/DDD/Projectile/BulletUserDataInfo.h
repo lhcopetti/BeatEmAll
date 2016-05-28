@@ -8,9 +8,13 @@ namespace DDD
 		class BulletUserDataInfo : public UserDataInfo
 		{
 		public:
-			BulletUserDataInfo(float lifeTime) : _lifeTime(lifeTime) { }
+			BulletUserDataInfo(float lifeTime, float bulletSpeed) : 
+				_lifeTime(lifeTime),
+				_bulletSpeed(bulletSpeed)
+			{ }
 
 			const float _lifeTime;
+			const float _bulletSpeed;
 		};
 	}
 }
