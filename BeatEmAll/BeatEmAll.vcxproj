@@ -213,9 +213,16 @@
     <ClCompile Include="Collision\ContactListener.cpp" />
     <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
     <ClCompile Include="Component\EnemyComponents\SteeringInputComponent.cpp" />
+    <ClCompile Include="Component\GenericGraphicsComponent.cpp" />
     <ClCompile Include="Component\KeyboardInputComponent.cpp" />
     <ClCompile Include="Component\PlayerComponents\PlayerGraphicsComponent.cpp" />
     <ClCompile Include="Component\RandomInputComponent.cpp" />
+    <ClCompile Include="DDD\FixtureInfo.cpp" />
+    <ClCompile Include="DDD\GameObjectInfo.cpp" />
+    <ClCompile Include="DDD\GraphicInfo.cpp" />
+    <ClCompile Include="DDD\InfoBuilder.cpp" />
+    <ClCompile Include="DDD\InfoCollection.cpp" />
+    <ClCompile Include="DDD\Projectile\BulletUserDataInfo.cpp" />
     <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp" />
     <ClCompile Include="DebugBoxDraw\WorldConstants.cpp" />
     <ClCompile Include="GameMachine\MainGameState.cpp" />
@@ -229,6 +236,7 @@
     <ClCompile Include="GameObjects\Projectile\Bullet.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
+    <ClCompile Include="GameObjects\Projectile\BulletBuilder.cpp" />
     <ClCompile Include="GameObjects\Projectile\GraphicBullet.cpp" />
     <ClCompile Include="GameObjects\Projectile\ProjectileFactory.cpp" />
     <ClCompile Include="GameObjects\Tile.cpp" />
@@ -243,6 +251,13 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\SFML-2.3.2-windows-vc14-32-bit\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="Mouse\MouseManager.cpp" />
+    <ClCompile Include="Tests\DDD\InfoBuilderTest.cpp" />
+    <ClCompile Include="Tests\TestCatch.cpp" />
+    <ClCompile Include="Tests\TestLayerTile.cpp" />
+    <ClCompile Include="Tests\TiledParser\RotationMap\TestRotation.cpp" />
+    <ClCompile Include="Tests\TiledParser\SmallMap\TestLittleMap.cpp" />
+    <ClCompile Include="Tests\TiledParser\SmallMap\TestTileMap.cpp" />
+    <ClCompile Include="Tests\Tiled\TestTiledTransform.cpp" />
     <ClCompile Include="Tiled\TiledLayerTile.cpp" />
     <ClCompile Include="Tiled\TiledLayer.cpp" />
     <ClCompile Include="Tiled\TiledMap.cpp" />
@@ -350,12 +365,24 @@
     <ClInclude Include="Collision\ContactListener.h" />
     <ClInclude Include="Component\EnemyComponents\EnemyGraphicComponent.h" />
     <ClInclude Include="Component\EnemyComponents\SteeringInputComponent.h" />
+    <ClInclude Include="Component\GenericGraphicsComponent.h" />
     <ClInclude Include="Component\GraphicsComponent.h" />
     <ClInclude Include="Component\InputComponent.h" />
     <ClInclude Include="Component\KeyboardInputComponent.h" />
     <ClInclude Include="Component\NullInputComponent.h" />
     <ClInclude Include="Component\PlayerComponents\PlayerGraphicsComponent.h" />
     <ClInclude Include="Component\RandomInputComponent.h" />
+    <ClInclude Include="DDD\FixtureInfo.h" />
+    <ClInclude Include="DDD\GameObjectInfo.h" />
+    <ClInclude Include="DDD\GraphicInfo.h" />
+    <ClInclude Include="DDD\InfoBuilder.h" />
+    <ClInclude Include="DDD\InfoCollection.h" />
+    <ClInclude Include="DDD\PhysicsInfo.h" />
+    <ClInclude Include="DDD\Projectile\BulletUserDataInfo.h" />
+    <ClInclude Include="DDD\RepresentationInfo.h" />
+    <ClInclude Include="DDD\Representation\DrawingRepresentation.h" />
+    <ClInclude Include="DDD\Representation\SpriteRepresentation.h" />
+    <ClInclude Include="DDD\UserDataInfo.h" />
     <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h" />
     <ClInclude Include="DebugBoxDraw\WorldConstants.h" />
     <ClInclude Include="GameMachine\MainGameState.h" />
@@ -370,6 +397,7 @@
     <ClInclude Include="GameObjects\Projectile\Bullet.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player.h" />
+    <ClInclude Include="GameObjects\Projectile\BulletBuilder.h" />
     <ClInclude Include="GameObjects\Projectile\GraphicBullet.h" />
     <ClInclude Include="GameObjects\Projectile\Projectile.h" />
     <ClInclude Include="GameObjects\Projectile\ProjectileFactory.h" />

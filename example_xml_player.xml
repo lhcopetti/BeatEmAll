@@ -1,4 +1,4 @@
-<playerDef>
+<PlayerInfo>
 	<physics>
 		<body>
 			<type>dynamic</type>
@@ -11,18 +11,20 @@
 		 			<box hx="" hy="" />
 		 		</shape>
 		 		<density>1f</density>
-		 		<restituition />
+		 		<restitution />
 		 	</fixture>
 		 </fixtures>
 	</physics>
 
 	<graphic>
-		<sprite>
+		<representation repType="sprite">
 			<path>assets\\player1\\manBlue_silencer.png</path>
-		<scale factorX="" factorY="" />
-		</sprite>
+			<scale factorX="" factorY="" />
+		</representation>
 		<origin x="" y="" />
 		<followRotation>true</followRotation>
 	</graphic>
 
-</playerDef>
+	<userData />
+
+</PlayerInfo>
