@@ -15,6 +15,7 @@ namespace GameComponent
 		class Bullet :	public GameComponent::Projectiles::Projectile
 		{
 		private:
+			const float _bulletSpeed;
 			const float _lifeTime;
 			float _lifeTimeCounter;
 
@@ -27,7 +28,7 @@ namespace GameComponent
 			static uint16 _maskBits;
 
 		public:
-			Bullet(b2World& world, Components::GraphicsComponent* gComponent, float lifeTime, b2Vec2 initialPos, b2Vec2 initialVel);
+			Bullet(b2World& world, Components::GraphicsComponent* gComponent, float lifeTime, float bulletSpeed, b2Vec2 initialPos, b2Vec2 initialVel);
 			~Bullet();
 
 			void init();

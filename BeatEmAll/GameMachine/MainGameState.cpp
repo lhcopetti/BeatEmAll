@@ -13,6 +13,8 @@
 #include "Component\EnemyComponents\EnemyGraphicComponent.h"
 #include "Component\EnemyComponents\SteeringInputComponent.h"
 
+#include "DDD\InfoCollection.h"
+
 #include "GameObjects\GameObjectTypes.h"
 
 #include "Box2D\Box2D.h"
@@ -88,10 +90,14 @@ bool MainGameState::init()
 
 	_mouseManager.window(&_window);
 
+	DDD::InfoCollection::getInstance().loadInfo("Configuration\\Projectiles\\xml_bullet.xml");
+
 	/* TODO: Add Component for enemy*/
 	_player = new GameComponent::Player(GameComponent::GameObjectTypes::PLAYER, *_world, 
 		new Components::KeyboardInputComponent(_keyManager, _mouseManager),
 		new Components::PlayerComponents::PlayerGraphicsComponent());
+
+	
 
 	_player->init();
 	_gameObjects.push_back(_player);

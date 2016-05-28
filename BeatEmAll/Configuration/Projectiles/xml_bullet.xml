@@ -7,24 +7,25 @@
 
 		 <fixtures>
 		 	<fixture>
+		 		<density>.1f</density>
+		 		<restitution>.5f</restitution>
 		 		<shape type="circle">
 		 			<radius>5.0</radius>
 		 		</shape>
-		 		<density>.1f</density>
-		 		<restitution>.5f</restitution>
 		 	</fixture>
 		 </fixtures>
 	</physics>
 
 	<graphic>
-		<representation repType="drawing">
-			<circle radius="5" color="0,0,0,255"></circle>
-		</representation>
-		<origin x="" y="" />
+		<origin x="0" y="0" />
 		<followRotation>false</followRotation>
+		<representation repType="drawing">
+			<circle radius="5.0" r="0" g="255" b="0" a="255"></circle>
+		</representation>
 	</graphic>
 
 	<userData>
-		<lifeTime>15.f</lifeTime>
+		<lifeTime>3.f</lifeTime>
+		<bulletSpeed>5.0</bulletSpeed>
 	</userData>
 </BulletInfo>
