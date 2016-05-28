@@ -20,3 +20,6 @@ OK! - Add types to GameObject so that in collision we will be able to desambigua
 - Add state pattern to the player class (HOWWWWW!!!!????)
 - Fix the ball displacement (difference between drawing and physics (box2d))
 - Implement a Bigger Map with camera movement and setView (SFML)
+- GameObject Factory instead of a simpmle ProjectileFactory
+- TexturePool Mapping (for tiles it has already been implemented)
+- clean up the code in the projectile factory maybe move it around

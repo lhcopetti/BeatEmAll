@@ -10,7 +10,7 @@ InfoCollection::InfoCollection()
 
 }
 
-const InfoCollection& InfoCollection::getInstance()
+InfoCollection& InfoCollection::getInstance()
 {
 	if (nullptr == _instance)
 		_instance = new InfoCollection();

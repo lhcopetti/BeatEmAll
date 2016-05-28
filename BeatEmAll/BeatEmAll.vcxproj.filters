@@ -46,13 +46,6 @@
     <ClCompile Include="DDD\GameObjectInfo.cpp" />
     <ClCompile Include="DDD\InfoCollection.cpp" />
     <ClCompile Include="DDD\InfoBuilder.cpp" />
-    <ClCompile Include="Tests\DDD\InfoBuilderTest.cpp" />
-    <ClCompile Include="Tests\Tiled\TestTiledTransform.cpp" />
-    <ClCompile Include="Tests\TiledParser\RotationMap\TestRotation.cpp" />
-    <ClCompile Include="Tests\TiledParser\SmallMap\TestLittleMap.cpp" />
-    <ClCompile Include="Tests\TiledParser\SmallMap\TestTileMap.cpp" />
-    <ClCompile Include="Tests\TestCatch.cpp" />
-    <ClCompile Include="Tests\TestLayerTile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />

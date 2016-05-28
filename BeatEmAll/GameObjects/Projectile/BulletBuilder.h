@@ -6,7 +6,6 @@ namespace GameComponent
 	{
 		class BulletBuilder
 		{
-
 		};
 	}
 }
