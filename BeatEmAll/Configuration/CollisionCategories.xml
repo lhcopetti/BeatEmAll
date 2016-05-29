@@ -1,0 +1,6 @@
+<CollisionCategories>
+	<category name="CAT_BOUNDARY"  value="1" />
+	<category name="CAT_PLAYER"    value="2" />
+	<category name="CAT_ENEMY"     value="4" />
+	<category name="CAT_BULLET"    value="8" />
+</CollisionCategories>

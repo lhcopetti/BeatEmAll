@@ -210,6 +210,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Collision\CollisionCategory.cpp" />
     <ClCompile Include="Collision\ContactListener.cpp" />
     <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
     <ClCompile Include="Component\EnemyComponents\SteeringInputComponent.cpp" />
@@ -226,6 +227,7 @@
     <ClCompile Include="DDD\Projectile\BulletUserDataInfo.cpp" />
     <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp" />
     <ClCompile Include="DebugBoxDraw\WorldConstants.cpp" />
+    <ClCompile Include="FileIO\FileIO.cpp" />
     <ClCompile Include="GameMachine\MainGameState.cpp" />
     <ClCompile Include="GameObjects\Actions\Action.cpp" />
     <ClCompile Include="GameObjects\Actions\AimAction.cpp" />
@@ -252,6 +254,13 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\LuisCopetti\Dropbox\PósJogos2016\02_Jogo2D\SFML-2.3.2-windows-vc14-32-bit\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="Mouse\MouseManager.cpp" />
+    <ClCompile Include="Tests\Collision\TestCollisionCategory.cpp" />
+    <ClCompile Include="Tests\TestCatch.cpp" />
+    <ClCompile Include="Tests\TestLayerTile.cpp" />
+    <ClCompile Include="Tests\TiledParser\RotationMap\TestRotation.cpp" />
+    <ClCompile Include="Tests\TiledParser\SmallMap\TestLittleMap.cpp" />
+    <ClCompile Include="Tests\TiledParser\SmallMap\TestTileMap.cpp" />
+    <ClCompile Include="Tests\Tiled\TestTiledTransform.cpp" />
     <ClCompile Include="Tiled\TiledLayerTile.cpp" />
     <ClCompile Include="Tiled\TiledLayer.cpp" />
     <ClCompile Include="Tiled\TiledMap.cpp" />
@@ -385,6 +394,7 @@
     <ClInclude Include="DDD\UserDataInfo.h" />
     <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h" />
     <ClInclude Include="DebugBoxDraw\WorldConstants.h" />
+    <ClInclude Include="FileIO\FileIO.h" />
     <ClInclude Include="GameMachine\MainGameState.h" />
     <ClInclude Include="GameObjects\Actions\Action.h" />
     <ClInclude Include="GameObjects\Actions\AimAction.h" />
