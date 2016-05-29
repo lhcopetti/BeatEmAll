@@ -11,6 +11,16 @@
 		 		<restitution>.5f</restitution>
 		 		<shape type="circle">
 		 			<radius>5.0</radius>
+		 			<position x="0" y="0" />
+		 		</shape>
+		 	</fixture>
+		 	<fixture>
+		 		<density>.1f</density>
+		 		<restitution>.5f</restitution>
+		 		<shape type="polygon">
+		 			<size hx="10" hy="10" />
+		 			<center x="0" y="0" />
+		 			<angle>0.0</angle>
 		 		</shape>
 		 	</fixture>
 		 </fixtures>

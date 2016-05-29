@@ -15,6 +15,9 @@
 
 #include "DebugBoxDraw\WorldConstants.h"
 
+#include "DDD\FixtureShape\CircleShape.h"
+#include "DDD\FixtureShape\PolygonShape.h"
+
 #include <iostream>
 
 using namespace GameComponent::Projectiles;
@@ -68,8 +71,10 @@ Components::GraphicsComponent* getGraphic(const DDD::GameObjectInfo* gameObjectI
 	{
 		// TODO: what if it is not a drawing,
 		// what if it is not a projectile but a player?
-		return nullptr;
+		gr = nullptr;
 	}
+
+	return gr;
 }
 
 Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo* physics, b2Vec2 position)
@@ -84,16 +89,31 @@ Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo*
 	for (int i = 0; i < physics->_fixtures.size(); i++)
 	{
 		DDD::FixtureInfo* f = physics->_fixtures[i];
+		const DDD::FixtureShape* fixtureShape = f->_shape;
 
 		b2FixtureDef fixture;
 		fixture.density = f->_density;
 		fixture.restitution = f->_restitution;
 
 		b2Shape* shape = nullptr;
-		if (f->_fType == DDD::CIRCLE)
+		if (fixtureShape->_type == DDD::SHAPE_CIRCLE)
 		{
-			shape = new b2CircleShape;
-			shape->m_radius = WorldConstants::sfmlToPhysics(f->_radius);
+			const DDD::CircleShape* dddShape = static_cast<const DDD::CircleShape*>(fixtureShape);
+			b2CircleShape* circleShape = new b2CircleShape;
+			circleShape->m_radius = dddShape->_radius;
+			circleShape->m_p = dddShape->_position;
+			shape = circleShape;
+		}
+		else if (fixtureShape->_type == DDD::SHAPE_POLYGON)
+		{
+			const DDD::PolygonShape* dddShape = static_cast<const DDD::PolygonShape*>(fixtureShape);
+			b2PolygonShape* poly = new b2PolygonShape;
+			poly->SetAsBox(
+				dddShape->_hx, 
+				dddShape->_hy,
+				dddShape->_center,
+				dddShape->_angle * DEGTORAD);
+			shape = poly;
 		}
 
 		fixture.shape = shape;

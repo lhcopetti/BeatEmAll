@@ -18,4 +18,5 @@ public:
 	static const sf::Vector2f physicsToSFML(b2Vec2 vector);
 	static const b2Vec2 sfmlToPhysics(sf::Vector2f vector);
 	static const float WorldConstants::sfmlToPhysics(float x);
+	static const b2Vec2 scaleDownPhysics(b2Vec2 vector);
 };

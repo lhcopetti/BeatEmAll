@@ -4,6 +4,7 @@
 #include "DDD\Representation\SpriteRepresentation.h"
 
 #include "DDD\Projectile\BulletUserDataInfo.h"
+#include "DebugBoxDraw\WorldConstants.h"
 
 #include "SFML\Graphics\Color.hpp"
 
@@ -11,6 +12,11 @@
 #include <fstream>
 
 using namespace DDD;
+
+float getFloat(rapidxml::xml_node<>* parent, const std::string& nodeName);
+float getPhysicsAngle(rapidxml::xml_node<>* parent, const std::string& nodeName);
+b2Vec2 getCoordinate(rapidxml::xml_node<>* node, const std::string& nodeName, const std::string& xName, const std::string& yName);
+float getPhysicsNodeValue(rapidxml::xml_node<>* parent, const std::string& nodeName);
 
 InfoBuilder::InfoBuilder()
 {
@@ -72,8 +78,8 @@ DDD::PhysicsInfo* InfoBuilder::parsePhysics(rapidxml::xml_node<>* nPhysics)
 
 DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 {
-	float density = std::stof(node->first_node("density")->value());
-	float restitution = std::stof(node->first_node("restitution")->value());
+	float density = getFloat(node, "density");
+	float restitution = getFloat(node, "restitution");
 
 	rapidxml::xml_node<>* shapeNode = node->first_node("shape");
 
@@ -82,14 +88,16 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 
 	if (shapeType == "circle")
 	{
-		float radius = std::stof(shapeNode->first_node("radius")->value());
-		fixtureInfo = new FixtureInfo(density, restitution, radius);
+		float radius = getPhysicsNodeValue(shapeNode, "radius");
+		b2Vec2 position = getCoordinate(shapeNode, "position", "x", "y");
+		fixtureInfo = new FixtureInfo(density, restitution, radius, position);
 	}
-	else
+	else /* if (shapeType == "polygon") */
 	{
-		float hx = std::stof(shapeNode->first_node("box")->first_attribute("hx")->value());
-		float hy = std::stof(shapeNode->first_node("box")->first_attribute("hy")->value());
-		fixtureInfo = new FixtureInfo(density, restitution, hx, hy);
+		b2Vec2 halfLength = getCoordinate(shapeNode, "size", "hx", "hy");
+		b2Vec2 center = getCoordinate(shapeNode, "center", "x", "y");
+		float angle = getPhysicsAngle(shapeNode, "angle");
+		fixtureInfo = new FixtureInfo(density, restitution, halfLength.x, halfLength.y, center, angle);
 	}
 
 	return fixtureInfo;
@@ -169,4 +177,31 @@ std::string InfoBuilder::readAllText(const std::string& filePath)
 	buffer << file.rdbuf();
 	file.close();
 	return buffer.str();
+}
+
+b2Vec2 getCoordinate(rapidxml::xml_node<>* node, const std::string& nodeName, const std::string& xName, const std::string& yName)
+{
+	rapidxml::xml_node<>* coordNode = node->first_node(nodeName.c_str());
+
+	float xValue = std::stof(coordNode->first_attribute(xName.c_str())->value());
+	float yValue = std::stof(coordNode->first_attribute(yName.c_str())->value());
+
+	return b2Vec2(	WorldConstants::sfmlToPhysics(xValue), 
+					WorldConstants::sfmlToPhysics(yValue));
+}
+
+float getPhysicsNodeValue(rapidxml::xml_node<>* parent, const std::string& nodeName)
+{
+	float value = std::stof(parent->first_node(nodeName.c_str())->value());
+	return WorldConstants::sfmlToPhysics(value);
+}
+
+float getPhysicsAngle(rapidxml::xml_node<>* parent, const std::string& nodeName)
+{
+	return DEGTORAD * getFloat(parent, nodeName);
+}
+
+float getFloat(rapidxml::xml_node<>* parent, const std::string& nodeName)
+{
+	return std::stof(parent->first_node(nodeName.c_str())->value());
 }

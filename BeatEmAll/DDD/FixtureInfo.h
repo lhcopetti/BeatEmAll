@@ -1,27 +1,19 @@
 #pragma once
 #include "Box2D\Box2D.h"
+#include "DDD\FixtureShape\FixtureShape.h"
 
 namespace DDD
 {
-	enum FixtureInfoType
-	{
-		 CIRCLE,
-		 POLYGON
-	};
-
 	class FixtureInfo
 	{
 
 	public:
-		FixtureInfo(float density, float restitution, float radius);
-		FixtureInfo(float density, float restitution, float hx, float hy);
+		FixtureInfo(float density, float restitution, float radius, b2Vec2 position);
+		FixtureInfo(float density, float restitution, float hx, float hy, b2Vec2 center, float angle);
 
-		const FixtureInfoType _fType;
 		const float _density;
 		const float _restitution;
 
-		const float _radius;
-
-		const float _hx, _hy;
+		const FixtureShape* _shape;
 	};
 }
