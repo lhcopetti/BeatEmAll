@@ -7,6 +7,7 @@ using namespace GameComponent;
 GameObject::GameObject(GameObjectTypes type, b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC) :
 	_world(world), _type(type)
 {
+	_physicsComponent = nullptr;
 	_inputComponent = inputC;
 	_graphicsComponent = graphicsC;
 	_body = nullptr;
@@ -30,7 +31,12 @@ GameObject::~GameObject()
 
 void GameObject::update(float elapsedTime)
 {
-	sf::Vector2f bodyPos = WorldConstants::physicsToSFML(_body->GetPosition());
+	sf::Vector2f bodyPos;
+	if (_body == nullptr)
+		bodyPos = WorldConstants::physicsToSFML(_physicsComponent->getBody()->GetPosition());
+	else
+		bodyPos = WorldConstants::physicsToSFML(_body->GetPosition());
+
 	_x = bodyPos.x;
 	_y = bodyPos.y;
 

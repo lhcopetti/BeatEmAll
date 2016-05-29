@@ -363,6 +363,7 @@
     <ClInclude Include="Component\InputComponent.h" />
     <ClInclude Include="Component\KeyboardInputComponent.h" />
     <ClInclude Include="Component\NullInputComponent.h" />
+    <ClInclude Include="Component\PhysicsComponent.h" />
     <ClInclude Include="Component\PlayerComponents\PlayerGraphicsComponent.h" />
     <ClInclude Include="Component\RandomInputComponent.h" />
     <ClInclude Include="DDD\FixtureInfo.h" />

@@ -209,5 +209,6 @@
     <ClInclude Include="DDD\InfoBuilder.h" />
     <ClInclude Include="DDD\Representation\DrawingRepresentation.h" />
     <ClInclude Include="DDD\Representation\SpriteRepresentation.h" />
+    <ClInclude Include="Component\PhysicsComponent.h" />
   </ItemGroup>
 </Project>
