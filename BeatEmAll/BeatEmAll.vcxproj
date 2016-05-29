@@ -372,6 +372,7 @@
     <ClInclude Include="DDD\FixtureShape\CircleShape.h" />
     <ClInclude Include="DDD\FixtureShape\FixtureShape.h" />
     <ClInclude Include="DDD\FixtureShape\PolygonShape.h" />
+    <ClInclude Include="DDD\FixtureShape\VerticesShape.h" />
     <ClInclude Include="DDD\GameObjectInfo.h" />
     <ClInclude Include="DDD\GraphicInfo.h" />
     <ClInclude Include="DDD\InfoBuilder.h" />

@@ -17,6 +17,7 @@
 
 #include "DDD\FixtureShape\CircleShape.h"
 #include "DDD\FixtureShape\PolygonShape.h"
+#include "DDD\FixtureShape\VerticesShape.h"
 
 #include <iostream>
 
@@ -104,7 +105,7 @@ Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo*
 			circleShape->m_p = dddShape->_position;
 			shape = circleShape;
 		}
-		else if (fixtureShape->_type == DDD::SHAPE_POLYGON)
+		else if (fixtureShape->_type == DDD::SHAPE_BOX)
 		{
 			const DDD::PolygonShape* dddShape = static_cast<const DDD::PolygonShape*>(fixtureShape);
 			b2PolygonShape* poly = new b2PolygonShape;
@@ -114,6 +115,13 @@ Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo*
 				dddShape->_center,
 				dddShape->_angle * DEGTORAD);
 			shape = poly;
+		}
+		else if (fixtureShape->_type == DDD::SHAPE_VERTICES)
+		{
+			const DDD::VerticesShape* vShape = static_cast<const DDD::VerticesShape*>(fixtureShape);
+			b2PolygonShape* vertices = new b2PolygonShape;
+			vertices->Set(&vShape->_vertices[0], vShape->_vertices.size());
+			shape = vertices;
 		}
 
 		fixture.shape = shape;

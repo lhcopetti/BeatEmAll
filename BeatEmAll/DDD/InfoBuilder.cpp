@@ -16,6 +16,7 @@ using namespace DDD;
 float getFloat(rapidxml::xml_node<>* parent, const std::string& nodeName);
 float getPhysicsAngle(rapidxml::xml_node<>* parent, const std::string& nodeName);
 b2Vec2 getCoordinate(rapidxml::xml_node<>* node, const std::string& nodeName, const std::string& xName, const std::string& yName);
+b2Vec2 getCoordinate(rapidxml::xml_node<>* node, const std::string& xName, const std::string& yName);
 float getPhysicsNodeValue(rapidxml::xml_node<>* parent, const std::string& nodeName);
 
 InfoBuilder::InfoBuilder()
@@ -92,12 +93,23 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 		b2Vec2 position = getCoordinate(shapeNode, "position", "x", "y");
 		fixtureInfo = new FixtureInfo(density, restitution, radius, position);
 	}
-	else /* if (shapeType == "polygon") */
+	else if (shapeType == "box")
 	{
 		b2Vec2 halfLength = getCoordinate(shapeNode, "size", "width", "height");
 		b2Vec2 center = getCoordinate(shapeNode, "center", "x", "y");
 		float angle = getPhysicsAngle(shapeNode, "angle");
 		fixtureInfo = new FixtureInfo(density, restitution, halfLength.x / 2.f, halfLength.y / 2.f, center, angle);
+	}
+	else if (shapeType == "vertices")
+	{
+		std::vector<b2Vec2> vertices;
+
+		for (rapidxml::xml_node<>* node = shapeNode->first_node("vertice"); node; node = node->next_sibling())
+		{
+			b2Vec2 vertice = getCoordinate(node, "x", "y");
+			vertices.push_back(vertice);
+		}
+		fixtureInfo = FixtureInfo::newVerticesFixture(density, restitution, vertices);
 	}
 
 	return fixtureInfo;
@@ -189,6 +201,16 @@ b2Vec2 getCoordinate(rapidxml::xml_node<>* node, const std::string& nodeName, co
 	return b2Vec2(	WorldConstants::sfmlToPhysics(xValue), 
 					WorldConstants::sfmlToPhysics(yValue));
 }
+
+b2Vec2 getCoordinate(rapidxml::xml_node<>* node, const std::string& xName, const std::string& yName)
+{
+	float xValue = std::stof(node->first_attribute(xName.c_str())->value());
+	float yValue = std::stof(node->first_attribute(yName.c_str())->value());
+
+	return b2Vec2(	WorldConstants::sfmlToPhysics(xValue), 
+					WorldConstants::sfmlToPhysics(yValue));
+}
+
 
 float getPhysicsNodeValue(rapidxml::xml_node<>* parent, const std::string& nodeName)
 {

@@ -1,8 +1,6 @@
 #pragma once
 #include "DDD\FixtureShape\FixtureShape.h"
 
-#include "SFML\System\Vector2.hpp"
-
 namespace DDD
 {
 	class CircleShape : public FixtureShape

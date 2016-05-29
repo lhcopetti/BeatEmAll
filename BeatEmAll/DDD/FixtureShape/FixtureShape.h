@@ -5,7 +5,8 @@ namespace DDD
 	enum FixtureInfoType
 	{
 		SHAPE_CIRCLE,
-		SHAPE_POLYGON
+		SHAPE_BOX,
+		SHAPE_VERTICES
 	};
 
 	class FixtureShape

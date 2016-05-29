@@ -14,6 +14,16 @@
 		 			<position x="0" y="0" />
 		 		</shape>
 		 	</fixture>
+		 	<fixture>
+		 		<density>.1f</density>
+		 		<restitution>.5f</restitution>
+		 		<shape type="vertices">
+					<vertice x="0"  y="0" />
+					<vertice x="15" y="10" />
+					<vertice x="30" y="0" />
+					<vertice x="15" y="-10" />
+		 		</shape>
+		 	</fixture>
 		 </fixtures>
 	</physics>
 
