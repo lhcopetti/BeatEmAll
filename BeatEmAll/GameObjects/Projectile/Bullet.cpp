@@ -14,23 +14,35 @@ uint16 Bullet::_maskBits =		Collision::CAT_BOUNDARY |
 
 Bullet::~Bullet()
 {
-	_world.DestroyBody(_body);
-	_body = nullptr;
+	if (_physicsComponent)
+	{
+		delete _physicsComponent;
+		_physicsComponent = nullptr;
+	}
+	else
+	{
+		_world.DestroyBody(_body);
+		_body = nullptr;
+	}
 }
 
-Bullet::Bullet(b2World& world, Components::GraphicsComponent* gComponent, float lifeTime, float bulletSpeed, b2Vec2 initialPos, b2Vec2 initialVel) :
+Bullet::Bullet(b2World& world, Components::PhysicsComponent* physics, Components::GraphicsComponent* gComponent, float lifeTime, float bulletSpeed, b2Vec2 initialPos, b2Vec2 initialVel) :
 	GameComponent::Projectiles::Projectile(GameObjectTypes::PROJECTILE_BULLET, world, GameObject::nullInput(), gComponent),
 	_lifeTime(lifeTime),
 	_bulletSpeed(bulletSpeed),
 	_initialPos(initialPos),
 	_initialVel(initialVel)
 {
+	_physicsComponent = physics;
 	_lifeTimeCounter = 0;
 }
 
 void Bullet::init()
 {
-	b2BodyDef bulletDef;
+	_physicsComponent->getBody()->SetUserData(this);
+	//bulletDef.position = _initialPos;
+	//bulletDef.userData = this;
+	/*b2BodyDef bulletDef;
 	bulletDef.type = b2_dynamicBody;
 	bulletDef.bullet = true;
 	bulletDef.position = _initialPos;
@@ -47,12 +59,12 @@ void Bullet::init()
 	bulletFix.filter.maskBits = _maskBits;
 
 	_body = _world.CreateBody(&bulletDef);
-	_body->CreateFixture(&bulletFix);
+	_body->CreateFixture(&bulletFix);*/
 
-	float ratio = _body->GetMass() * _bulletSpeed;
+	float ratio = _physicsComponent->getBody()->GetMass() * _bulletSpeed;
 	b2Vec2 impulse = b2Vec2(_initialVel.x * ratio, _initialVel.y * ratio);
 
-	_body->ApplyLinearImpulse(impulse, _body->GetWorldCenter(), true);
+	_physicsComponent->getBody()->ApplyLinearImpulse(impulse, _physicsComponent->getBody()->GetWorldCenter(), true);
 }
 
 void Bullet::doUpdate(float elapsedTime)

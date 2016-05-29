@@ -5,6 +5,7 @@
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
 
+#include "Component\PhysicsComponent.h"
 #include "Component\GraphicsComponent.h"
 #include "Component\InputComponent.h"
 
@@ -30,6 +31,7 @@ namespace GameComponent
 
 		std::vector<GameObject*> _children;
 
+		Components::PhysicsComponent* _physicsComponent;
 		Components::InputComponent* _inputComponent;
 		Components::GraphicsComponent* _graphicsComponent;
 

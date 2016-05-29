@@ -46,6 +46,7 @@
     <ClCompile Include="DDD\GameObjectInfo.cpp" />
     <ClCompile Include="DDD\InfoCollection.cpp" />
     <ClCompile Include="DDD\InfoBuilder.cpp" />
+    <ClCompile Include="DDD\CircleFixtureInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -209,5 +210,11 @@
     <ClInclude Include="DDD\InfoBuilder.h" />
     <ClInclude Include="DDD\Representation\DrawingRepresentation.h" />
     <ClInclude Include="DDD\Representation\SpriteRepresentation.h" />
+    <ClInclude Include="Component\PhysicsComponent.h" />
+    <ClInclude Include="DDD\CircleFixtureInfo.h" />
+    <ClInclude Include="DDD\FixtureShape\FixtureShape.h" />
+    <ClInclude Include="DDD\FixtureShape\CircleShape.h" />
+    <ClInclude Include="DDD\FixtureShape\PolygonShape.h" />
+    <ClInclude Include="DDD\FixtureShape\VerticesShape.h" />
   </ItemGroup>
 </Project>
