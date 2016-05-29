@@ -94,10 +94,10 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 	}
 	else /* if (shapeType == "polygon") */
 	{
-		b2Vec2 halfLength = getCoordinate(shapeNode, "size", "hx", "hy");
+		b2Vec2 halfLength = getCoordinate(shapeNode, "size", "width", "height");
 		b2Vec2 center = getCoordinate(shapeNode, "center", "x", "y");
 		float angle = getPhysicsAngle(shapeNode, "angle");
-		fixtureInfo = new FixtureInfo(density, restitution, halfLength.x, halfLength.y, center, angle);
+		fixtureInfo = new FixtureInfo(density, restitution, halfLength.x / 2.f, halfLength.y / 2.f, center, angle);
 	}
 
 	return fixtureInfo;
