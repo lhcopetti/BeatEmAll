@@ -19,27 +19,21 @@ Bullet::~Bullet()
 		delete _physicsComponent;
 		_physicsComponent = nullptr;
 	}
-	else
-	{
-		_world.DestroyBody(_body);
-		_body = nullptr;
-	}
 }
 
 Bullet::Bullet(b2World& world, Components::PhysicsComponent* physics, Components::GraphicsComponent* gComponent, float lifeTime, float bulletSpeed, b2Vec2 initialPos, b2Vec2 initialVel) :
-	GameComponent::Projectiles::Projectile(GameObjectTypes::PROJECTILE_BULLET, world, GameObject::nullInput(), gComponent),
+	GameComponent::Projectiles::Projectile(GameObjectTypes::PROJECTILE_BULLET, world, physics, GameObject::nullInput(), gComponent),
 	_lifeTime(lifeTime),
 	_bulletSpeed(bulletSpeed),
 	_initialPos(initialPos),
 	_initialVel(initialVel)
 {
-	_physicsComponent = physics;
 	_lifeTimeCounter = 0;
 }
 
 void Bullet::init()
 {
-	_physicsComponent->getBody()->SetUserData(this);
+	//_physicsComponent->getBody()->SetUserData(this);
 	//bulletDef.position = _initialPos;
 	//bulletDef.userData = this;
 	/*b2BodyDef bulletDef;

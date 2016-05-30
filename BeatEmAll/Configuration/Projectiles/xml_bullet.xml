@@ -15,7 +15,7 @@
 		 		</shape>
 		 		<filter category="CAT_BULLET" maskBits="CAT_BULLET|CAT_ENEMY|CAT_BOUNDARY" />
 		 	</fixture>
-		 	<fixture>
+<!--		 	<fixture>
 		 		<density>.1f</density>
 		 		<restitution>.5f</restitution>
 		 		<shape type="vertices">
@@ -25,7 +25,7 @@
 					<vertice x="15" y="-10" />
 		 		</shape>
 		 		<filter category="CAT_BULLET" maskBits="CAT_BULLET|CAT_ENEMY|CAT_BOUNDARY" />
-		 	</fixture>
+		 	</fixture>-->
 		 </fixtures>
 	</physics>
 

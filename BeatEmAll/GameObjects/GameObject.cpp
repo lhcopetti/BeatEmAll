@@ -4,17 +4,20 @@
 
 using namespace GameComponent;
 
-GameObject::GameObject(GameObjectTypes type, b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC) :
+GameObject::GameObject(GameObjectTypes type, b2World& world, Components::PhysicsComponent* physics, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC) :
 	_world(world), _type(type)
 {
-	_physicsComponent = nullptr;
+
+	_physicsComponent = physics;
 	_inputComponent = inputC;
 	_graphicsComponent = graphicsC;
-	_body = nullptr;
 
 	_alive = true;
 	_rotationRad = 0.f;
 	_x = _y = 0.f;
+
+	if (_physicsComponent)
+		_physicsComponent->getBody()->SetUserData(this);
 }
 
 GameObject::~GameObject()
@@ -25,20 +28,18 @@ GameObject::~GameObject()
 	if (_graphicsComponent)
 		delete _graphicsComponent;
 
+	if (_physicsComponent)
+		delete _physicsComponent;
+
 	_inputComponent = nullptr;
 	_graphicsComponent = nullptr;
+	_physicsComponent = nullptr;
 }
 
 void GameObject::update(float elapsedTime)
 {
-	sf::Vector2f bodyPos;
-	if (_body == nullptr)
-		bodyPos = WorldConstants::physicsToSFML(_physicsComponent->getBody()->GetPosition());
-	else
-		bodyPos = WorldConstants::physicsToSFML(_body->GetPosition());
-
-	_x = bodyPos.x;
-	_y = bodyPos.y;
+	if (_physicsComponent)
+		_physicsComponent->update(*this);
 
 	if (_inputComponent)
 		_inputComponent->update(*this);

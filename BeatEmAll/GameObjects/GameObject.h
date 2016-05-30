@@ -22,7 +22,7 @@ namespace GameComponent
 		const GameObjectTypes _type;
 
 		b2World& _world;
-		b2Body* _body;
+//		b2Body* _body;
 
 		bool _alive;
 		float _x, _y;
@@ -36,7 +36,10 @@ namespace GameComponent
 		Components::GraphicsComponent* _graphicsComponent;
 
 	public:
-		GameObject(GameObjectTypes type, b2World& world, Components::InputComponent* inputC, Components::GraphicsComponent* graphicsC);
+		GameObject(GameObjectTypes type, b2World& world, 
+			Components::PhysicsComponent* physics,
+			Components::InputComponent* inputC, 
+			Components::GraphicsComponent* graphicsC);
 		virtual ~GameObject();
 
 		// TODO: Remove this two-step initialization
@@ -45,7 +48,6 @@ namespace GameComponent
 		void update(float elapsedTime);
 		virtual void doUpdate(float elapsedTime) {}
 
-//		virtual void updateGraphics(float elapsedTime);
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 		virtual const std::vector<GameObject*>& getChildren() const;
@@ -56,7 +58,7 @@ namespace GameComponent
 
 		bool isAlive() const { return _alive; };
 
-		b2Body* body() { return _body; };
+		b2Body* body() { return _physicsComponent->getBody(); };
 		float rotation() const { return _rotationRad; }
 		void rotation(float r) { _rotationRad = r; }
 
@@ -69,6 +71,7 @@ namespace GameComponent
 
 		static Components::GraphicsComponent* nullGraphics() { return nullptr; }
 		static Components::InputComponent* nullInput() { return nullptr; }
+		static Components::PhysicsComponent* nullPhysics() { return nullptr; }
 
 	};
 }
