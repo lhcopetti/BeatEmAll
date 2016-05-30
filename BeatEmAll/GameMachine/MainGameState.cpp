@@ -90,6 +90,7 @@ bool MainGameState::init()
 
 	_mouseManager.window(&_window);
 
+	DDD::InfoCollection::getInstance().loadCategory("Configuration\\CollisionCategories.xml");
 	DDD::InfoCollection::getInstance().loadInfo("Configuration\\Projectiles\\xml_bullet.xml");
 
 	/* TODO: Add Component for enemy*/

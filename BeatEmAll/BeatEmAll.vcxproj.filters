@@ -48,14 +48,7 @@
     <ClCompile Include="DDD\InfoBuilder.cpp" />
     <ClCompile Include="DDD\CircleFixtureInfo.cpp" />
     <ClCompile Include="Collision\CollisionCategory.cpp" />
-    <ClCompile Include="Tests\Tiled\TestTiledTransform.cpp" />
-    <ClCompile Include="Tests\TiledParser\RotationMap\TestRotation.cpp" />
-    <ClCompile Include="Tests\TiledParser\SmallMap\TestLittleMap.cpp" />
-    <ClCompile Include="Tests\TiledParser\SmallMap\TestTileMap.cpp" />
-    <ClCompile Include="Tests\TestCatch.cpp" />
-    <ClCompile Include="Tests\TestLayerTile.cpp" />
     <ClCompile Include="FileIO\FileIO.cpp" />
-    <ClCompile Include="Tests\Collision\TestCollisionCategory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -226,5 +219,6 @@
     <ClInclude Include="DDD\FixtureShape\PolygonShape.h" />
     <ClInclude Include="DDD\FixtureShape\VerticesShape.h" />
     <ClInclude Include="FileIO\FileIO.h" />
+    <ClInclude Include="String\SplitString.h" />
   </ItemGroup>
 </Project>

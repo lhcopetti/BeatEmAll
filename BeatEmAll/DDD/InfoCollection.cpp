@@ -20,7 +20,7 @@ InfoCollection& InfoCollection::getInstance()
 
 bool InfoCollection::loadInfo(const std::string& filePath)
 {
-	InfoBuilder infoB;
+	InfoBuilder infoB(&_collisionCategory);
 
 	if (!infoB.load(filePath))
 		return false;
@@ -30,6 +30,11 @@ bool InfoCollection::loadInfo(const std::string& filePath)
 
 	_map[keyInfo] = gInfo;
 	return true;
+}
+
+bool InfoCollection::loadCategory(const std::string& filePath)
+{
+	return _collisionCategory.load(filePath);
 }
 
 const GameObjectInfo* InfoCollection::get(const std::string& key) const

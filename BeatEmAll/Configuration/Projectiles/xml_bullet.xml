@@ -13,6 +13,7 @@
 		 			<radius>5.0</radius>
 		 			<position x="0" y="0" />
 		 		</shape>
+		 		<filter category="CAT_BULLET" maskBits="CAT_BULLET|CAT_ENEMY|CAT_BOUNDARY" />
 		 	</fixture>
 		 	<fixture>
 		 		<density>.1f</density>
@@ -23,6 +24,7 @@
 					<vertice x="30" y="0" />
 					<vertice x="15" y="-10" />
 		 		</shape>
+		 		<filter category="CAT_BULLET" maskBits="CAT_BULLET|CAT_ENEMY|CAT_BOUNDARY" />
 		 	</fixture>
 		 </fixtures>
 	</physics>

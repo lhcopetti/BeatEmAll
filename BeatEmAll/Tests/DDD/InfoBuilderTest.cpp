@@ -7,7 +7,8 @@
 
 TEST_CASE("Test the loading of a info file", "[ddd]")
 {
-	DDD::InfoBuilder builder;
+	/* TODO FIX */
+	DDD::InfoBuilder builder(nullptr);
 
 	REQUIRE(builder.load("Tests\\DDD\\Configuration\\xml_bullet.xml"));
 	REQUIRE(builder.getInfoName() == "BulletInfo");
