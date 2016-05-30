@@ -9,6 +9,16 @@
 #include "Component\KeyboardInputComponent.h"
 #include "Component\RandomInputComponent.h"
 
+#include "Component\PlayerComponents\PlayerGraphicsComponent.h"
+#include "Component\EnemyComponents\EnemyGraphicComponent.h"
+#include "Component\EnemyComponents\SteeringInputComponent.h"
+
+#include "GameObjects\Factory\GameObjectFactory.h"
+
+#include "DDD\InfoCollection.h"
+
+#include "GameObjects\GameObjectTypes.h"
+
 #include "Box2D\Box2D.h"
 
 #include <iostream>
@@ -23,15 +33,11 @@ static void setEdge(b2EdgeShape& edge, float xBegin, float yBegin, float xEnd, f
 MainGameState::MainGameState()
 {
 	_world = nullptr;
-	_inputComponent = nullptr;
 }
 
 MainGameState::~MainGameState()
 {
-	delete _inputComponent;
-	_inputComponent = nullptr;
-	delete _world;
-	_world = nullptr;
+	delete _world; _world = nullptr;
 }
 
 bool MainGameState::init()
@@ -85,19 +91,35 @@ bool MainGameState::init()
 	circ->CreateFixture(&fix);
 
 	_mouseManager.window(&_window);
-	_inputComponent = new Components::KeyboardInputComponent(_keyManager, _mouseManager);
 
-	_player = new GameComponent::Player(*_world, *_inputComponent);
-	_player->init();
-	_gameObjects.push_back(_player);
+	DDD::InfoCollection::getInstance().loadCategory("Configuration\\CollisionCategories.xml");
+	DDD::InfoCollection::getInstance().loadInfo("Configuration\\Projectiles\\xml_bullet.xml");
+	DDD::InfoCollection::getInstance().loadInfo("Configuration\\GameCharacter\\xml_player.xml");
+
+	GameComponent::Player* player = GameComponent::Factory::GOFactory::newPlayer(*_world, _keyManager, _mouseManager, sf::Vector2f(50, 50));
+	/* TODO: Add Component for enemy*/
+	//_player = new GameComponent::Player(GameComponent::GameObjectTypes::PLAYER, *_world, 
+	//	new Components::KeyboardInputComponent(_keyManager, _mouseManager),
+	//	new Components::PlayerComponents::PlayerGraphicsComponent());
+	//_player->init();
+	_gameObjects.push_back(player);
 
 	createBoundingBox(*_world, 1279.0, 639.0);
 
-	Components::InputComponent* randInput = new Components::RandomInputComponent;
-	GameComponent::GameObject* enemy = new GameComponent::Player(*_world, *randInput);
-	enemy->position(100.f, 100.f);
-	enemy->init();
-	_gameObjects.push_back(enemy);
+	//IA::Steering::SteeringManager* _steeringManager = new IA::Steering::SteeringManager;
+	//
+	//GameComponent::Player* enemy = new GameComponent::Player(GameComponent::GameObjectTypes::ENEMY_DEFAULT, *_world,
+	//	new Components::EnemyComponents::SteeringInputComponent(_steeringManager, &_window),
+	//	new Components::EnemyComponents::EnemyGraphicComponent());
+	//_steeringManager->setPlayer(enemy);
+
+	//enemy->position(100.f, 100.f);
+	//enemy->init();
+
+	//_gameObjects.push_back(enemy);
+
+	_contactListener = new Collision::ContactListener();
+	_world->SetContactListener(_contactListener);
 
 	return true;
 }

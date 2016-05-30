@@ -9,10 +9,10 @@ namespace GameComponent
 		class ShootAction : public Action
 		{
 		public:
-			ShootAction(GameComponent::Player& target, b2Vec2 originTarget, b2Vec2 shotTarget);
+			ShootAction(b2Vec2 originTarget, b2Vec2 shotTarget);
 
 			virtual ~ShootAction();
-			virtual void execute();
+			virtual void execute(GameComponent::GameObject& target);
 
 		private:
 			const b2Vec2 _originTarget;

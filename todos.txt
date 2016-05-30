@@ -1,8 +1,31 @@
 
-OK!	-> inputComponent->update(*this);
+OK!	- inputComponent->update(*this);
 OK! - Unificar o handleMouse e handleKeyboard em uma única ação.
 OK! - Juntar Mouse e Keyboard em um Component do tipo input (Abstração)
 OK!	- Sprite Rotation != Body Rotation. (angularVelocity(0);)
-
+OK! - Implement GraphicsComponent
+OK! - Remove _canShoot counter from player
+OK! - The target for an action should be passed as parameter in the execute function.
+OK! - Move the Components to GameObject class
+OK! - Fix Collision Filtering!!! || is not |
+OK! - Create the projectile Factory with the newProjectile method
+OK! - Add types to GameObject so that in collision we will be able to desambiguate what collided with what!
+OK! - BULLET VELOCITY!!! Did you forget?
 
 - Run Leak Test
+- Add component for enemy
+
+- Implement a new subclass for GameObject -> GameCharacter. It will abstract all the functionality that living objects would have. Such as the player and the enemy (Maybe? Kind of doubting the approach right now).
+- Make a graphicsComponent that is fileMapped (all its behavior is mapped to file and fully configurable).
+
+- Add state pattern to the player class (HOWWWWW!!!!????)
+- Fix the ball displacement (difference between drawing and physics (box2d))
+- Implement a Bigger Map with camera movement and setView (SFML)
+- GameObject Factory instead of a simpmle ProjectileFactory
+- TexturePool Mapping (for tiles it has already been implemented)
+- clean up the code in the projectile factory maybe move it around
+- Add game Object factory (abstract the creation of player)
+- Add filters to the fixtures in the configuration files.
+- Add file for the configuration of filter categories
+- Remover ReadAllText and use FileIO static helper functions.
+- Fix DDD Tests

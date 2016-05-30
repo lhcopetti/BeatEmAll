@@ -1,13 +1,15 @@
 #include "GameObjects\Weapon\Pistol.h"
 
 #include "GameObjects\Projectile\Bullet.h"
+#include "GameObjects\Projectile\GraphicBullet.h"
+#include "GameObjects\Projectile\ProjectileFactory.h"
 
 using namespace GameComponent::Weapons;
 
 #define PISTOL_FIRERATE .2f
 
 Pistol::Pistol(b2World& world, int cartdrigeSize, int bulletCount) :
-	Weapon(world, cartdrigeSize, bulletCount)
+	Weapon(GameObjectTypes::WEAPON_PISTOL, world, cartdrigeSize, bulletCount)
 {
 	_canShoot = false;
 	_fireRate = PISTOL_FIRERATE;
@@ -38,7 +40,8 @@ GameComponent::Projectiles::Projectile* Pistol::shoot(b2Vec2 initialPos, b2Vec2 
 		return nullptr;
 
 	_canShoot = false;
-	return new Bullet(_world, 6.f, initialPos, initialVel);
+
+	return ProjectileFactory::makeNew(ProjectileType::BULLET, _world, initialPos, initialVel);
 }
 
 bool Pistol::canShoot() const

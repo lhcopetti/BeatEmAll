@@ -3,8 +3,8 @@
 
 using namespace GameComponent::GameActions;
 
-AimAction::AimAction(GameComponent::Player& gameObject, b2Vec2 origin, b2Vec2 aimTarget)
-	: _origin(origin), _aimTarget(aimTarget), Action(gameObject)
+AimAction::AimAction(b2Vec2 origin, b2Vec2 aimTarget)
+	: _origin(origin), _aimTarget(aimTarget)
 {
 }
 
@@ -13,7 +13,7 @@ AimAction::~AimAction()
 
 }
 
-void AimAction::execute()
+void AimAction::execute(GameComponent::GameObject& target)
 {
 	/* TODO: What is the best way to get from where should I aim? 
 	 * Thinking about aiming with a gun, it is not the center of the body that should be
@@ -21,5 +21,5 @@ void AimAction::execute()
 	 */
 	b2Vec2 toTarget = _aimTarget - _origin;
 	float angRotation = std::atan2(toTarget.y, toTarget.x);
-	_target.rotation(angRotation);
+	target.rotation(angRotation);
 }

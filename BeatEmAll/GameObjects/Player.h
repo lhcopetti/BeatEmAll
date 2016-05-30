@@ -10,8 +10,11 @@
 #include "Keyboard\KeyboardListener.h"
 
 #include "Component\InputComponent.h"
+#include "Component\GraphicsComponent.h"
 
 #include "Box2D\Box2D.h"
+
+#include "IA\Steering\Steerable.h"
 
 #define PLAYER_VELOCITY 5.f
 
@@ -19,35 +22,32 @@ namespace GA = GameComponent::GameActions;
 
 namespace GameComponent
 {
-	class Player : public GameObject
+	class Player : public GameObject, public IA::Steering::Steerable
 	{
 	private:
-		sf::Texture _texture;
-		sf::Sprite _sprite;
-
-		Components::InputComponent& _inputComponent;
-
-		b2Vec2 _nextPlayerVel;
-
 		std::vector<GA::Action*> _actions;
-
 		GameComponent::Weapons::Weapon* _weapon;
 
-		bool _canShoot;
-		float _canShootCounter;
-
 	public:
-		Player(b2World& world, Components::InputComponent& inputComponent);
+		Player(GameObjectTypes type, b2World& world, 
+			Components::PhysicsComponent* physicsComponent,
+			Components::InputComponent* inputComponent,
+			Components::GraphicsComponent* graphicsComponent);
 		~Player();
 
 		void init();
 
 		GameComponent::Weapons::Weapon& weapon() const { return *_weapon; }
 
-		virtual void update(float elapsedTime);
-
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		virtual void doUpdate(float elapsedTime);
 
 		void addAction(GameActions::Action* action);
+
+
+		virtual b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
+		virtual float getMaximumVelocity() const { return 4.f; }
+		virtual b2Vec2 getCurrentPosition() const { return _physicsComponent->getBody()->GetPosition(); }
+		virtual float getMass() const { return _physicsComponent->getBody()->GetMass(); }
+
 	};
 }

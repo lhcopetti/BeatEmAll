@@ -23,7 +23,7 @@ KeyboardInputComponent::~KeyboardInputComponent()
 
 }
 
-void KeyboardInputComponent::update(GameComponent::Player& player)
+void KeyboardInputComponent::update(GameComponent::GameObject& player)
 {
 	_mouseManager.update();
 	handleMouse(player, _mouseManager);
@@ -34,7 +34,7 @@ void KeyboardInputComponent::update(GameComponent::Player& player)
 
 }
 
-void KeyboardInputComponent::handleKeyboard(GameComponent::Player& player, const std::map<Keys::KeyboardManager::KeyAction, bool>& keys)
+void KeyboardInputComponent::handleKeyboard(GameComponent::GameObject& player, const std::map<Keys::KeyboardManager::KeyAction, bool>& keys)
 {
 	using namespace Keys;
 	GA::MoveAction::MoveDirection moveDir;
@@ -48,22 +48,26 @@ void KeyboardInputComponent::handleKeyboard(GameComponent::Player& player, const
 	if (keys.at(KeyboardManager::KeyAction::MOVE_RIGHT))
 		moveDir.xDir = GA::XAxis::RIGHT;
 
-	GA::MoveAction* moveAction = new GA::MoveAction(player, moveDir);
-	player.addAction(moveAction);
+	GA::MoveAction* moveAction = new GA::MoveAction(moveDir);
+
+	// TODO: Maybe move the addAction method up the GameObject class?
+	static_cast<GameComponent::Player&>(player).addAction(moveAction);
 }
 
-void KeyboardInputComponent::handleMouse(GameComponent::Player& player, MouseComponent::MouseManager& mouse)
+void KeyboardInputComponent::handleMouse(GameComponent::GameObject& player, MouseComponent::MouseManager& mouse)
 {
+	GameComponent::Player& p = static_cast<GameComponent::Player&>(player);
+
 	/* We can safely assume there will no vector.x as big as MAX_INT. Cast is OK! */
 	const sf::Vector2f mousePosF = sf::Vector2f(static_cast<float>(mouse.mousePos().x), static_cast<float>(mouse.mousePos().y));
 
-	GA::Action* aimAction = new GA::AimAction(player, player.body()->GetPosition(), WorldConstants::sfmlToPhysics(mousePosF));
-	player.addAction(aimAction);
+	GA::Action* aimAction = new GA::AimAction(player.body()->GetPosition(), WorldConstants::sfmlToPhysics(mousePosF));
+	p.addAction(aimAction);
 
 	if (mouse.left())
 	{
 		b2Vec2 target = WorldConstants::sfmlToPhysics(mousePosF);
-		GA::ShootAction* shootAction = new GA::ShootAction(player, player.body()->GetPosition(), target);
-		player.addAction(shootAction);
+		GA::ShootAction* shootAction = new GA::ShootAction(player.body()->GetPosition(), target);
+		p.addAction(shootAction);
 	}
 }

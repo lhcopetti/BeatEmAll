@@ -2,7 +2,7 @@
 
 namespace GameComponent
 {
-	class Player;
+	class GameObject;
 }
 
 namespace Components
@@ -13,6 +13,6 @@ namespace Components
 		InputComponent() {}
 		virtual ~InputComponent() {}
 
-		virtual void update(GameComponent::Player& player) = 0;
+		virtual void update(GameComponent::GameObject& player) = 0;
 	};
 }

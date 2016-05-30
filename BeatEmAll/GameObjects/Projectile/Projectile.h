@@ -5,16 +5,24 @@ namespace GameComponent
 {
 	namespace Projectiles
 	{
+
+		enum ProjectileType
+		{
+			BULLET
+		};
+
 		class Projectile : public GameComponent::GameObject
 		{
+			friend class ProjectileFactory;
+
 		public:
-			Projectile(b2World& world) : GameObject(world) {};
 			virtual ~Projectile() {}
+			//virtual void update(float elapsedTime) = 0;
+			//virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 
-			virtual void update(float elapsedTime) = 0;
-			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
-
-		private:
+		protected:
+			Projectile(GameObjectTypes type, b2World& world, Components::PhysicsComponent* physics, Components::InputComponent* inputC, Components::GraphicsComponent* graphics) : 
+				GameObject(type, world, physics, inputC, graphics) {};
 		};
 	}
 }

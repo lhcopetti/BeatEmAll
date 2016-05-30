@@ -1,0 +1,44 @@
+<BulletInfo>
+	<physics>
+		<body>
+			<type>dynamic</type>
+			<bullet>true</bullet>
+		</body>
+
+		 <fixtures>
+		 	<fixture>
+		 		<density>.1f</density>
+		 		<restitution>.5f</restitution>
+		 		<shape type="circle">
+		 			<radius>5.0</radius>
+		 			<position x="0" y="0" />
+		 		</shape>
+		 		<filter category="CAT_BULLET" maskBits="CAT_BULLET|CAT_ENEMY|CAT_BOUNDARY" />
+		 	</fixture>
+<!--		 	<fixture>
+		 		<density>.1f</density>
+		 		<restitution>.5f</restitution>
+		 		<shape type="vertices">
+					<vertice x="0"  y="0" />
+					<vertice x="15" y="10" />
+					<vertice x="30" y="0" />
+					<vertice x="15" y="-10" />
+		 		</shape>
+		 		<filter category="CAT_BULLET" maskBits="CAT_BULLET|CAT_ENEMY|CAT_BOUNDARY" />
+		 	</fixture>-->
+		 </fixtures>
+	</physics>
+
+	<graphic>
+		<origin x="0" y="0" />
+		<followRotation>false</followRotation>
+		<representation repType="drawing">
+			<circle radius="5.0" r="0" g="255" b="0" a="255"></circle>
+		</representation>
+	</graphic>
+
+	<userData>
+		<lifeTime>33.f</lifeTime>
+		<bulletSpeed>5.0</bulletSpeed>
+	</userData>
+</BulletInfo>

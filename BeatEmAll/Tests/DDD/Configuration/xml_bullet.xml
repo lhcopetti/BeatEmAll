@@ -1,0 +1,30 @@
+<BulletInfo>
+	<physics>
+		<body>
+			<type>dynamic</type>
+			<bullet>true</bullet>
+		</body>
+
+		 <fixtures>
+		 	<fixture>
+		 		<density>.1f</density>
+		 		<restitution>.5f</restitution>
+		 		<shape type="circle">
+		 			<radius>6.5</radius>
+		 		</shape>
+		 	</fixture>
+		 </fixtures>
+	</physics>
+
+	<graphic>
+		<origin x="4.0" y="3.0" />
+		<followRotation>false</followRotation>
+		<representation repType="drawing">
+			<circle radius="5.2" r="255" g="0" b="240" a="255"></circle>
+		</representation>
+	</graphic>
+
+	<userData>
+		<lifeTime>15.f</lifeTime>
+	</userData>
+</BulletInfo>

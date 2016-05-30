@@ -38,10 +38,10 @@ namespace GameComponent
 				YAxis::Dir yDir = YAxis::Dir::NONE;
 			};
 
-			MoveAction(GameComponent::GameObject& target, MoveDirection moveDirection);
+			MoveAction(MoveDirection moveDirection);
 
 			virtual ~MoveAction();
-			virtual void execute();
+			virtual void execute(GameComponent::GameObject& target);
 
 		private:
 			const MoveDirection _moveDir;

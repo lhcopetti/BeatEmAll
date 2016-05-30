@@ -5,8 +5,8 @@
 
 using namespace GameComponent::GameActions;
 
-ShootAction::ShootAction(GameComponent::Player& gameObject, b2Vec2 originTarget, b2Vec2 shotTarget)
-	: _originTarget(originTarget), _shotTarget(shotTarget), Action(gameObject)
+ShootAction::ShootAction(b2Vec2 originTarget, b2Vec2 shotTarget)
+	: _originTarget(originTarget), _shotTarget(shotTarget)
 {
 }
 
@@ -15,11 +15,11 @@ ShootAction::~ShootAction()
 
 }
 
-void ShootAction::execute()
+void ShootAction::execute(GameComponent::GameObject& target)
 {
 	using namespace GameComponent::Projectiles;
 
-	GameComponent::Player& player = static_cast<GameComponent::Player&>(_target);
+	GameComponent::Player& player = static_cast<GameComponent::Player&>(target);
 	GameComponent::Weapons::Weapon& weapon = player.weapon();
 
 	b2Vec2 velChange2 = _shotTarget - _originTarget;
@@ -29,5 +29,5 @@ void ShootAction::execute()
 	GameComponent::Projectiles::Projectile* projectile = weapon.shoot(_originTarget, velChange2);
 
 	if (nullptr != projectile)
-		_target.addChild(projectile);
+		target.addChild(projectile);
 }

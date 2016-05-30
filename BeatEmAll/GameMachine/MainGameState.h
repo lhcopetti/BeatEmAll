@@ -14,6 +14,12 @@
 #include "Mouse\MouseListener.h"
 #include "Mouse\MouseManager.h"
 
+#include "Component\GraphicsComponent.h"
+
+#include "IA\Steering\SteeringManager.h"
+
+#include "Collision\ContactListener.h"
+
 #define BOX2D_VELOCITY_ITERATIONS 8 // how strongly to correct velocity
 #define BOX2D_POSITION_ITERATIONS 3 // how strongly to correct position
 
@@ -32,10 +38,11 @@ namespace GameMachine
 		SFMLDebugDraw _debugDraw;
 
 		GameComponent::Player* _player;
-		Components::InputComponent* _inputComponent;
 
 		Keys::KeyboardManager _keyManager;
 		MouseComponent::MouseManager _mouseManager;
+		
+		Collision::ContactListener* _contactListener;
 
 		std::vector<GameComponent::GameObject*> _gameObjects;
 

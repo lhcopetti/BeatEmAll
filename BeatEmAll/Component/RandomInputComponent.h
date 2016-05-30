@@ -6,6 +6,11 @@
 
 #include "GameObjects\Actions\MoveAction.h"
 
+namespace GameComponent
+{
+	class Player;
+}
+
 namespace Components
 {
 	class RandomInputComponent : public InputComponent
