@@ -2,6 +2,11 @@
 
 #include "Box2D\Box2D.h"
 
+namespace GameComponent
+{
+	class GameObject;
+}
+
 namespace Components
 {
 	class PhysicsComponent
@@ -18,6 +23,7 @@ namespace Components
 
 		b2Body* getBody() const { return _body; }
 		virtual b2World& getWorld() const { return _world; }
+		void update(GameComponent::GameObject& gameObject);
 
 	private:
 		b2Body* _body;

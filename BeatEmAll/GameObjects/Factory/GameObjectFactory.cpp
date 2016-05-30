@@ -1,57 +1,38 @@
-#include "GameObjects\Projectile\ProjectileFactory.h"
-#include "GameObjects\Projectile\GraphicBullet.h"
-#include "GameObjects\Projectile\Bullet.h"
-
-#include "DDD\InfoCollection.h"
-#include "DDD\GameObjectInfo.h"
-
-#include "DDD\Representation\DrawingRepresentation.h"
-#include "DDD\Representation\SpriteRepresentation.h"
-
-#include "DDD\Projectile\BulletUserDataInfo.h"
-
-#include "Component\GenericGraphicsComponent.h"
-#include "Component\PhysicsComponent.h"
-
-#include "DebugBoxDraw\WorldConstants.h"
+#include "GameObjects\Factory\GameObjectFactory.h"
 
 #include "DDD\FixtureShape\CircleShape.h"
 #include "DDD\FixtureShape\PolygonShape.h"
 #include "DDD\FixtureShape\VerticesShape.h"
 
-#include <iostream>
+#include "Component\GenericGraphicsComponent.h"
 
-using namespace GameComponent::Projectiles;
+#include "DDD\Representation\DrawingRepresentation.h"
+#include "DDD\Representation\SpriteRepresentation.h"
 
+#include "DebugBoxDraw\WorldConstants.h"
 
-Components::GraphicsComponent* getGraphic(const DDD::GameObjectInfo* gameObjectInfo);
-Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo* physics, b2Vec2 position);
+#include "Component\KeyboardInputComponent.h"
 
-Projectile* ProjectileFactory::makeNew(
-	ProjectileType projectileType,
-	b2World& world,
-	b2Vec2 initialPosition,
-	b2Vec2 initialVel)
+#include "DDD\InfoCollection.h"
+
+using namespace GameComponent::Factory;
+
+GameComponent::Player* GOFactory::newPlayer(b2World& world, Keys::KeyboardManager& keyManager, MouseComponent::MouseManager& mouseManager, sf::Vector2f position)
 {
-	if (BULLET == projectileType)
-	{
-		const std::string bulletInfo = "BulletInfo";
-		const DDD::GameObjectInfo* info = DDD::InfoCollection::getInstance().get(bulletInfo);
+	const DDD::GameObjectInfo* gameInfo = DDD::InfoCollection::getInstance().get("PlayerInfo");
 
-		Components::GraphicsComponent* graphic = getGraphic(info);
-		Components::PhysicsComponent* physics = getPhysics(world, info->_physicsInfo, initialPosition);
+	Components::PhysicsComponent*  p = GOFactory::getPhysics(world, gameInfo->_physicsInfo, WorldConstants::sfmlToPhysics(position));
+	Components::GraphicsComponent* g = GOFactory::getGraphic(gameInfo);
 
-		const DDD::Projectile::BulletUserDataInfo* b = static_cast<const DDD::Projectile::BulletUserDataInfo*>(info->_userDataInfo);
-
-		return new Bullet(world, physics, graphic, b->_lifeTime, b->_bulletSpeed, initialPosition, initialVel);
-	}
-
-
-	std::cout << "Invalid Projectile! " << std::endl;
-	return nullptr;
+	GameComponent::Player* player = new GameComponent::Player(GameComponent::GameObjectTypes::PLAYER, world,
+		p,
+		new Components::KeyboardInputComponent(keyManager, mouseManager),
+		g);
+	player->init();
+	return player;
 }
 
-Components::GraphicsComponent* getGraphic(const DDD::GameObjectInfo* gameObjectInfo)
+Components::GraphicsComponent* GOFactory::getGraphic(const DDD::GameObjectInfo* gameObjectInfo)
 {
 	Components::GraphicsComponent* gr;
 	const DDD::GraphicInfo* graphicInfo = gameObjectInfo->_graphicInfo;
@@ -64,21 +45,29 @@ Components::GraphicsComponent* getGraphic(const DDD::GameObjectInfo* gameObjectI
 		circleShape->setFillColor(dr->_color);
 
 		gr = Components::GenericGraphicsComponent::newDrawingGraphic(
-			circleShape, 
-			graphicInfo->_followRotation, 
+			circleShape,
+			graphicInfo->_followRotation,
 			graphicInfo->_origin);
 	}
 	else
 	{
+		const DDD::SpriteRepresentation* sr = static_cast<const DDD::SpriteRepresentation*>(graphicInfo->_info);
+
+		sf::Texture* texture = new sf::Texture;
+		texture->loadFromFile(sr->_filePath);
+		sf::Sprite* sprite = new sf::Sprite;
+		sprite->setTexture(*texture);
+		sprite->setScale(sf::Vector2f(sr->_scaleX, sr->_scaleY));
 		// TODO: what if it is not a drawing,
 		// what if it is not a projectile but a player?
-		gr = nullptr;
+		gr = Components::GenericGraphicsComponent::newSpriteGraphic
+			(sprite, graphicInfo->_followRotation, graphicInfo->_origin);
 	}
 
 	return gr;
 }
 
-Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo* physics, b2Vec2 position)
+Components::PhysicsComponent* GOFactory::getPhysics(b2World& world, const DDD::PhysicsInfo* physics, b2Vec2 position)
 {
 	b2BodyDef bodyDef;
 	bodyDef.type = physics->_type == DDD::STATIC ? b2_staticBody : b2_dynamicBody;
@@ -112,10 +101,10 @@ Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo*
 			const DDD::PolygonShape* dddShape = static_cast<const DDD::PolygonShape*>(fixtureShape);
 			b2PolygonShape* poly = new b2PolygonShape;
 			poly->SetAsBox(
-				dddShape->_hx, 
+				dddShape->_hx,
 				dddShape->_hy,
 				dddShape->_center,
-				dddShape->_angle * DEGTORAD);
+				dddShape->_angle);
 			shape = poly;
 		}
 		else if (fixtureShape->_type == DDD::SHAPE_VERTICES)

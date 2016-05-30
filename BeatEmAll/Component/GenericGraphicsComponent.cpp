@@ -2,6 +2,8 @@
 #include "Component\GenericGraphicsComponent.h"
 #include "GameObjects\GameObject.h"
 
+#include "DebugBoxDraw\WorldConstants.h"
+
 using namespace Components;
 
 GenericGraphicsComponent* GenericGraphicsComponent::newDrawingGraphic(sf::Shape* shape, bool followRotation, sf::Vector2f origin)
@@ -43,7 +45,7 @@ void GenericGraphicsComponent::update(GameComponent::GameObject& gameObject)
 {
 	_transformable->setPosition(gameObject.position());
 	if (_followRotation)
-		_transformable->setRotation(gameObject.rotation());
+		_transformable->setRotation(gameObject.rotation() * RADTODEG);
 }
 
 void GenericGraphicsComponent::draw(const GameComponent::GameObject& gameObject, sf::RenderTarget& target, sf::RenderStates states) const

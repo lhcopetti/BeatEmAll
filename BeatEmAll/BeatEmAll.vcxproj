@@ -216,6 +216,7 @@
     <ClCompile Include="Component\EnemyComponents\SteeringInputComponent.cpp" />
     <ClCompile Include="Component\GenericGraphicsComponent.cpp" />
     <ClCompile Include="Component\KeyboardInputComponent.cpp" />
+    <ClCompile Include="Component\PhysicsComponent.cpp" />
     <ClCompile Include="Component\PlayerComponents\PlayerGraphicsComponent.cpp" />
     <ClCompile Include="Component\RandomInputComponent.cpp" />
     <ClCompile Include="DDD\CircleFixtureInfo.cpp" />
@@ -236,6 +237,7 @@
     <ClCompile Include="GameObjects\Actions\VelocityAction.cpp" />
     <ClCompile Include="GameObjects\ChildBearer.cpp" />
     <ClCompile Include="GameObjects\Defs\PlayerDefinition.cpp" />
+    <ClCompile Include="GameObjects\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="GameObjects\Projectile\Bullet.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
@@ -396,6 +398,7 @@
     <ClInclude Include="GameObjects\Actions\VelocityAction.h" />
     <ClInclude Include="GameObjects\ChildBearer.h" />
     <ClInclude Include="GameObjects\Defs\PlayerDefinition.h" />
+    <ClInclude Include="GameObjects\Factory\GameObjectFactory.h" />
     <ClInclude Include="GameObjects\GameObjectTypes.h" />
     <ClInclude Include="GameObjects\Projectile\Bullet.h" />
     <ClInclude Include="GameObjects\GameObject.h" />

@@ -49,6 +49,8 @@
     <ClCompile Include="DDD\CircleFixtureInfo.cpp" />
     <ClCompile Include="Collision\CollisionCategory.cpp" />
     <ClCompile Include="FileIO\FileIO.cpp" />
+    <ClCompile Include="GameObjects\Factory\GameObjectFactory.cpp" />
+    <ClCompile Include="Component\PhysicsComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -220,5 +222,6 @@
     <ClInclude Include="DDD\FixtureShape\VerticesShape.h" />
     <ClInclude Include="FileIO\FileIO.h" />
     <ClInclude Include="String\SplitString.h" />
+    <ClInclude Include="GameObjects\Factory\GameObjectFactory.h" />
   </ItemGroup>
 </Project>

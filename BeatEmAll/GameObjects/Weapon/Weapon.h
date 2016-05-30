@@ -12,7 +12,7 @@ namespace GameComponent
 		public:
 			/* TODO: Does Data Oriented Design ring any bell? */
 			Weapon(GameObjectTypes type, b2World& world, int cartdrigeSize, int bulletCount) : 
-				GameObject(type, world, GameObject::nullInput(), GameObject::nullGraphics()), 
+				GameObject(type, world, GameObject::nullPhysics(), GameObject::nullInput(), GameObject::nullGraphics()),
 				_cartdrigeSize(cartdrigeSize), 
 				_bulletCount(bulletCount) {}
 

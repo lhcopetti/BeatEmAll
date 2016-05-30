@@ -30,6 +30,7 @@ namespace GameComponent
 
 	public:
 		Player(GameObjectTypes type, b2World& world, 
+			Components::PhysicsComponent* physicsComponent,
 			Components::InputComponent* inputComponent,
 			Components::GraphicsComponent* graphicsComponent);
 		~Player();
@@ -43,10 +44,10 @@ namespace GameComponent
 		void addAction(GameActions::Action* action);
 
 
-		virtual b2Vec2 getCurrentVelocity() const { return _body->GetLinearVelocity(); }
+		virtual b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
 		virtual float getMaximumVelocity() const { return 4.f; }
-		virtual b2Vec2 getCurrentPosition() const { return _body->GetPosition(); }
-		virtual float getMass() const { return _body->GetMass(); }
+		virtual b2Vec2 getCurrentPosition() const { return _physicsComponent->getBody()->GetPosition(); }
+		virtual float getMass() const { return _physicsComponent->getBody()->GetMass(); }
 
 	};
 }
