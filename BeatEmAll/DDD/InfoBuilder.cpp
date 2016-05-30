@@ -8,18 +8,23 @@
 
 #include "SFML\Graphics\Color.hpp"
 
+#include "String\SplitString.h"
+
 #include <sstream>
 #include <fstream>
 
 using namespace DDD;
 
 float getFloat(rapidxml::xml_node<>* parent, const std::string& nodeName);
+const std::vector<std::string> getCategoryAttr(rapidxml::xml_node<>* parent, const std::string& attrName);
+
 float getPhysicsAngle(rapidxml::xml_node<>* parent, const std::string& nodeName);
 b2Vec2 getCoordinate(rapidxml::xml_node<>* node, const std::string& nodeName, const std::string& xName, const std::string& yName);
 b2Vec2 getCoordinate(rapidxml::xml_node<>* node, const std::string& xName, const std::string& yName);
 float getPhysicsNodeValue(rapidxml::xml_node<>* parent, const std::string& nodeName);
 
-InfoBuilder::InfoBuilder()
+InfoBuilder::InfoBuilder(Collision::CollisionCategory* collisionCategory) :
+	_categories(collisionCategory)
 {
 	_gameInfo = nullptr;
 }
@@ -82,6 +87,10 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 	float density = getFloat(node, "density");
 	float restitution = getFloat(node, "restitution");
 
+	rapidxml::xml_node<>* filterNode = node->first_node("filter");
+	unsigned short category = _categories->getCategoryValue(getCategoryAttr(filterNode, "category"));
+	unsigned short maskBits = _categories->getCategoryValue(getCategoryAttr(filterNode, "maskBits"));
+
 	rapidxml::xml_node<>* shapeNode = node->first_node("shape");
 
 	FixtureInfo* fixtureInfo;
@@ -91,14 +100,14 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 	{
 		float radius = getPhysicsNodeValue(shapeNode, "radius");
 		b2Vec2 position = getCoordinate(shapeNode, "position", "x", "y");
-		fixtureInfo = new FixtureInfo(density, restitution, radius, position);
+		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, radius, position);
 	}
 	else if (shapeType == "box")
 	{
 		b2Vec2 halfLength = getCoordinate(shapeNode, "size", "width", "height");
 		b2Vec2 center = getCoordinate(shapeNode, "center", "x", "y");
 		float angle = getPhysicsAngle(shapeNode, "angle");
-		fixtureInfo = new FixtureInfo(density, restitution, halfLength.x / 2.f, halfLength.y / 2.f, center, angle);
+		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, halfLength.x / 2.f, halfLength.y / 2.f, center, angle);
 	}
 	else if (shapeType == "vertices")
 	{
@@ -109,7 +118,7 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 			b2Vec2 vertice = getCoordinate(node, "x", "y");
 			vertices.push_back(vertice);
 		}
-		fixtureInfo = FixtureInfo::newVerticesFixture(density, restitution, vertices);
+		fixtureInfo = FixtureInfo::newVerticesFixture(density, restitution, category, maskBits, vertices);
 	}
 
 	return fixtureInfo;
@@ -226,4 +235,17 @@ float getPhysicsAngle(rapidxml::xml_node<>* parent, const std::string& nodeName)
 float getFloat(rapidxml::xml_node<>* parent, const std::string& nodeName)
 {
 	return std::stof(parent->first_node(nodeName.c_str())->value());
+}
+
+const std::vector<std::string> getCategoryAttr(rapidxml::xml_node<>* parent, const std::string& attrName)
+{
+	std::vector<std::string> categories;
+	std::string attributeValue = parent->first_attribute(attrName.c_str())->value();
+	String::split(attributeValue, '|', categories);
+	return categories;
+}
+
+unsigned short InfoBuilder::getCatValue(const std::string& category)
+{
+	return 0x0;
 }

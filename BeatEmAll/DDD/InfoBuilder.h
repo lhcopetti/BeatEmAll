@@ -4,12 +4,14 @@
 #include "DDD\PhysicsInfo.h"
 #include "RapidXML\rapidxml.hpp"
 
+#include "Collision\CollisionCategory.h"
+
 namespace DDD
 {
 	class InfoBuilder
 	{
 	public:
-		InfoBuilder();
+		InfoBuilder(Collision::CollisionCategory* collisionCat);
 		bool load(const std::string& filePath);
 
 		const std::string& getInfoName() { return _infoName; }
@@ -26,10 +28,14 @@ namespace DDD
 		UserDataInfo* parseBulletInfo(rapidxml::xml_node<>* node);
 		UserDataInfo* parsePlayerInfo(rapidxml::xml_node<>* node);
 
+		unsigned short getCatValue(const std::string& category);
+
 		rapidxml::xml_document<> _xmlDoc;
 		std::string _xmlRawContent;
 
 		std::string _infoName;
 		GameObjectInfo* _gameInfo;
+
+		Collision::CollisionCategory* _categories;
 	};
 }

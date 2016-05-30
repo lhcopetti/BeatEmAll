@@ -46,16 +46,16 @@ void Player::init()
 
 	if (GameObjectTypes::PLAYER == _type)
 	{
-		fixture.filter.categoryBits = Collision::CAT_PLAYER;
-		fixture.filter.maskBits = Collision::CAT_ENEMY | Collision::CAT_BOUNDARY;
+//		fixture.filter.categoryBits = Collision::CAT_PLAYER;
+//		fixture.filter.maskBits = Collision::CAT_ENEMY | Collision::CAT_BOUNDARY;
 	}
 	else if (GameObjectTypes::ENEMY_DEFAULT == _type)
 	{
-		fixture.filter.categoryBits = Collision::CAT_ENEMY;
-		fixture.filter.maskBits =	Collision::CAT_PLAYER |
-									Collision::CAT_BOUNDARY |
-									Collision::CAT_BULLET |
-									Collision::CAT_ENEMY;
+		//fixture.filter.categoryBits = Collision::CAT_ENEMY;
+		//fixture.filter.maskBits =	Collision::CAT_PLAYER |
+		//							Collision::CAT_BOUNDARY |
+		//							Collision::CAT_BULLET |
+		//							Collision::CAT_ENEMY;
 	}
 	else
 	{

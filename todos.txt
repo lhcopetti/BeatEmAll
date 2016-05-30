@@ -24,3 +24,8 @@ OK! - BULLET VELOCITY!!! Did you forget?
 - GameObject Factory instead of a simpmle ProjectileFactory
 - TexturePool Mapping (for tiles it has already been implemented)
 - clean up the code in the projectile factory maybe move it around
+- Add game Object factory (abstract the creation of player)
+- Add filters to the fixtures in the configuration files.
+- Add file for the configuration of filter categories
+- Remover ReadAllText and use FileIO static helper functions.
+- Fix DDD Tests

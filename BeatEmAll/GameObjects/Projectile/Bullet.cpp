@@ -6,11 +6,11 @@
 
 using namespace GameComponent::Projectiles;
 
-uint16 Bullet::_categoryType = Collision::CAT_BULLET;
-
-uint16 Bullet::_maskBits =		Collision::CAT_BOUNDARY |
-								Collision::CAT_BULLET |
-								Collision::CAT_ENEMY;
+//uint16 Bullet::_categoryType = Collision::CAT_BULLET;
+//
+//uint16 Bullet::_maskBits =		Collision::CAT_BOUNDARY |
+//								Collision::CAT_BULLET |
+//								Collision::CAT_ENEMY;
 
 Bullet::~Bullet()
 {

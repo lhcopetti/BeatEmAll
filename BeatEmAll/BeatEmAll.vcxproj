@@ -210,6 +210,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Collision\CollisionCategory.cpp" />
     <ClCompile Include="Collision\ContactListener.cpp" />
     <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
     <ClCompile Include="Component\EnemyComponents\SteeringInputComponent.cpp" />
@@ -226,6 +227,7 @@
     <ClCompile Include="DDD\Projectile\BulletUserDataInfo.cpp" />
     <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp" />
     <ClCompile Include="DebugBoxDraw\WorldConstants.cpp" />
+    <ClCompile Include="FileIO\FileIO.cpp" />
     <ClCompile Include="GameMachine\MainGameState.cpp" />
     <ClCompile Include="GameObjects\Actions\Action.cpp" />
     <ClCompile Include="GameObjects\Actions\AimAction.cpp" />
@@ -385,6 +387,7 @@
     <ClInclude Include="DDD\UserDataInfo.h" />
     <ClInclude Include="DebugBoxDraw\SFMLDebugDraw.h" />
     <ClInclude Include="DebugBoxDraw\WorldConstants.h" />
+    <ClInclude Include="FileIO\FileIO.h" />
     <ClInclude Include="GameMachine\MainGameState.h" />
     <ClInclude Include="GameObjects\Actions\Action.h" />
     <ClInclude Include="GameObjects\Actions\AimAction.h" />
@@ -419,6 +422,7 @@
     <ClInclude Include="RapidXML\rapidxml_iterators.hpp" />
     <ClInclude Include="RapidXML\rapidxml_print.hpp" />
     <ClInclude Include="RapidXML\rapidxml_utils.hpp" />
+    <ClInclude Include="String\SplitString.h" />
     <ClInclude Include="Tiled\TiledLayerTile.h" />
     <ClInclude Include="Tiled\TiledLayer.h" />
     <ClInclude Include="Tiled\TiledImageTile.h" />
