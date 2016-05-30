@@ -104,7 +104,7 @@ Components::PhysicsComponent* GOFactory::getPhysics(b2World& world, const DDD::P
 				dddShape->_hx,
 				dddShape->_hy,
 				dddShape->_center,
-				dddShape->_angle * DEGTORAD);
+				dddShape->_angle);
 			shape = poly;
 		}
 		else if (fixtureShape->_type == DDD::SHAPE_VERTICES)
