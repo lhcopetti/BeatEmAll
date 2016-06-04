@@ -86,6 +86,10 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 {
 	float density = getFloat(node, "density");
 	float restitution = getFloat(node, "restitution");
+	bool isSensor = false;
+
+	if (nullptr != node->first_node("isSensor"))
+		isSensor = true;
 
 	rapidxml::xml_node<>* filterNode = node->first_node("filter");
 	unsigned short category = _categories->getCategoryValue(getCategoryAttr(filterNode, "category"));
@@ -100,14 +104,14 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 	{
 		float radius = getPhysicsNodeValue(shapeNode, "radius");
 		b2Vec2 position = getCoordinate(shapeNode, "position", "x", "y");
-		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, radius, position);
+		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, isSensor, radius, position);
 	}
 	else if (shapeType == "box")
 	{
 		b2Vec2 halfLength = getCoordinate(shapeNode, "size", "width", "height");
 		b2Vec2 center = getCoordinate(shapeNode, "center", "x", "y");
 		float angle = getPhysicsAngle(shapeNode, "angle");
-		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, halfLength.x / 2.f, halfLength.y / 2.f, center, angle);
+		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, isSensor, halfLength.x / 2.f, halfLength.y / 2.f, center, angle);
 	}
 	else if (shapeType == "vertices")
 	{
@@ -118,7 +122,7 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 			b2Vec2 vertice = getCoordinate(node, "x", "y");
 			vertices.push_back(vertice);
 		}
-		fixtureInfo = FixtureInfo::newVerticesFixture(density, restitution, category, maskBits, vertices);
+		fixtureInfo = FixtureInfo::newVerticesFixture(density, restitution, category, maskBits, isSensor, vertices);
 	}
 
 	return fixtureInfo;
