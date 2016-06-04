@@ -1,0 +1,32 @@
+<EnemyDefault>
+	<physics>
+		<body>
+			<type>dynamic</type>
+			<bullet>true</bullet>
+		</body>
+
+		 <fixtures>
+		 	<fixture>
+		 		<density>1f</density>
+		 		<restitution>.5f</restitution>
+		 		<shape type="box">
+		 			<size width="27" height="43" />
+		 			<center x="0" y="0" />
+		 			<angle>0</angle>
+		 		</shape>
+		 		<filter category="CAT_ENEMY" maskBits="CAT_ENEMY|CAT_BOUNDARY|CAT_BULLET" />
+		 	</fixture>
+		 </fixtures>
+	</physics>
+
+	<graphic>
+		<origin x="14" y="21" />
+		<followRotation>true</followRotation>
+		<representation repType="sprite">
+			<path>assets\\Robot 1\\robot1_hold.png</path>
+			<scale factorX=".6" factorY=".6"/>
+		</representation>
+	</graphic>
+
+	<userData />
+</PlayerInfo>

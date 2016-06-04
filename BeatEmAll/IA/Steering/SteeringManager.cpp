@@ -13,11 +13,11 @@ SteeringManager::~SteeringManager()
 
 void SteeringManager::seek(b2Vec2 position)
 {
-	if (!_player)
+	if (!_gameObject)
 		return;
 
 	SeekBehavior seek(position, WorldConstants::sfmlToPhysics(64));
-	_steering = seek.compute(*_player);
+	_steering = seek.compute(*_gameObject);
 
 	//WanderBehavior wander(2.f);
 	//_steering = _wander.compute(*_player);

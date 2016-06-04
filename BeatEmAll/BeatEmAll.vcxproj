@@ -237,6 +237,7 @@
     <ClCompile Include="GameObjects\Actions\VelocityAction.cpp" />
     <ClCompile Include="GameObjects\ChildBearer.cpp" />
     <ClCompile Include="GameObjects\Defs\PlayerDefinition.cpp" />
+    <ClCompile Include="GameObjects\Enemy.cpp" />
     <ClCompile Include="GameObjects\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="GameObjects\Projectile\Bullet.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
@@ -398,6 +399,7 @@
     <ClInclude Include="GameObjects\Actions\VelocityAction.h" />
     <ClInclude Include="GameObjects\ChildBearer.h" />
     <ClInclude Include="GameObjects\Defs\PlayerDefinition.h" />
+    <ClInclude Include="GameObjects\Enemy.h" />
     <ClInclude Include="GameObjects\Factory\GameObjectFactory.h" />
     <ClInclude Include="GameObjects\GameObjectTypes.h" />
     <ClInclude Include="GameObjects\Projectile\Bullet.h" />

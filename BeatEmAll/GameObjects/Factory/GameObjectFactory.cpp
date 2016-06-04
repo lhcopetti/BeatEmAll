@@ -15,6 +15,9 @@
 
 #include "DDD\InfoCollection.h"
 
+#include "IA\Steering\SteeringManager.h"
+#include "Component\EnemyComponents\SteeringInputComponent.h"
+
 using namespace GameComponent::Factory;
 
 GameComponent::Player* GOFactory::newPlayer(b2World& world, Keys::KeyboardManager& keyManager, MouseComponent::MouseManager& mouseManager, sf::Vector2f position)
@@ -30,6 +33,23 @@ GameComponent::Player* GOFactory::newPlayer(b2World& world, Keys::KeyboardManage
 		g);
 	player->init();
 	return player;
+}
+
+GameComponent::Enemy* GOFactory::newEnemyDefault(b2World& world, sf::Vector2f position, sf::RenderWindow* window)
+{
+	const DDD::GameObjectInfo* gameInfo = DDD::InfoCollection::getInstance().get("EnemyDefault");
+
+	Components::PhysicsComponent*  p = GOFactory::getPhysics(world, gameInfo->_physicsInfo, WorldConstants::sfmlToPhysics(position));
+	Components::GraphicsComponent* g = GOFactory::getGraphic(gameInfo);
+
+	IA::Steering::SteeringManager* _steeringManager = new IA::Steering::SteeringManager;
+	Components::InputComponent* input = new Components::EnemyComponents::SteeringInputComponent(_steeringManager, window);
+
+	GameComponent::Enemy* enemyDefault = new GameComponent::Enemy(world, p, input, g);
+	enemyDefault->init();
+	_steeringManager->setPlayer(enemyDefault);
+
+	return enemyDefault;
 }
 
 Components::GraphicsComponent* GOFactory::getGraphic(const DDD::GameObjectInfo* gameObjectInfo)
