@@ -14,17 +14,7 @@
 		 			<center x="0" y="0" />
 		 			<angle>0</angle>
 		 		</shape>
-		 		<filter category="CAT_PLAYER" maskBits="CAT_ENEMY|CAT_BOUNDARY" />
-		 	</fixture>
-		 	<fixture>
-		 		<density>0</density>
-		 		<restitution>.5f</restitution>
-		 		<shape type="vertices">
-		 			<vertice x="14"    y="0"/>
-		 			<vertice x="200"    y="50"/>
-		 			<vertice x="200"    y="-50"/>
-		 		</shape>
-		 		<filter category="CAT_PLAYER" maskBits="CAT_ENEMY" />
+		 		<filter category="CAT_PLAYER" maskBits="CAT_ENEMY|CAT_BOUNDARY|CAT_ENEMY_SENSOR" />
 		 	</fixture>
 		 </fixtures>
 	</physics>
