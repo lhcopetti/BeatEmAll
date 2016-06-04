@@ -45,9 +45,9 @@ GameComponent::Enemy* GOFactory::newEnemyDefault(b2World& world, sf::Vector2f po
 	IA::Steering::SteeringManager* _steeringManager = new IA::Steering::SteeringManager;
 	Components::InputComponent* input = new Components::EnemyComponents::SteeringInputComponent(_steeringManager, window);
 
-	GameComponent::Enemy* enemyDefault = new GameComponent::Enemy(world, p, input, g);
+	GameComponent::Enemy* enemyDefault = new GameComponent::Enemy(world, p, GameObject::nullInput(), g);
 	enemyDefault->init();
-	_steeringManager->setPlayer(enemyDefault);
+	_steeringManager->setGameObject(enemyDefault);
 
 	return enemyDefault;
 }
@@ -102,6 +102,7 @@ Components::PhysicsComponent* GOFactory::getPhysics(b2World& world, const DDD::P
 		const DDD::FixtureShape* fixtureShape = f->_shape;
 
 		b2FixtureDef fixture;
+		fixture.isSensor = f->_isSensor;
 		fixture.density = f->_density;
 		fixture.restitution = f->_restitution;
 		fixture.filter.categoryBits = f->_category;

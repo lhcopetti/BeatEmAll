@@ -16,6 +16,18 @@
 		 		</shape>
 		 		<filter category="CAT_ENEMY" maskBits="CAT_ENEMY|CAT_BOUNDARY|CAT_BULLET" />
 		 	</fixture>
+		 	<fixture>
+		 		<density>0</density>
+		 		<restitution>.5f</restitution>
+		 		<isSensor />
+		 		<shape type="vertices">
+		 			<vertice x="14"    y="-22"/>
+		 			<vertice x="14"    y="22"/>
+		 			<vertice x="250"    y="150"/>
+		 			<vertice x="250"    y="-150"/>
+		 		</shape>
+		 		<filter category="CAT_ENEMY_SENSOR" maskBits="CAT_PLAYER" />
+		 	</fixture>
 		 </fixtures>
 	</physics>
 

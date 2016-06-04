@@ -3,4 +3,5 @@
 	<category name="CAT_PLAYER"    value="2" />
 	<category name="CAT_ENEMY"     value="4" />
 	<category name="CAT_BULLET"    value="8" />
+	<category name="CAT_ENEMY_SENSOR" value="16" />
 </CollisionCategories>
