@@ -51,6 +51,7 @@
     <ClCompile Include="FileIO\FileIO.cpp" />
     <ClCompile Include="GameObjects\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="Component\PhysicsComponent.cpp" />
+    <ClCompile Include="GameObjects\Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -223,5 +224,6 @@
     <ClInclude Include="FileIO\FileIO.h" />
     <ClInclude Include="String\SplitString.h" />
     <ClInclude Include="GameObjects\Factory\GameObjectFactory.h" />
+    <ClInclude Include="GameObjects\Enemy.h" />
   </ItemGroup>
 </Project>

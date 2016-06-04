@@ -4,6 +4,7 @@
 
 #include "GameObjects\TileMap.h"
 #include "GameObjects\Player.h"
+#include "GameObjects\Enemy.h"
 #include "GameObjects\GameObject.h"
 
 #include "Component\KeyboardInputComponent.h"
@@ -93,8 +94,10 @@ bool MainGameState::init()
 	_mouseManager.window(&_window);
 
 	DDD::InfoCollection::getInstance().loadCategory("Configuration\\CollisionCategories.xml");
+
 	DDD::InfoCollection::getInstance().loadInfo("Configuration\\Projectiles\\xml_bullet.xml");
 	DDD::InfoCollection::getInstance().loadInfo("Configuration\\GameCharacter\\xml_player.xml");
+	DDD::InfoCollection::getInstance().loadInfo("Configuration\\GameCharacter\\xml_enemydefault.xml");
 
 	GameComponent::Player* player = GameComponent::Factory::GOFactory::newPlayer(*_world, _keyManager, _mouseManager, sf::Vector2f(50, 50));
 	/* TODO: Add Component for enemy*/
@@ -115,8 +118,8 @@ bool MainGameState::init()
 
 	//enemy->position(100.f, 100.f);
 	//enemy->init();
-
-	//_gameObjects.push_back(enemy);
+	GameComponent::Enemy* enemy = GameComponent::Factory::GOFactory::newEnemyDefault(*_world, sf::Vector2f(150, 150), &_window);
+	_gameObjects.push_back(enemy);
 
 	_contactListener = new Collision::ContactListener();
 	_world->SetContactListener(_contactListener);
