@@ -83,22 +83,17 @@ void Player::doUpdate(float elapsedTime)
 
 
 	/* Isn't it just beautiful? */
-	auto iter = _actions.begin();
-	while (iter != _actions.end())
-	{
-		(*iter)->execute(*this);
-		delete *iter;
-		iter = _actions.erase(iter);
-	}
+	//auto iter = _actions.begin();
+	//while (iter != _actions.end())
+	//{
+	//	(*iter)->execute(*this);
+	//	delete *iter;
+	//	iter = _actions.erase(iter);
+	//}
 
 	/*
 	 * TODO: Update shared state (rotation angle)
 	 * This will soon be abstracted away by the Component Design Pattern
 	 */
 	//_physicsComponent->getBody()->SetTransform(_physicsComponent->getBody()->GetPosition(), _rotationRad);
-}
-
-void Player::addAction(GameActions::Action* action)
-{
-	_actions.push_back(action);
 }

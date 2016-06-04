@@ -38,11 +38,19 @@ GameObject::~GameObject()
 
 void GameObject::update(float elapsedTime)
 {
-	if (_physicsComponent)
-		_physicsComponent->update(*this);
-
 	if (_inputComponent)
 		_inputComponent->update(*this);
+
+	auto iter = _actions.begin();
+	while (iter != _actions.end())
+	{
+		(*iter)->execute(*this);
+		delete *iter;
+		iter = _actions.erase(iter);
+	}
+
+	if (_physicsComponent)
+		_physicsComponent->update(*this);
 
 	if (_graphicsComponent)
 		_graphicsComponent->update(*this);
@@ -76,4 +84,9 @@ void GameObject::position(float x, float y)
 {
 	_x = x;
 	_y = y;
+}
+
+void GameObject::addAction(GameActions::Action* action)
+{
+	_actions.push_back(action);
 }

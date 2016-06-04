@@ -3,7 +3,6 @@
 
 #include "GameObjects\GameObject.h"
 
-#include "GameObjects\Actions\Action.h"
 #include "GameObjects\Weapon\Weapon.h"
 
 #include "Mouse\MouseListener.h"
@@ -25,7 +24,6 @@ namespace GameComponent
 	class Player : public GameObject, public IA::Steering::Steerable
 	{
 	private:
-		std::vector<GA::Action*> _actions;
 		GameComponent::Weapons::Weapon* _weapon;
 
 	public:
@@ -40,9 +38,6 @@ namespace GameComponent
 		GameComponent::Weapons::Weapon& weapon() const { return *_weapon; }
 
 		virtual void doUpdate(float elapsedTime);
-
-		void addAction(GameActions::Action* action);
-
 
 		virtual b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
 		virtual float getMaximumVelocity() const { return 4.f; }

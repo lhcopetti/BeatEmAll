@@ -1,6 +1,8 @@
 #include "GameObjects\Actions\VelocityAction.h"
 #include "GameObjects\Defs\PlayerDefinition.h"
 
+#include "GameObjects\GameObject.h"
+
 using namespace GameComponent::GameActions;
 
 VelocityAction::VelocityAction(b2Vec2 newVelocity)

@@ -5,6 +5,8 @@
 #include "SFML\Graphics.hpp"
 #include "Box2D\Box2D.h"
 
+#include "GameObjects\Actions\Action.h"
+
 #include "Component\PhysicsComponent.h"
 #include "Component\GraphicsComponent.h"
 #include "Component\InputComponent.h"
@@ -35,6 +37,7 @@ namespace GameComponent
 		Components::InputComponent* _inputComponent;
 		Components::GraphicsComponent* _graphicsComponent;
 
+		std::vector<GameComponent::GameActions::Action*> _actions;
 	public:
 		GameObject(GameObjectTypes type, b2World& world, 
 			Components::PhysicsComponent* physics,
@@ -62,6 +65,7 @@ namespace GameComponent
 		float rotation() const { return _rotationRad; }
 		void rotation(float r) { _rotationRad = r; }
 
+		void addAction(GameActions::Action* action);
 
 		float x() const { return _x; }
 		float y() const { return _y; }

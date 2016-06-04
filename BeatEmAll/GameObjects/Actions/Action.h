@@ -1,6 +1,9 @@
 #pragma once
 
-#include "GameObjects\GameObject.h"
+namespace GameComponent
+{
+	class GameObject;
+}
 
 namespace GameComponent
 {
