@@ -9,12 +9,11 @@
 		 	<fixture>
 		 		<density>1f</density>
 		 		<restitution>.5f</restitution>
-		 		<shape type="box">
-		 			<size width="27" height="43" />
-		 			<center x="0" y="0" />
-		 			<angle>0</angle>
+		 		<shape type="circle">
+		 			<radius>15.0</radius>
+		 			<position x="0" y="0" />
 		 		</shape>
-		 		<filter category="CAT_ENEMY" maskBits="CAT_ENEMY|CAT_BOUNDARY|CAT_BULLET" />
+		 		<filter category="CAT_ENEMY" maskBits="CAT_PLAYER|CAT_ENEMY|CAT_BOUNDARY|CAT_BULLET" />
 		 	</fixture>
 		 	<fixture>
 		 		<density>0</density>
