@@ -51,6 +51,8 @@
     <ClCompile Include="GameObjects\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="Component\PhysicsComponent.cpp" />
     <ClCompile Include="GameObjects\Enemy.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\StateManager.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\StandingState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -226,5 +228,9 @@
     <ClInclude Include="GameObjects\Enemy.h" />
     <ClInclude Include="DDD\GameObjects\PlayerUserDataInfo.h" />
     <ClInclude Include="DDD\GameObjects\EnemyDefaultUserDataInfo.h" />
+    <ClInclude Include="GameObjects\StateMachine\StateManager.h" />
+    <ClInclude Include="GameObjects\StateMachine\State.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\StandingState.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\WalkingState.h" />
   </ItemGroup>
 </Project>
