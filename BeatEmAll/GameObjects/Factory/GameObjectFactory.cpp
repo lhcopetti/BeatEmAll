@@ -39,7 +39,7 @@ GameComponent::Player* GOFactory::newPlayer(b2World& world, Keys::KeyboardManage
 	GameComponent::Player* player = new GameComponent::Player(GameComponent::GameObjectTypes::PLAYER, world, 
 		vel, health,
 		p,
-		new Components::KeyboardInputComponent(keyManager, mouseManager),
+		GameObject::nullInput(),//new Components::KeyboardInputComponent(keyManager, mouseManager),
 		g);
 	player->init();
 	return player;

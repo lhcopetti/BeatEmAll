@@ -23,7 +23,10 @@ namespace GA = GameComponent::GameActions;
 
 namespace GameComponent
 {
-	class Player : public GameObject, public IA::Steering::Steerable
+	class Player : public GameObject, 
+		public IA::Steering::Steerable, 
+		public Keys::KeyboardListener,
+		public MouseComponent::MouseListener
 	{
 	private:
 		GameComponent::Weapons::Weapon* _weapon;
@@ -45,6 +48,9 @@ namespace GameComponent
 		GameComponent::Weapons::Weapon& weapon() const { return *_weapon; }
 
 		virtual void doUpdate(float elapsedTime);
+
+		virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);
+		virtual void handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked);
 
 		virtual b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
 		virtual float getMaximumVelocity() const { return _playerVelocity; }
