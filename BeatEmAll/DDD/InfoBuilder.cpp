@@ -3,7 +3,9 @@
 #include "DDD\Representation\DrawingRepresentation.h"
 #include "DDD\Representation\SpriteRepresentation.h"
 
+#include "DDD\GameObjects\PlayerUserDataInfo.h"
 #include "DDD\Projectile\BulletUserDataInfo.h"
+
 #include "DebugBoxDraw\WorldConstants.h"
 
 #include "SFML\Graphics\Color.hpp"
@@ -192,7 +194,9 @@ UserDataInfo* InfoBuilder::parseBulletInfo(rapidxml::xml_node<>* node)
 
 UserDataInfo* InfoBuilder::parsePlayerInfo(rapidxml::xml_node<>* node)
 {
-	return nullptr;
+	float velocity = getFloat(node, "velocity");
+	float health = getFloat(node, "health");
+	return new DDD::GameComponent::PlayerUserDataInfo(velocity, health);
 }
 
 std::string InfoBuilder::readAllText(const std::string& filePath)

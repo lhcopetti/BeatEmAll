@@ -26,8 +26,12 @@ namespace GameComponent
 	private:
 		GameComponent::Weapons::Weapon* _weapon;
 
+		float _health;
+		const float _playerVelocity;
+
 	public:
 		Player(GameObjectTypes type, b2World& world, 
+			float playerVelocity, float health,
 			Components::PhysicsComponent* physicsComponent,
 			Components::InputComponent* inputComponent,
 			Components::GraphicsComponent* graphicsComponent);
@@ -40,7 +44,7 @@ namespace GameComponent
 		virtual void doUpdate(float elapsedTime);
 
 		virtual b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
-		virtual float getMaximumVelocity() const { return 4.f; }
+		virtual float getMaximumVelocity() const { return _playerVelocity; }
 		virtual b2Vec2 getCurrentPosition() const { return _physicsComponent->getBody()->GetPosition(); }
 		virtual float getMass() const { return _physicsComponent->getBody()->GetMass(); }
 

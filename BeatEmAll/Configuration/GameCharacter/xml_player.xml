@@ -28,5 +28,8 @@
 		</representation>
 	</graphic>
 
-	<userData />
+	<userData>
+		<velocity>5.0</velocity>
+		<health>250.0</health>
+	</userData>
 </PlayerInfo>

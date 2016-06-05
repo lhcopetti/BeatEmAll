@@ -18,11 +18,13 @@ using namespace GameComponent;
 namespace GA = GameComponent::GameActions;
 
 Player::Player(GameObjectTypes type, b2World& world,
+	float playerVelocity, float health,
 	Components::PhysicsComponent* physicsComponent,
 	Components::InputComponent* inputComponent,
 	Components::GraphicsComponent* graphicsComponent)
 	:
-	GameObject(type, world, physicsComponent, inputComponent, graphicsComponent)
+	GameObject(type, world, physicsComponent, inputComponent, graphicsComponent),
+	_playerVelocity(playerVelocity), _health(health)
 {
 	_x = 50;
 	_y = 50;

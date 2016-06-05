@@ -9,6 +9,8 @@
 #include "DDD\Representation\DrawingRepresentation.h"
 #include "DDD\Representation\SpriteRepresentation.h"
 
+#include "DDD\GameObjects\PlayerUserDataInfo.h"
+
 #include "DebugBoxDraw\WorldConstants.h"
 
 #include "Component\KeyboardInputComponent.h"
@@ -17,6 +19,7 @@
 
 #include "IA\Steering\SteeringManager.h"
 #include "Component\EnemyComponents\SteeringInputComponent.h"
+
 
 using namespace GameComponent::Factory;
 
@@ -27,7 +30,13 @@ GameComponent::Player* GOFactory::newPlayer(b2World& world, Keys::KeyboardManage
 	Components::PhysicsComponent*  p = GOFactory::getPhysics(world, gameInfo->_physicsInfo, WorldConstants::sfmlToPhysics(position));
 	Components::GraphicsComponent* g = GOFactory::getGraphic(gameInfo);
 
-	GameComponent::Player* player = new GameComponent::Player(GameComponent::GameObjectTypes::PLAYER, world,
+	const DDD::GameComponent::PlayerUserDataInfo* userData = static_cast<const DDD::GameComponent::PlayerUserDataInfo*>(gameInfo->_userDataInfo);
+	float health = userData->_health;
+	float vel = userData->_velocity;
+
+
+	GameComponent::Player* player = new GameComponent::Player(GameComponent::GameObjectTypes::PLAYER, world, 
+		vel, health,
 		p,
 		new Components::KeyboardInputComponent(keyManager, mouseManager),
 		g);

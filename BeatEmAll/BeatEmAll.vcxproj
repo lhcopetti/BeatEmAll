@@ -222,6 +222,7 @@
     <ClCompile Include="DDD\CircleFixtureInfo.cpp" />
     <ClCompile Include="DDD\FixtureInfo.cpp" />
     <ClCompile Include="DDD\GameObjectInfo.cpp" />
+    <ClCompile Include="DDD\GameObjects\PlayerUserDataInfo.cpp" />
     <ClCompile Include="DDD\GraphicInfo.cpp" />
     <ClCompile Include="DDD\InfoBuilder.cpp" />
     <ClCompile Include="DDD\InfoCollection.cpp" />
@@ -379,6 +380,7 @@
     <ClInclude Include="DDD\FixtureShape\PolygonShape.h" />
     <ClInclude Include="DDD\FixtureShape\VerticesShape.h" />
     <ClInclude Include="DDD\GameObjectInfo.h" />
+    <ClInclude Include="DDD\GameObjects\PlayerUserDataInfo.h" />
     <ClInclude Include="DDD\GraphicInfo.h" />
     <ClInclude Include="DDD\InfoBuilder.h" />
     <ClInclude Include="DDD\InfoCollection.h" />

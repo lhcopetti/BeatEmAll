@@ -1,6 +1,7 @@
 #include "Component\KeyboardInputComponent.h"
 
 #include "GameObjects\Actions\Action.h"
+#include "GameObjects\Actions\VelocityAction.h"
 #include "GameObjects\Actions\MoveAction.h"
 #include "GameObjects\Actions\ShootAction.h"
 #include "GameObjects\Actions\AimAction.h"
@@ -48,10 +49,14 @@ void KeyboardInputComponent::handleKeyboard(GameComponent::GameObject& player, c
 	if (keys.at(KeyboardManager::KeyAction::MOVE_RIGHT))
 		moveDir.xDir = GA::XAxis::RIGHT;
 
-	GA::MoveAction* moveAction = new GA::MoveAction(moveDir);
+	GameComponent::Player& pp = static_cast<GameComponent::Player&>(player);
+
+	float pVelocity = pp.getMaximumVelocity();
+	b2Vec2 nextVel(moveDir.xDir * pVelocity, moveDir.yDir * pVelocity);
+	GA::VelocityAction* velAction = new GA::VelocityAction(nextVel);
 
 	// TODO: Maybe move the addAction method up the GameObject class?
-	static_cast<GameComponent::Player&>(player).addAction(moveAction);
+	player.addAction(velAction);
 }
 
 void KeyboardInputComponent::handleMouse(GameComponent::GameObject& player, MouseComponent::MouseManager& mouse)
