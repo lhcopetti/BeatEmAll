@@ -9,6 +9,7 @@
 #include "DDD\Representation\DrawingRepresentation.h"
 #include "DDD\Representation\SpriteRepresentation.h"
 
+#include "DDD\GameObjects\EnemyDefaultUserDataInfo.h"
 #include "DDD\GameObjects\PlayerUserDataInfo.h"
 
 #include "DebugBoxDraw\WorldConstants.h"
@@ -51,10 +52,14 @@ GameComponent::Enemy* GOFactory::newEnemyDefault(b2World& world, sf::Vector2f po
 	Components::PhysicsComponent*  p = GOFactory::getPhysics(world, gameInfo->_physicsInfo, WorldConstants::sfmlToPhysics(position));
 	Components::GraphicsComponent* g = GOFactory::getGraphic(gameInfo);
 
+	const DDD::GameComponent::EnemyDefaultUserDataInfo* userData = static_cast<const DDD::GameComponent::EnemyDefaultUserDataInfo*>(gameInfo->_userDataInfo);
+	float health = userData->_health;
+	float vel = userData->_velocity;
+
 	IA::Steering::SteeringManager* _steeringManager = new IA::Steering::SteeringManager;
 	Components::InputComponent* input = new Components::EnemyComponents::SteeringInputComponent(_steeringManager, window);
 
-	GameComponent::Enemy* enemyDefault = new GameComponent::Enemy(world, p, GameObject::nullInput(), g);
+	GameComponent::Enemy* enemyDefault = new GameComponent::Enemy(world, vel, health, p, GameObject::nullInput(), g);
 	enemyDefault->init();
 	_steeringManager->setGameObject(enemyDefault);
 

@@ -16,6 +16,7 @@ namespace GameComponent
 		IA::Steering::SteeringManager _steeringManager;
 
 		Enemy(b2World& world,
+			float velocity, float health,
 			Components::PhysicsComponent* physicsComponent,
 			Components::InputComponent* inputComponent,
 			Components::GraphicsComponent* graphicsComponent);
@@ -30,8 +31,12 @@ namespace GameComponent
 
 		/* TODO: 2nd Duplication */
 		virtual b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
-		virtual float getMaximumVelocity() const { return 4.f; }
+		virtual float getMaximumVelocity() const { return _velocity; }
 		virtual b2Vec2 getCurrentPosition() const { return _physicsComponent->getBody()->GetPosition(); }
 		virtual float getMass() const { return _physicsComponent->getBody()->GetMass(); }
+
+	private:
+		float _velocity;
+		float _health;
 	};
 }

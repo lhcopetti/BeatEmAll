@@ -42,7 +42,6 @@
     <ClCompile Include="GameObjects\Projectile\BulletBuilder.cpp" />
     <ClCompile Include="DDD\FixtureInfo.cpp" />
     <ClCompile Include="DDD\GraphicInfo.cpp" />
-    <ClCompile Include="DDD\Projectile\BulletUserDataInfo.cpp" />
     <ClCompile Include="DDD\GameObjectInfo.cpp" />
     <ClCompile Include="DDD\InfoCollection.cpp" />
     <ClCompile Include="DDD\InfoBuilder.cpp" />
@@ -52,7 +51,6 @@
     <ClCompile Include="GameObjects\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="Component\PhysicsComponent.cpp" />
     <ClCompile Include="GameObjects\Enemy.cpp" />
-    <ClCompile Include="DDD\GameObjects\PlayerUserDataInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -227,5 +225,6 @@
     <ClInclude Include="GameObjects\Factory\GameObjectFactory.h" />
     <ClInclude Include="GameObjects\Enemy.h" />
     <ClInclude Include="DDD\GameObjects\PlayerUserDataInfo.h" />
+    <ClInclude Include="DDD\GameObjects\EnemyDefaultUserDataInfo.h" />
   </ItemGroup>
 </Project>

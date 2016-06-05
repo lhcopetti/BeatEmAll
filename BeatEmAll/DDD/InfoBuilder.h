@@ -27,6 +27,7 @@ namespace DDD
 
 		UserDataInfo* parseBulletInfo(rapidxml::xml_node<>* node);
 		UserDataInfo* parsePlayerInfo(rapidxml::xml_node<>* node);
+		UserDataInfo* parseEnemyInfo(rapidxml::xml_node<>* node);
 
 		unsigned short getCatValue(const std::string& category);
 

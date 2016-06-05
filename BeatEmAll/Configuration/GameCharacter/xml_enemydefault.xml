@@ -23,8 +23,8 @@
 		 		<shape type="vertices">
 		 			<vertice x="14"    y="-22"/>
 		 			<vertice x="14"    y="22"/>
-		 			<vertice x="250"    y="150"/>
-		 			<vertice x="250"    y="-150"/>
+		 			<vertice x="350"    y="250"/>
+		 			<vertice x="350"    y="-250"/>
 		 		</shape>
 		 		<filter category="CAT_ENEMY_SENSOR" maskBits="CAT_PLAYER" />
 		 	</fixture>
@@ -40,5 +40,8 @@
 		</representation>
 	</graphic>
 
-	<userData />
-</PlayerInfo>
+	<userData>
+		<velocity>3</velocity>
+		<health>100</health>
+	</userData>
+</EnemyDefault>

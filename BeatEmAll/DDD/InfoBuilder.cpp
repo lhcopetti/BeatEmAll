@@ -3,6 +3,7 @@
 #include "DDD\Representation\DrawingRepresentation.h"
 #include "DDD\Representation\SpriteRepresentation.h"
 
+#include "DDD\GameObjects\EnemyDefaultUserDataInfo.h"
 #include "DDD\GameObjects\PlayerUserDataInfo.h"
 #include "DDD\Projectile\BulletUserDataInfo.h"
 
@@ -182,6 +183,8 @@ DDD::UserDataInfo* InfoBuilder::parseUserDataInfo(rapidxml::xml_node<>* node)
 		return parseBulletInfo(node);
 	else if (_infoName == "PlayerInfo")
 		return parsePlayerInfo(node);
+	else if (_infoName == "EnemyDefault")
+		return parseEnemyInfo(node);
 	return nullptr;
 }
 
@@ -197,6 +200,13 @@ UserDataInfo* InfoBuilder::parsePlayerInfo(rapidxml::xml_node<>* node)
 	float velocity = getFloat(node, "velocity");
 	float health = getFloat(node, "health");
 	return new DDD::GameComponent::PlayerUserDataInfo(velocity, health);
+}
+
+UserDataInfo* InfoBuilder::parseEnemyInfo(rapidxml::xml_node<>* node)
+{
+	float velocity = getFloat(node, "velocity");
+	float health = getFloat(node, "health");
+	return new DDD::GameComponent::EnemyDefaultUserDataInfo(velocity, health);
 }
 
 std::string InfoBuilder::readAllText(const std::string& filePath)

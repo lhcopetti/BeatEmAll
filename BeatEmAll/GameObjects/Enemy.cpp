@@ -8,11 +8,13 @@ using namespace GameComponent;
 namespace GA = GameActions;
 
 Enemy::Enemy(b2World& world,
+	float velocity, float health,
 	Components::PhysicsComponent* physicsComponent,
 	Components::InputComponent* inputComponent,
 	Components::GraphicsComponent* graphicsComponent)
 	:
-	GameObject(GameObjectTypes::ENEMY_DEFAULT, world, physicsComponent, inputComponent, graphicsComponent)
+	GameObject(GameObjectTypes::ENEMY_DEFAULT, world, physicsComponent, inputComponent, graphicsComponent),
+	_velocity(velocity), _health(health)
 {
 	_x = 50;
 	_y = 50;
