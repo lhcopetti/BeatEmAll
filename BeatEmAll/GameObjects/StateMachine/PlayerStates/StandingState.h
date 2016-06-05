@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObjects\StateMachine\State.h"
+#include "GameObjects\StateMachine\PlayerStates\PlayerState.h"
 
 namespace GameComponent
 {
@@ -7,7 +7,7 @@ namespace GameComponent
 	{
 		namespace PlayerStates
 		{
-			class StandingState : public GameComponent::StateMachine::State
+			class StandingState : public GameComponent::StateMachine::PlayerStates::PlayerState
 			{
 				virtual State* update(float elapsedTime);
 			};
