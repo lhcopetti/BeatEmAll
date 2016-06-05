@@ -106,6 +106,8 @@ bool MainGameState::init()
 	//	new Components::PlayerComponents::PlayerGraphicsComponent());
 	//_player->init();
 	_gameObjects.push_back(player);
+	_keysListener.push_back(player);
+	_mouseListener.push_back(player);
 
 	createBoundingBox(*_world, 1279.0, 639.0);
 
@@ -178,6 +180,22 @@ static void setPolygon(b2PolygonShape& poly, float sfHeight, float sfWidth, sf::
 
 void MainGameState::step(float delta)
 {
+	_keyManager.update();
+	for (auto listener = _keysListener.begin(); listener != _keysListener.end(); ++listener)
+	{
+		(*listener)->handleKeyboard(_keyManager.keys());
+	}
+
+	_mouseManager.update();
+	const sf::Vector2i& mousePos = _mouseManager.mousePos();
+	bool left = _mouseManager.left();
+	bool right = _mouseManager.right();
+
+	for (auto listener = _mouseListener.begin(); listener != _mouseListener.end(); ++listener)
+	{
+		(*listener)->handleMouse(mousePos, left, right);
+	}
+
 	std::vector<GameComponent::GameObject*>::iterator gOIterator = _gameObjects.begin();
 	std::vector<GameComponent::GameObject*> newChildren;
 
