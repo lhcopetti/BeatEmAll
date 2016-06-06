@@ -28,7 +28,15 @@ void PlayerStates::ParentPlayerState::handleMouse(const sf::Vector2i& vector, bo
 
 State* PlayerStates::ParentPlayerState::update(float elapsedTime)
 {
-	return _childState->update(elapsedTime);
+	State* newState = _childState->update(elapsedTime);
+
+	if (newState)
+	{
+		delete _childState;
+		_childState = static_cast<PlayerState*>(newState);
+	}
+
+	return nullptr;
 }
 
 void PlayerStates::ParentPlayerState::aim(b2Vec2 target)

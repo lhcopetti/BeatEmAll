@@ -247,6 +247,7 @@
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\PlayerState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\StandingState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\WalkingState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\StateManager.cpp" />
     <ClCompile Include="GameObjects\Tile.cpp" />
     <ClCompile Include="GameObjects\TileMap.cpp" />

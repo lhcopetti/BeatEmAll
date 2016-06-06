@@ -30,7 +30,7 @@ Player::Player(GameObjectTypes type, b2World& world,
 	GameObject(type, world, physicsComponent, inputComponent, graphicsComponent),
 	_playerVelocity(playerVelocity), _health(health),
 	_stateManager(new StateMachine::PlayerStates::ParentPlayerState
-		(*this, new StateMachine::PlayerStates::StandingState))
+		(*this, new StateMachine::PlayerStates::StandingState(*this)))
 {
 	_x = 50;
 	_y = 50;

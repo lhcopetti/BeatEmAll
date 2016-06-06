@@ -9,6 +9,8 @@ namespace GameComponent
 		{
 			class StandingState : public GameComponent::StateMachine::PlayerStates::PlayerState
 			{
+			public:
+				StandingState(GameComponent::Player& player) : PlayerState(player) {}
 				virtual State* update(float elapsedTime);
 			};
 		}
