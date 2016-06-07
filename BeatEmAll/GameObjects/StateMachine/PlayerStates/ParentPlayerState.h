@@ -24,7 +24,9 @@ namespace GameComponent
 				virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);
 				virtual void handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked);
 
+				virtual void onEnter();
 				virtual State* update(float elapsedTime);
+
 			private:
 				void aim(b2Vec2 target);
 				void move(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);

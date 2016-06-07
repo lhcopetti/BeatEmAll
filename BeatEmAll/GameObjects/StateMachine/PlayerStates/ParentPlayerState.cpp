@@ -34,9 +34,16 @@ State* PlayerStates::ParentPlayerState::update(float elapsedTime)
 	{
 		delete _childState;
 		_childState = static_cast<PlayerState*>(newState);
+		_childState->onEnter();
 	}
 
 	return nullptr;
+}
+
+void PlayerStates::ParentPlayerState::onEnter()
+{
+	if (_childState)
+		_childState->onEnter();
 }
 
 void PlayerStates::ParentPlayerState::aim(b2Vec2 target)

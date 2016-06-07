@@ -8,7 +8,8 @@ using namespace GameComponent::StateMachine;
 StateManager::StateManager(State* initialState) :
 	_currentState(initialState)
 {
-
+	if (_currentState)
+		_currentState->onEnter();
 }
 
 void StateManager::update(float elapsedTime)

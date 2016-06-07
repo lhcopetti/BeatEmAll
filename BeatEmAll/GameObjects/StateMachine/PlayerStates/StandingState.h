@@ -11,7 +11,9 @@ namespace GameComponent
 			{
 			public:
 				StandingState(GameComponent::Player& player) : PlayerState(player) {}
+
 				virtual State* update(float elapsedTime);
+				virtual void onEnter();
 			};
 		}
 	}

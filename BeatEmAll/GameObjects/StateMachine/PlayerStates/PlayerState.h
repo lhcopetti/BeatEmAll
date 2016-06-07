@@ -13,6 +13,8 @@ namespace GameComponent
 
 			public:
 				PlayerState(GameComponent::Player& player) : _player(player) {}
+
+				virtual void onEnter() = 0;
 				virtual State* update(float elapsedTime) = 0;
 
 			protected:

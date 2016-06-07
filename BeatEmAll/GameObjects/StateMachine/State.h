@@ -11,6 +11,7 @@ namespace GameComponent
 			public MouseComponent::MouseListener
 		{
 		public:
+			virtual void onEnter() = 0;
 			virtual State* update(float elapsedTime) = 0;
 
 			virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys) {}

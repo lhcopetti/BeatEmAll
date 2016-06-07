@@ -3,6 +3,11 @@
 
 using namespace GameComponent::StateMachine;
 
+
+void PlayerStates::WalkingState::onEnter()
+{
+}
+
 State* PlayerStates::WalkingState::update(float elapsedTime)
 {
 	if (b2Vec2_zero == _player.body()->GetLinearVelocity())
