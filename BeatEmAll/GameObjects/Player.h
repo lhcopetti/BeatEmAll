@@ -15,6 +15,8 @@
 
 #include "IA\Steering\Steerable.h"
 
+#include "GameObjects\StateMachine\StateManager.h"
+
 #define PLAYER_VELOCITY 5.f
 
 namespace GA = GameComponent::GameActions;
@@ -31,6 +33,7 @@ namespace GameComponent
 
 		float _health;
 		const float _playerVelocity;
+		GameComponent::StateMachine::StateManager _stateManager;
 
 	public:
 		Player(GameObjectTypes type, b2World& world, 

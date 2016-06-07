@@ -244,6 +244,11 @@
     <ClCompile Include="GameObjects\Projectile\BulletBuilder.cpp" />
     <ClCompile Include="GameObjects\Projectile\GraphicBullet.cpp" />
     <ClCompile Include="GameObjects\Projectile\ProjectileFactory.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\PlayerState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\StandingState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\WalkingState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\StateManager.cpp" />
     <ClCompile Include="GameObjects\Tile.cpp" />
     <ClCompile Include="GameObjects\TileMap.cpp" />
     <ClCompile Include="GameObjects\Weapon\Pistol.cpp" />
@@ -410,6 +415,12 @@
     <ClInclude Include="GameObjects\Projectile\GraphicBullet.h" />
     <ClInclude Include="GameObjects\Projectile\Projectile.h" />
     <ClInclude Include="GameObjects\Projectile\ProjectileFactory.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\PlayerState.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\StandingState.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\WalkingState.h" />
+    <ClInclude Include="GameObjects\StateMachine\State.h" />
+    <ClInclude Include="GameObjects\StateMachine\StateManager.h" />
     <ClInclude Include="GameObjects\Tile.h" />
     <ClInclude Include="GameObjects\TileMap.h" />
     <ClInclude Include="GameObjects\Weapon\Pistol.h" />
