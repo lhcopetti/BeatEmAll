@@ -240,6 +240,8 @@
     <ClCompile Include="GameObjects\Defs\PlayerDefinition.cpp" />
     <ClCompile Include="GameObjects\Enemy.cpp" />
     <ClCompile Include="GameObjects\Factory\GameObjectFactory.cpp" />
+    <ClCompile Include="GameObjects\Factory\GraphicsFactory.cpp" />
+    <ClCompile Include="GameObjects\Factory\PhysicsFactory.cpp" />
     <ClCompile Include="GameObjects\Projectile\Bullet.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
@@ -411,6 +413,8 @@
     <ClInclude Include="GameObjects\Defs\PlayerDefinition.h" />
     <ClInclude Include="GameObjects\Enemy.h" />
     <ClInclude Include="GameObjects\Factory\GameObjectFactory.h" />
+    <ClInclude Include="GameObjects\Factory\GraphicsFactory.h" />
+    <ClInclude Include="GameObjects\Factory\PhysicsFactory.h" />
     <ClInclude Include="GameObjects\GameObjectTypes.h" />
     <ClInclude Include="GameObjects\Projectile\Bullet.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
