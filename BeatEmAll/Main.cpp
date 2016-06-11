@@ -36,7 +36,8 @@ int main(int oldMain)
 
 	while (mainGameState.isRunning())
 	{
-
+		if (accumulator.asMilliseconds() > ups.asMilliseconds() * 3)
+			accumulator = ups;
 		while (accumulator > ups)
 		{
 			mainGameState.processEvents();
