@@ -22,8 +22,6 @@ namespace GameComponent
 			const b2Vec2 _initialPos;
 			const b2Vec2 _initialVel;
 
-			sf::CircleShape _circleSprite;
-
 			static uint16 _categoryType;
 			static uint16 _maskBits;
 

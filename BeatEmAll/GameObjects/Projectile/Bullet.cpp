@@ -6,12 +6,6 @@
 
 using namespace GameComponent::Projectiles;
 
-//uint16 Bullet::_categoryType = Collision::CAT_BULLET;
-//
-//uint16 Bullet::_maskBits =		Collision::CAT_BOUNDARY |
-//								Collision::CAT_BULLET |
-//								Collision::CAT_ENEMY;
-
 Bullet::~Bullet()
 {
 	if (_physicsComponent)
@@ -39,27 +33,6 @@ Bullet::Bullet(b2World& world, Components::PhysicsComponent* physics, Components
 
 void Bullet::init()
 {
-	//_physicsComponent->getBody()->SetUserData(this);
-	//bulletDef.position = _initialPos;
-	//bulletDef.userData = this;
-	/*b2BodyDef bulletDef;
-	bulletDef.type = b2_dynamicBody;
-	bulletDef.bullet = true;
-	bulletDef.position = _initialPos;
-	bulletDef.userData = this;
-
-	b2CircleShape circle;
-	circle.m_radius = 10 / 2 / WorldConstants::SCALE;
-
-	b2FixtureDef bulletFix;
-	bulletFix.density = .1f;
-	bulletFix.shape = &circle;
-	bulletFix.restitution = .5f;
-	bulletFix.filter.categoryBits = _categoryType;
-	bulletFix.filter.maskBits = _maskBits;
-
-	_body = _world.CreateBody(&bulletDef);
-	_body->CreateFixture(&bulletFix);*/
 	_graphicsComponent->setActiveGraphic("BULLET");
 
 	float ratio = _physicsComponent->getBody()->GetMass() * _bulletSpeed;

@@ -5,19 +5,12 @@
 #include "DDD\InfoCollection.h"
 #include "DDD\GameObjectInfo.h"
 
-#include "DDD\Representation\DrawingRepresentation.h"
-#include "DDD\Representation\SpriteRepresentation.h"
-
 #include "DDD\Projectile\BulletUserDataInfo.h"
 
 #include "Component\GenericGraphicsComponent.h"
 #include "Component\PhysicsComponent.h"
 
 #include "DebugBoxDraw\WorldConstants.h"
-
-#include "DDD\FixtureShape\CircleShape.h"
-#include "DDD\FixtureShape\PolygonShape.h"
-#include "DDD\FixtureShape\VerticesShape.h"
 
 #include "GameObjects\Factory\GraphicsFactory.h"
 #include "GameObjects\Factory\PhysicsFactory.h"

@@ -166,9 +166,6 @@ DDD::GraphicInfo* InfoBuilder::parseGraphic(rapidxml::xml_node<>* node, std::str
 
 		sf::Color color(r, g, b, a);
 
-		//sf::CircleShape* circleShape = new sf::CircleShape(radius);
-		//circleShape->setFillColor(sf::Color(r,g,b,a));
-
 		repInfo = new DDD::DrawingRepresentation(DRAWING, radius, color);
 	}
 	else
@@ -178,13 +175,6 @@ DDD::GraphicInfo* InfoBuilder::parseGraphic(rapidxml::xml_node<>* node, std::str
 		rapidxml::xml_node<>* scaleNode = repNode->first_node("scale");
 		float scaleX = std::stof(scaleNode->first_attribute("factorX")->value());
 		float scaleY = std::stof(scaleNode->first_attribute("factorY")->value());
-
-		sf::Texture* texture = new sf::Texture;
-		texture->loadFromFile(filePath);
-		sf::Sprite* sprite = new sf::Sprite;
-		sprite->setTexture(*texture);
-		sprite->setScale(sf::Vector2f(scaleX, scaleY));
-
 		repInfo = new DDD::SpriteRepresentation(SPRITE, filePath, scaleX, scaleY);
 	}
 
