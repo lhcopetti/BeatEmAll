@@ -245,7 +245,6 @@
     <ClCompile Include="GameObjects\Projectile\Bullet.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
-    <ClCompile Include="GameObjects\Projectile\BulletBuilder.cpp" />
     <ClCompile Include="GameObjects\Projectile\GraphicBullet.cpp" />
     <ClCompile Include="GameObjects\Projectile\ProjectileFactory.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.cpp" />
@@ -419,7 +418,6 @@
     <ClInclude Include="GameObjects\Projectile\Bullet.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player.h" />
-    <ClInclude Include="GameObjects\Projectile\BulletBuilder.h" />
     <ClInclude Include="GameObjects\Projectile\GraphicBullet.h" />
     <ClInclude Include="GameObjects\Projectile\Projectile.h" />
     <ClInclude Include="GameObjects\Projectile\ProjectileFactory.h" />

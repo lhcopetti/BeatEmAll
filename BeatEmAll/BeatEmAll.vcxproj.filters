@@ -39,7 +39,6 @@
     <ClCompile Include="GameObjects\Projectile\GraphicBullet.cpp" />
     <ClCompile Include="GameObjects\Projectile\ProjectileFactory.cpp" />
     <ClCompile Include="Component\GenericGraphicsComponent.cpp" />
-    <ClCompile Include="GameObjects\Projectile\BulletBuilder.cpp" />
     <ClCompile Include="DDD\FixtureInfo.cpp" />
     <ClCompile Include="DDD\GraphicInfo.cpp" />
     <ClCompile Include="DDD\GameObjectInfo.cpp" />
@@ -211,7 +210,6 @@
     <ClInclude Include="GameObjects\Projectile\GraphicBullet.h" />
     <ClInclude Include="GameObjects\Projectile\ProjectileFactory.h" />
     <ClInclude Include="Component\GenericGraphicsComponent.h" />
-    <ClInclude Include="GameObjects\Projectile\BulletBuilder.h" />
     <ClInclude Include="DDD\PhysicsInfo.h" />
     <ClInclude Include="DDD\FixtureInfo.h" />
     <ClInclude Include="DDD\GraphicInfo.h" />

@@ -196,13 +196,20 @@ void MainGameState::step(float delta)
 		(*listener)->handleMouse(mousePos, left, right);
 	}
 
+	/* Add the children from last pass to the gameObjectList */
+	for each(GameComponent::GameObject* child in _newChildren)
+	{
+		child->init();
+		_gameObjects.push_back(child);
+	}
+	_newChildren.clear();
+
 	std::vector<GameComponent::GameObject*>::iterator gOIterator = _gameObjects.begin();
-	std::vector<GameComponent::GameObject*> newChildren;
 
 	while (gOIterator != _gameObjects.end())
 	{
 		GameComponent::GameObject* gO = *gOIterator;
-		updateGameObject(*gO, delta, newChildren);
+		updateGameObject(*gO, delta, _newChildren);
 
 		if (gO->isAlive())
 			++gOIterator;
@@ -211,12 +218,6 @@ void MainGameState::step(float delta)
 			gOIterator = _gameObjects.erase(gOIterator);
 			delete gO;
 		}
-	}
-
-	for each(GameComponent::GameObject* child in newChildren)
-	{
-		child->init();
-		_gameObjects.push_back(child);
 	}
 
 	_world->Step(delta, 8, 3);
