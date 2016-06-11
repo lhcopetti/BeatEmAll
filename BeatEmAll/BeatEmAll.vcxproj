@@ -215,6 +215,7 @@
     <ClCompile Include="Component\EnemyComponents\EnemyGraphicComponent.cpp" />
     <ClCompile Include="Component\EnemyComponents\SteeringInputComponent.cpp" />
     <ClCompile Include="Component\GenericGraphicsComponent.cpp" />
+    <ClCompile Include="Component\GraphicsComponent.cpp" />
     <ClCompile Include="Component\KeyboardInputComponent.cpp" />
     <ClCompile Include="Component\PhysicsComponent.cpp" />
     <ClCompile Include="Component\PlayerComponents\PlayerGraphicsComponent.cpp" />
@@ -223,6 +224,7 @@
     <ClCompile Include="DDD\FixtureInfo.cpp" />
     <ClCompile Include="DDD\GameObjectInfo.cpp" />
     <ClCompile Include="DDD\GraphicInfo.cpp" />
+    <ClCompile Include="DDD\GraphicsInfo.cpp" />
     <ClCompile Include="DDD\InfoBuilder.cpp" />
     <ClCompile Include="DDD\InfoCollection.cpp" />
     <ClCompile Include="DebugBoxDraw\SFMLDebugDraw.cpp" />
@@ -369,6 +371,7 @@
     <ClInclude Include="Component\EnemyComponents\EnemyGraphicComponent.h" />
     <ClInclude Include="Component\EnemyComponents\SteeringInputComponent.h" />
     <ClInclude Include="Component\GenericGraphicsComponent.h" />
+    <ClInclude Include="Component\Graphic.h" />
     <ClInclude Include="Component\GraphicsComponent.h" />
     <ClInclude Include="Component\InputComponent.h" />
     <ClInclude Include="Component\KeyboardInputComponent.h" />
@@ -386,6 +389,7 @@
     <ClInclude Include="DDD\GameObjects\EnemyDefaultUserDataInfo.h" />
     <ClInclude Include="DDD\GameObjects\PlayerUserDataInfo.h" />
     <ClInclude Include="DDD\GraphicInfo.h" />
+    <ClInclude Include="DDD\GraphicsInfo.h" />
     <ClInclude Include="DDD\InfoBuilder.h" />
     <ClInclude Include="DDD\InfoCollection.h" />
     <ClInclude Include="DDD\PhysicsInfo.h" />

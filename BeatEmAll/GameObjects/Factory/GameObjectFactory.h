@@ -20,7 +20,7 @@ namespace GameComponent
 		/* GameObjectFactory */
 		class GOFactory
 		{
-			static Components::GraphicsComponent* getGraphic(const DDD::GameObjectInfo* gameObjectInfo);
+			static Components::GraphicsComponent* getGraphic(DDD::GameObjectInfo* gameObjectInfo);
 			static Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo* physics, b2Vec2 position);
 
 		public:

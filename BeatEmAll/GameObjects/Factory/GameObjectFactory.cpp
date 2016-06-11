@@ -26,7 +26,7 @@ using namespace GameComponent::Factory;
 
 GameComponent::Player* GOFactory::newPlayer(b2World& world, Keys::KeyboardManager& keyManager, MouseComponent::MouseManager& mouseManager, sf::Vector2f position)
 {
-	const DDD::GameObjectInfo* gameInfo = DDD::InfoCollection::getInstance().get("PlayerInfo");
+	DDD::GameObjectInfo* gameInfo = DDD::InfoCollection::getInstance().get("PlayerInfo");
 
 	Components::PhysicsComponent*  p = GOFactory::getPhysics(world, gameInfo->_physicsInfo, WorldConstants::sfmlToPhysics(position));
 	Components::GraphicsComponent* g = GOFactory::getGraphic(gameInfo);
@@ -47,7 +47,7 @@ GameComponent::Player* GOFactory::newPlayer(b2World& world, Keys::KeyboardManage
 
 GameComponent::Enemy* GOFactory::newEnemyDefault(b2World& world, sf::Vector2f position, sf::RenderWindow* window)
 {
-	const DDD::GameObjectInfo* gameInfo = DDD::InfoCollection::getInstance().get("EnemyDefault");
+	DDD::GameObjectInfo* gameInfo = DDD::InfoCollection::getInstance().get("EnemyDefault");
 
 	Components::PhysicsComponent*  p = GOFactory::getPhysics(world, gameInfo->_physicsInfo, WorldConstants::sfmlToPhysics(position));
 	Components::GraphicsComponent* g = GOFactory::getGraphic(gameInfo);
@@ -66,39 +66,47 @@ GameComponent::Enemy* GOFactory::newEnemyDefault(b2World& world, sf::Vector2f po
 	return enemyDefault;
 }
 
-Components::GraphicsComponent* GOFactory::getGraphic(const DDD::GameObjectInfo* gameObjectInfo)
+Components::GraphicsComponent* GOFactory::getGraphic(DDD::GameObjectInfo* gameObjectInfo)
 {
-	Components::GraphicsComponent* gr;
-	const DDD::GraphicInfo* graphicInfo = gameObjectInfo->_graphicInfo;
+	Components::GraphicsComponent* graphicsComponent = new Components::GraphicsComponent;
+	const DDD::GraphicsInfo* graphics = gameObjectInfo->_graphicsInfo;
 
-	if (DDD::DRAWING == graphicInfo->_info->_type)
+	for (auto it = graphics->getMap().begin(); it != graphics->getMap().end(); ++it)
 	{
-		const DDD::DrawingRepresentation* dr = static_cast<const DDD::DrawingRepresentation*>(graphicInfo->_info);
+		std::string key = it->first;
+		const DDD::GraphicInfo* graphicInfo = it->second;
+		Components::Graphic* graphic = nullptr;
 
-		sf::CircleShape* circleShape = new sf::CircleShape(dr->_radius);
-		circleShape->setFillColor(dr->_color);
+		if (DDD::DRAWING == graphicInfo->_info->_type)
+		{
+			const DDD::DrawingRepresentation* dr = static_cast<const DDD::DrawingRepresentation*>(graphicInfo->_info);
 
-		gr = Components::GenericGraphicsComponent::newDrawingGraphic(
-			circleShape,
-			graphicInfo->_followRotation,
-			graphicInfo->_origin);
+			sf::CircleShape* circleShape = new sf::CircleShape(dr->_radius);
+			circleShape->setFillColor(dr->_color);
+
+			graphic = Components::GenericGraphicsComponent::newDrawingGraphic(
+				circleShape,
+				graphicInfo->_followRotation,
+				graphicInfo->_origin);
+		}
+		else
+		{
+			const DDD::SpriteRepresentation* sr = static_cast<const DDD::SpriteRepresentation*>(graphicInfo->_info);
+
+			sf::Texture* texture = new sf::Texture;
+			texture->loadFromFile(sr->_filePath);
+			sf::Sprite* sprite = new sf::Sprite;
+			sprite->setTexture(*texture);
+			sprite->setScale(sf::Vector2f(sr->_scaleX, sr->_scaleY));
+			// TODO: what if it is not a drawing,
+			// what if it is not a projectile but a player?
+			graphic = Components::GenericGraphicsComponent::newSpriteGraphic
+				(sprite, graphicInfo->_followRotation, graphicInfo->_origin);
+		}
+
+		graphicsComponent->addGraphic(key, graphic);
 	}
-	else
-	{
-		const DDD::SpriteRepresentation* sr = static_cast<const DDD::SpriteRepresentation*>(graphicInfo->_info);
-
-		sf::Texture* texture = new sf::Texture;
-		texture->loadFromFile(sr->_filePath);
-		sf::Sprite* sprite = new sf::Sprite;
-		sprite->setTexture(*texture);
-		sprite->setScale(sf::Vector2f(sr->_scaleX, sr->_scaleY));
-		// TODO: what if it is not a drawing,
-		// what if it is not a projectile but a player?
-		gr = Components::GenericGraphicsComponent::newSpriteGraphic
-			(sprite, graphicInfo->_followRotation, graphicInfo->_origin);
-	}
-
-	return gr;
+	return graphicsComponent;
 }
 
 Components::PhysicsComponent* GOFactory::getPhysics(b2World& world, const DDD::PhysicsInfo* physics, b2Vec2 position)

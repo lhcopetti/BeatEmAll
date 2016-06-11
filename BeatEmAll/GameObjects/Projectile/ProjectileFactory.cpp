@@ -53,26 +53,33 @@ Projectile* ProjectileFactory::makeNew(
 
 Components::GraphicsComponent* getGraphic(const DDD::GameObjectInfo* gameObjectInfo)
 {
-	Components::GraphicsComponent* gr;
-	const DDD::GraphicInfo* graphicInfo = gameObjectInfo->_graphicInfo;
+	Components::GraphicsComponent* gr = new Components::GraphicsComponent;
+	const DDD::GraphicsInfo* graphicsInfo = gameObjectInfo->_graphicsInfo;
 
-	if (DDD::DRAWING == graphicInfo->_info->_type)
+	//const DDD::GraphicInfo* graphicInfo = gameObjectInfo->_graphicInfo;
+
+	for (auto it = graphicsInfo->getMap().begin(); it != graphicsInfo->getMap().end(); ++it)
 	{
-		const DDD::DrawingRepresentation* dr = static_cast<const DDD::DrawingRepresentation*>(graphicInfo->_info);
+		std::string key = it->first;
+		DDD::GraphicInfo* graphicInfo = it->second;
 
-		sf::CircleShape* circleShape = new sf::CircleShape(dr->_radius);
-		circleShape->setFillColor(dr->_color);
+		if (DDD::DRAWING == graphicInfo->_info->_type)
+		{
+			const DDD::DrawingRepresentation* dr = static_cast<const DDD::DrawingRepresentation*>(graphicInfo->_info);
 
-		gr = Components::GenericGraphicsComponent::newDrawingGraphic(
-			circleShape, 
-			graphicInfo->_followRotation, 
-			graphicInfo->_origin);
-	}
-	else
-	{
-		// TODO: what if it is not a drawing,
-		// what if it is not a projectile but a player?
-		gr = nullptr;
+			sf::CircleShape* circleShape = new sf::CircleShape(dr->_radius);
+			circleShape->setFillColor(dr->_color);
+
+			gr->addGraphic(key, Components::GenericGraphicsComponent::newDrawingGraphic(
+				circleShape,
+				graphicInfo->_followRotation,
+				graphicInfo->_origin));
+		}
+		else
+		{
+			// TODO: what if it is not a drawing,
+			// what if it is not a projectile but a player?
+		}
 	}
 
 	return gr;

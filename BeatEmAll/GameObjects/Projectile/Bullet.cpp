@@ -19,6 +19,12 @@ Bullet::~Bullet()
 		delete _physicsComponent;
 		_physicsComponent = nullptr;
 	}
+
+	if (_graphicsComponent)
+	{
+		delete _graphicsComponent;
+		_graphicsComponent = nullptr;
+	}
 }
 
 Bullet::Bullet(b2World& world, Components::PhysicsComponent* physics, Components::GraphicsComponent* gComponent, float lifeTime, float bulletSpeed, b2Vec2 initialPos, b2Vec2 initialVel) :
@@ -54,6 +60,7 @@ void Bullet::init()
 
 	_body = _world.CreateBody(&bulletDef);
 	_body->CreateFixture(&bulletFix);*/
+	_graphicsComponent->setActiveGraphic("BULLET");
 
 	float ratio = _physicsComponent->getBody()->GetMass() * _bulletSpeed;
 	b2Vec2 impulse = b2Vec2(_initialVel.x * ratio, _initialVel.y * ratio);

@@ -56,6 +56,8 @@
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\PlayerState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\WalkingState.cpp" />
+    <ClCompile Include="Component\GraphicsComponent.cpp" />
+    <ClCompile Include="DDD\GraphicsInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -237,5 +239,7 @@
     <ClInclude Include="GameObjects\StateMachine\PlayerStates\WalkingState.h" />
     <ClInclude Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.h" />
     <ClInclude Include="GameObjects\StateMachine\PlayerStates\PlayerState.h" />
+    <ClInclude Include="Component\Graphic.h" />
+    <ClInclude Include="DDD\GraphicsInfo.h" />
   </ItemGroup>
 </Project>

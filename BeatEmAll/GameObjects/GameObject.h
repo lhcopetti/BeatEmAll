@@ -61,6 +61,9 @@ namespace GameComponent
 
 		bool isAlive() const { return _alive; };
 
+		Components::GraphicsComponent* graphics() { return _graphicsComponent; }
+		Components::PhysicsComponent* physics() { return _physicsComponent; }
+
 		b2Body* body() { return _physicsComponent->getBody(); };
 		float rotation() const { return _rotationRad; }
 		void rotation(float r) { _rotationRad = r; }

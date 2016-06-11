@@ -6,6 +6,8 @@
 
 #include "Collision\CollisionCategory.h"
 
+#include "Component\GraphicsComponent.h"
+
 namespace DDD
 {
 	class InfoBuilder
@@ -22,7 +24,10 @@ namespace DDD
 
 		DDD::PhysicsInfo* parsePhysics(rapidxml::xml_node<>* node);
 		DDD::FixtureInfo* parseFixtureInfo(rapidxml::xml_node<>* node);
-		DDD::GraphicInfo* parseGraphic(rapidxml::xml_node<>* node);
+
+		DDD::GraphicInfo* parseGraphic(rapidxml::xml_node<>* node, std::string& keyName);
+		DDD::GraphicsInfo* parseGraphicCollection(rapidxml::xml_node<>* node);
+
 		DDD::UserDataInfo* parseUserDataInfo(rapidxml::xml_node<>* node);
 
 		UserDataInfo* parseBulletInfo(rapidxml::xml_node<>* node);

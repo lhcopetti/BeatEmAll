@@ -5,6 +5,7 @@ using namespace GameComponent::StateMachine;
 
 void PlayerStates::StandingState::onEnter()
 {
+	_player.graphics()->setActiveGraphic("STANDING");
 }
 
 State* PlayerStates::StandingState::update(float elapsedTime)

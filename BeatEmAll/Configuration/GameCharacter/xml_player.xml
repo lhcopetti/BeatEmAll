@@ -23,14 +23,24 @@
 		 </fixtures>
 	</physics>
 
-	<graphic>
-		<origin x="14" y="21" />
-		<followRotation>true</followRotation>
-		<representation repType="sprite">
-			<path>assets\\player1\\manBlue_silencer.png</path>
-			<scale factorX=".6" factorY=".6"/>
-		</representation>
-	</graphic>
+	<graphics>
+		<graphic key="STANDING">
+			<origin x="14" y="21" />
+			<followRotation>true</followRotation>
+			<representation repType="sprite">
+				<path>assets\\player1\\manBlue_stand.png</path>
+				<scale factorX=".6" factorY=".6"/>
+			</representation>
+		</graphic>
+		<graphic key="WALKING">
+			<origin x="14" y="21" />
+			<followRotation>true</followRotation>
+			<representation repType="sprite">
+				<path>assets\\player1\\manBlue_reload.png</path>
+				<scale factorX=".6" factorY=".6"/>
+			</representation>
+		</graphic>
+	</graphics>
 
 	<userData>
 		<velocity>5.0</velocity>
