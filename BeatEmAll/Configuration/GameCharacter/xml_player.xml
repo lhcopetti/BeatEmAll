@@ -51,7 +51,8 @@
 	</graphics>
 
 	<userData>
-		<velocity>5.0</velocity>
+		<velocity>3.0</velocity>
+		<runningVelocity>6.0</runningVelocity>
 		<health>250.0</health>
 	</userData>
 </PlayerInfo>

@@ -27,6 +27,8 @@ namespace GameComponent
 				virtual void onEnter();
 				virtual State* update(float elapsedTime);
 
+				void changeStateIfNotNull(State* state);
+
 			private:
 				void aim(b2Vec2 target);
 				void move(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);

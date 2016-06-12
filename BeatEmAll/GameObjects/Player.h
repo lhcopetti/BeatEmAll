@@ -33,11 +33,13 @@ namespace GameComponent
 
 		float _health;
 		const float _playerVelocity;
+		const float _playerRunningVelocity;
 		GameComponent::StateMachine::StateManager _stateManager;
 
 	public:
 		Player(GameObjectTypes type, b2World& world, 
-			float playerVelocity, float health,
+			float playerVelocity, float playerRunningVelocity,
+			float health,
 			Components::PhysicsComponent* physicsComponent,
 			Components::InputComponent* inputComponent,
 			Components::GraphicsComponent* graphicsComponent);
@@ -52,10 +54,14 @@ namespace GameComponent
 		virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);
 		virtual void handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked);
 
-		virtual b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
-		virtual float getMaximumVelocity() const { return _playerVelocity; }
-		virtual b2Vec2 getCurrentPosition() const { return _physicsComponent->getBody()->GetPosition(); }
-		virtual float getMass() const { return _physicsComponent->getBody()->GetMass(); }
+		b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
+
+		float getMaximumVelocity() const { return _playerVelocity; }
+		float getRunningMaximumVelocity() const { return _playerRunningVelocity; }
+
+
+		b2Vec2 getCurrentPosition() const { return _physicsComponent->getBody()->GetPosition(); }
+		float getMass() const { return _physicsComponent->getBody()->GetMass(); }
 
 	};
 }

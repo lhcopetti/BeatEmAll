@@ -22,13 +22,15 @@ using namespace GameComponent;
 namespace GA = GameComponent::GameActions;
 
 Player::Player(GameObjectTypes type, b2World& world,
-	float playerVelocity, float health,
+	float playerVelocity, float playerRunningVelocity,
+	float health,
 	Components::PhysicsComponent* physicsComponent,
 	Components::InputComponent* inputComponent,
 	Components::GraphicsComponent* graphicsComponent)
 	:
 	GameObject(type, world, physicsComponent, inputComponent, graphicsComponent),
-	_playerVelocity(playerVelocity), _health(health),
+	_playerVelocity(playerVelocity), _playerRunningVelocity(playerRunningVelocity),
+	_health(health),
 	_stateManager(new StateMachine::PlayerStates::ParentPlayerState
 		(*this, new StateMachine::PlayerStates::StandingState(*this)))
 {

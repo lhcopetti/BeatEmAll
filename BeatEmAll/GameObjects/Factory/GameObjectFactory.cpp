@@ -37,10 +37,11 @@ GameComponent::Player* GOFactory::newPlayer(b2World& world, Keys::KeyboardManage
 	const DDD::GameComponent::PlayerUserDataInfo* userData = static_cast<const DDD::GameComponent::PlayerUserDataInfo*>(gameInfo->_userDataInfo);
 	float health = userData->_health;
 	float vel = userData->_velocity;
+	float runningVel = userData->_runningVelocity;
 
 
 	GameComponent::Player* player = new GameComponent::Player(GameComponent::GameObjectTypes::PLAYER, world, 
-		vel, health,
+		vel, runningVel, health,
 		p,
 		GameObject::nullInput(),//new Components::KeyboardInputComponent(keyManager, mouseManager),
 		g);

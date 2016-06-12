@@ -14,6 +14,8 @@ namespace GameComponent
 
 				virtual State* update(float elapsedTime);
 				virtual void onEnter();
+
+				State* handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);
 			};
 		}
 	}

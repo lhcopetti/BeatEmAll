@@ -216,8 +216,9 @@ UserDataInfo* InfoBuilder::parseBulletInfo(rapidxml::xml_node<>* node)
 UserDataInfo* InfoBuilder::parsePlayerInfo(rapidxml::xml_node<>* node)
 {
 	float velocity = getFloat(node, "velocity");
+	float runningVelocity = getFloat(node, "runningVelocity");
 	float health = getFloat(node, "health");
-	return new DDD::GameComponent::PlayerUserDataInfo(velocity, health);
+	return new DDD::GameComponent::PlayerUserDataInfo(velocity, runningVelocity, health);
 }
 
 UserDataInfo* InfoBuilder::parseEnemyInfo(rapidxml::xml_node<>* node)

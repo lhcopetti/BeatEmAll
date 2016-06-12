@@ -20,9 +20,10 @@ State* PlayerStates::RunningState::update(float elapsedTime)
 	return nullptr;
 }
 
-//State* PlayerStates::RunningState::handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys)
-//{
-//	if (!keys.at(Keys::KeyboardManager::RUN))
-//		return new GameComponent::StateMachine::PlayerStates::WalkingState(_player);
-//
-//}
+State* PlayerStates::RunningState::handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys)
+{
+	if (!keys.at(Keys::KeyboardManager::RUN))
+		return new GameComponent::StateMachine::PlayerStates::WalkingState(_player);
+
+	return nullptr;
+}
