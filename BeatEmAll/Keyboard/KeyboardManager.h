@@ -13,7 +13,8 @@ namespace Keys
 			MOVE_LEFT,
 			MOVE_DOWN,
 			MOVE_RIGHT,
-			SHOOT
+			SHOOT,
+			RUN
 		};
 
 	private:

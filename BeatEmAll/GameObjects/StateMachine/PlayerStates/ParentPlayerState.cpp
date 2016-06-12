@@ -10,12 +10,13 @@
 using namespace GameComponent::StateMachine;
 namespace GA = GameComponent::GameActions;
 
-void PlayerStates::ParentPlayerState::handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys)
+State* PlayerStates::ParentPlayerState::handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys)
 {
 	move(keys);
+	return nullptr;
 }
 
-void PlayerStates::ParentPlayerState::handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked)
+State* PlayerStates::ParentPlayerState::handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked)
 {
 	/* We can safely assume there will no vector.x as big as MAX_INT. Cast is OK! */
 	const sf::Vector2f mousePosF = sf::Vector2f(static_cast<float>(vector.x), static_cast<float>(vector.y));
@@ -24,6 +25,8 @@ void PlayerStates::ParentPlayerState::handleMouse(const sf::Vector2i& vector, bo
 
 	if (leftClicked)
 		shoot(WorldConstants::sfmlToPhysics(mousePosF));
+
+	return nullptr;
 }
 
 State* PlayerStates::ParentPlayerState::update(float elapsedTime)

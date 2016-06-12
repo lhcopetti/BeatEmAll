@@ -59,6 +59,7 @@
     <ClCompile Include="DDD\GraphicsInfo.cpp" />
     <ClCompile Include="GameObjects\Factory\PhysicsFactory.cpp" />
     <ClCompile Include="GameObjects\Factory\GraphicsFactory.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\RunningState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -243,5 +244,6 @@
     <ClInclude Include="DDD\GraphicsInfo.h" />
     <ClInclude Include="GameObjects\Factory\PhysicsFactory.h" />
     <ClInclude Include="GameObjects\Factory\GraphicsFactory.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\RunningState.h" />
   </ItemGroup>
 </Project>

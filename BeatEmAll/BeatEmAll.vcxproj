@@ -249,6 +249,7 @@
     <ClCompile Include="GameObjects\Projectile\ProjectileFactory.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\PlayerState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\RunningState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\StandingState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\PlayerStates\WalkingState.cpp" />
     <ClCompile Include="GameObjects\StateMachine\StateManager.cpp" />
@@ -423,6 +424,7 @@
     <ClInclude Include="GameObjects\Projectile\ProjectileFactory.h" />
     <ClInclude Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.h" />
     <ClInclude Include="GameObjects\StateMachine\PlayerStates\PlayerState.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\RunningState.h" />
     <ClInclude Include="GameObjects\StateMachine\PlayerStates\StandingState.h" />
     <ClInclude Include="GameObjects\StateMachine\PlayerStates\WalkingState.h" />
     <ClInclude Include="GameObjects\StateMachine\State.h" />
