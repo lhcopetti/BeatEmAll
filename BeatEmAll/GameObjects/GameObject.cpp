@@ -52,10 +52,11 @@ void GameObject::update(float elapsedTime)
 	if (_physicsComponent)
 		_physicsComponent->update(*this);
 
+	doUpdate(elapsedTime);
+
 	if (_graphicsComponent)
 		_graphicsComponent->update(*this);
 
-	doUpdate(elapsedTime);
 }
 
 void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
