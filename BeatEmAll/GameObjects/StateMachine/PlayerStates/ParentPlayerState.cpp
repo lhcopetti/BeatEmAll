@@ -10,12 +10,25 @@
 using namespace GameComponent::StateMachine;
 namespace GA = GameComponent::GameActions;
 
-void PlayerStates::ParentPlayerState::handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys)
+void PlayerStates::ParentPlayerState::changeStateIfNotNull(State* state)
 {
-	move(keys);
+	if (state)
+	{
+		delete _childState;
+		_childState = static_cast<PlayerState*>(state);
+		_childState->onEnter();
+	}
 }
 
-void PlayerStates::ParentPlayerState::handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked)
+State* PlayerStates::ParentPlayerState::handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys)
+{
+	move(keys);
+
+	changeStateIfNotNull(_childState->handleKeyboard(keys));
+	return nullptr;
+}
+
+State* PlayerStates::ParentPlayerState::handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked)
 {
 	/* We can safely assume there will no vector.x as big as MAX_INT. Cast is OK! */
 	const sf::Vector2f mousePosF = sf::Vector2f(static_cast<float>(vector.x), static_cast<float>(vector.y));
@@ -24,19 +37,13 @@ void PlayerStates::ParentPlayerState::handleMouse(const sf::Vector2i& vector, bo
 
 	if (leftClicked)
 		shoot(WorldConstants::sfmlToPhysics(mousePosF));
+
+	return nullptr;
 }
 
 State* PlayerStates::ParentPlayerState::update(float elapsedTime)
 {
-	State* newState = _childState->update(elapsedTime);
-
-	if (newState)
-	{
-		delete _childState;
-		_childState = static_cast<PlayerState*>(newState);
-		_childState->onEnter();
-	}
-
+	changeStateIfNotNull(_childState->update(elapsedTime));
 	return nullptr;
 }
 
@@ -66,7 +73,8 @@ void PlayerStates::ParentPlayerState::move(const std::map<Keys::KeyboardManager:
 	if (keys.at(KeyboardManager::KeyAction::MOVE_RIGHT))
 		moveDir.xDir = GA::XAxis::RIGHT;
 
-	float pVelocity = _player.getMaximumVelocity();
+	//float pVelocity = _player.getMaximumVelocity();
+	float pVelocity = _childState->getPlayerVelocity();
 	b2Vec2 nextVel(moveDir.xDir * pVelocity, moveDir.yDir * pVelocity);
 
 	GA::VelocityAction* velAction = new GA::VelocityAction(nextVel);

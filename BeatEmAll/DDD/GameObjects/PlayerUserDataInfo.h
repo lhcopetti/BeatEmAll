@@ -8,12 +8,14 @@ namespace DDD
 		class PlayerUserDataInfo : public UserDataInfo
 		{
 		public:
-			PlayerUserDataInfo(float velocity, float health) :
+			PlayerUserDataInfo(float velocity, float runningVelocity, float health) :
 				_velocity(velocity),
+				_runningVelocity(runningVelocity),
 				_health(health)
 			{ }
 
 			const float _velocity;
+			const float _runningVelocity;
 			const float _health;
 		};
 	}

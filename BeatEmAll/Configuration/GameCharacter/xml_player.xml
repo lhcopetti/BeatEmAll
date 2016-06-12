@@ -40,10 +40,19 @@
 				<scale factorX=".6" factorY=".6"/>
 			</representation>
 		</graphic>
+		<graphic key="RUNNING">
+			<origin x="14" y="21" />
+			<followRotation>true</followRotation>
+			<representation repType="sprite">
+				<path>assets\\player1\\manBlue_silencer.png</path>
+				<scale factorX=".6" factorY=".6"/>
+			</representation>
+		</graphic>
 	</graphics>
 
 	<userData>
-		<velocity>5.0</velocity>
+		<velocity>3.0</velocity>
+		<runningVelocity>6.0</runningVelocity>
 		<health>250.0</health>
 	</userData>
 </PlayerInfo>

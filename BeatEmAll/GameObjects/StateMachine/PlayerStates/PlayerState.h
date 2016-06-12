@@ -17,6 +17,9 @@ namespace GameComponent
 				virtual void onEnter() = 0;
 				virtual State* update(float elapsedTime) = 0;
 
+				virtual float getPlayerVelocity() const { return _player.getMaximumVelocity(); }
+//				virtual State* handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);
+
 			protected:
 				GameComponent::Player& _player;
 			};

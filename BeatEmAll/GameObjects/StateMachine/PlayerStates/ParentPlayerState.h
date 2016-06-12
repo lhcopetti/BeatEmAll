@@ -21,11 +21,13 @@ namespace GameComponent
 					_player(player),
 					_childState(initialState) {}
 
-				virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);
-				virtual void handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked);
+				virtual State* handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);
+				virtual State* handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked);
 
 				virtual void onEnter();
 				virtual State* update(float elapsedTime);
+
+				void changeStateIfNotNull(State* state);
 
 			private:
 				void aim(b2Vec2 target);

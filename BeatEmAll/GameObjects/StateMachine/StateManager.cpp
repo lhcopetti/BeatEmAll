@@ -31,16 +31,4 @@ void StateManager::handleKeyboard(const std::map<Keys::KeyboardManager::KeyActio
 void StateManager::handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked)
 {
 	_currentState->handleMouse(vector, leftClicked, rightClicked);
-	///* We can safely assume there will no vector.x as big as MAX_INT. Cast is OK! */
-	//const sf::Vector2f mousePosF = sf::Vector2f(static_cast<float>(vector.x), static_cast<float>(vector.y));
-
-	//GA::Action* aimAction = new GA::AimAction(getCurrentPosition(), WorldConstants::sfmlToPhysics(mousePosF));
-	//addAction(aimAction);
-
-	//if (leftClicked)
-	//{
-	//	b2Vec2 target = WorldConstants::sfmlToPhysics(mousePosF);
-	//	GA::ShootAction* shootAction = new GA::ShootAction(getCurrentPosition(), target);
-	//	addAction(shootAction);
-	//}
 }
