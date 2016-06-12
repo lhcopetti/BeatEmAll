@@ -6,6 +6,7 @@ using namespace GameComponent::StateMachine;
 
 void PlayerStates::WalkingState::onEnter()
 {
+	_player.graphics()->setActiveGraphic("WALKING");
 }
 
 State* PlayerStates::WalkingState::update(float elapsedTime)

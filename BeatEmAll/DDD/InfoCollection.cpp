@@ -37,7 +37,7 @@ bool InfoCollection::loadCategory(const std::string& filePath)
 	return _collisionCategory.load(filePath);
 }
 
-const GameObjectInfo* InfoCollection::get(const std::string& key) const
+GameObjectInfo* InfoCollection::get(const std::string& key) const
 {
 	if (_map.find(key) == _map.end())
 		return nullptr;

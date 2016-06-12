@@ -45,6 +45,8 @@ namespace GameMachine
 		Collision::ContactListener* _contactListener;
 
 		std::vector<GameComponent::GameObject*> _gameObjects;
+		std::vector<GameComponent::GameObject*> _newChildren;
+
 		std::vector<Keys::KeyboardListener*> _keysListener;
 		std::vector<MouseComponent::MouseListener*> _mouseListener;
 

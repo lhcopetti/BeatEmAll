@@ -25,8 +25,9 @@ const float SCALE = 30.f;
 int main(int oldMain)
 {
 	sf::Clock clock;
-	sf::Time accumulator = sf::Time::Zero;
 	sf::Time ups = sf::seconds(1.f / 60.f);
+
+	sf::Time accumulator = sf::Time::Zero;
 
 	srand(time(nullptr));
 
@@ -36,8 +37,9 @@ int main(int oldMain)
 
 	while (mainGameState.isRunning())
 	{
-
-		while (accumulator > ups)
+		if (accumulator.asMilliseconds() > ups.asMilliseconds() * 3)
+			accumulator = ups;
+		while (accumulator >= ups)
 		{
 			mainGameState.processEvents();
 			accumulator -= ups;

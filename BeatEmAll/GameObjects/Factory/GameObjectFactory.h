@@ -20,9 +20,6 @@ namespace GameComponent
 		/* GameObjectFactory */
 		class GOFactory
 		{
-			static Components::GraphicsComponent* getGraphic(const DDD::GameObjectInfo* gameObjectInfo);
-			static Components::PhysicsComponent* getPhysics(b2World& world, const DDD::PhysicsInfo* physics, b2Vec2 position);
-
 		public:
 			static GameComponent::Player* newPlayer(b2World& world, Keys::KeyboardManager& keyManager, MouseComponent::MouseManager& mouseManager, sf::Vector2f position);
 

@@ -1,30 +1,25 @@
 #pragma once
 
-#include "Component\GraphicsComponent.h"
+#include "Component\Graphic.h"
 
 namespace Components
 {
-	class GenericGraphicsComponent : public GraphicsComponent
+	class GenericGraphicsComponent : public Graphic
 	{
-		//enum RepresentationType
-		//{
-		//	DRAWING, /* SHAPE  */
-		//	SPRITE   /* SPRITE */
-		//};
 
 	private:
 		sf::Transformable* _transformable;
 		sf::Drawable* _drawable;
 
-//		sf::Shape* _shape;
-//		sf::Sprite* _sprite;
 		bool _followRotation;
 		sf::Vector2f _origin;
 
 		GenericGraphicsComponent();
 
 		static void init(GenericGraphicsComponent& genericG, bool followRotation, sf::Vector2f origin);
+
 	public:
+
 		~GenericGraphicsComponent();
 		static GenericGraphicsComponent* newDrawingGraphic(sf::Shape* shape, bool followRotation, sf::Vector2f origin);
 		static GenericGraphicsComponent* newSpriteGraphic(sf::Sprite* sprite, bool followRotation, sf::Vector2f origin);

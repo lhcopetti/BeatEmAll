@@ -7,6 +7,8 @@
 #include "DDD\GameObjects\PlayerUserDataInfo.h"
 #include "DDD\Projectile\BulletUserDataInfo.h"
 
+#include "Component\GenericGraphicsComponent.h"
+
 #include "DebugBoxDraw\WorldConstants.h"
 
 #include "SFML\Graphics\Color.hpp"
@@ -48,12 +50,12 @@ bool InfoBuilder::load(const std::string& filePath)
 	DDD::PhysicsInfo* physics =  parsePhysics(physicsNode);
 
 	rapidxml::xml_node<>* graphicNode = physicsNode->next_sibling();
-	DDD::GraphicInfo* graphic = parseGraphic(graphicNode);
+	DDD::GraphicsInfo* graphics = parseGraphicCollection(graphicNode);
 
 	rapidxml::xml_node<>* userDataInfoNode = graphicNode->next_sibling();
 	DDD::UserDataInfo* userDataInfo = parseUserDataInfo(userDataInfoNode);
 
-	_gameInfo = new GameObjectInfo(physics, graphic, userDataInfo);
+	_gameInfo = new GameObjectInfo(physics, graphics, userDataInfo);
 
 	return true;
 }
@@ -136,12 +138,15 @@ bool to_bool(char* c)
 	return strcmp(c, "true") == 0;
 }
 
-DDD::GraphicInfo* InfoBuilder::parseGraphic(rapidxml::xml_node<>* node)
+DDD::GraphicInfo* InfoBuilder::parseGraphic(rapidxml::xml_node<>* node, std::string& keyName)
 {
+	keyName = node->first_attribute("key")->value();
+
 	rapidxml::xml_node<>* originNode = node->first_node("origin");
 
 	float originX = std::stof(originNode->first_attribute("x")->value());
 	float originY = std::stof(originNode->first_attribute("y")->value());
+	sf::Vector2f origin = sf::Vector2f(originX, originY);
 
 	bool followRotation = to_bool(originNode->next_sibling()->value());
 
@@ -170,11 +175,24 @@ DDD::GraphicInfo* InfoBuilder::parseGraphic(rapidxml::xml_node<>* node)
 		rapidxml::xml_node<>* scaleNode = repNode->first_node("scale");
 		float scaleX = std::stof(scaleNode->first_attribute("factorX")->value());
 		float scaleY = std::stof(scaleNode->first_attribute("factorY")->value());
-
 		repInfo = new DDD::SpriteRepresentation(SPRITE, filePath, scaleX, scaleY);
 	}
 
 	return new DDD::GraphicInfo(repInfo, sf::Vector2f(originX, originY), followRotation);
+}
+
+DDD::GraphicsInfo* InfoBuilder::parseGraphicCollection(rapidxml::xml_node<>* node)
+{
+	DDD::GraphicsInfo* _graphicsInfo = new DDD::GraphicsInfo;
+
+	for (rapidxml::xml_node<>* graphicNode = node->first_node("graphic"); graphicNode; graphicNode = graphicNode->next_sibling())
+	{
+		std::string keyName;
+		DDD::GraphicInfo* graphic = parseGraphic(graphicNode, keyName);
+		_graphicsInfo->addGraphic(keyName, graphic);
+	}
+
+	return _graphicsInfo;
 }
 
 DDD::UserDataInfo* InfoBuilder::parseUserDataInfo(rapidxml::xml_node<>* node)
