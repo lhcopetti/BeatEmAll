@@ -39,10 +39,8 @@
     <ClCompile Include="GameObjects\Projectile\GraphicBullet.cpp" />
     <ClCompile Include="GameObjects\Projectile\ProjectileFactory.cpp" />
     <ClCompile Include="Component\GenericGraphicsComponent.cpp" />
-    <ClCompile Include="GameObjects\Projectile\BulletBuilder.cpp" />
     <ClCompile Include="DDD\FixtureInfo.cpp" />
     <ClCompile Include="DDD\GraphicInfo.cpp" />
-    <ClCompile Include="DDD\Projectile\BulletUserDataInfo.cpp" />
     <ClCompile Include="DDD\GameObjectInfo.cpp" />
     <ClCompile Include="DDD\InfoCollection.cpp" />
     <ClCompile Include="DDD\InfoBuilder.cpp" />
@@ -51,6 +49,17 @@
     <ClCompile Include="FileIO\FileIO.cpp" />
     <ClCompile Include="GameObjects\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="Component\PhysicsComponent.cpp" />
+    <ClCompile Include="GameObjects\Enemy.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\StateManager.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\StandingState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\PlayerState.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\WalkingState.cpp" />
+    <ClCompile Include="Component\GraphicsComponent.cpp" />
+    <ClCompile Include="DDD\GraphicsInfo.cpp" />
+    <ClCompile Include="GameObjects\Factory\PhysicsFactory.cpp" />
+    <ClCompile Include="GameObjects\Factory\GraphicsFactory.cpp" />
+    <ClCompile Include="GameObjects\StateMachine\PlayerStates\RunningState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -202,7 +211,6 @@
     <ClInclude Include="GameObjects\Projectile\GraphicBullet.h" />
     <ClInclude Include="GameObjects\Projectile\ProjectileFactory.h" />
     <ClInclude Include="Component\GenericGraphicsComponent.h" />
-    <ClInclude Include="GameObjects\Projectile\BulletBuilder.h" />
     <ClInclude Include="DDD\PhysicsInfo.h" />
     <ClInclude Include="DDD\FixtureInfo.h" />
     <ClInclude Include="DDD\GraphicInfo.h" />
@@ -223,5 +231,19 @@
     <ClInclude Include="FileIO\FileIO.h" />
     <ClInclude Include="String\SplitString.h" />
     <ClInclude Include="GameObjects\Factory\GameObjectFactory.h" />
+    <ClInclude Include="GameObjects\Enemy.h" />
+    <ClInclude Include="DDD\GameObjects\PlayerUserDataInfo.h" />
+    <ClInclude Include="DDD\GameObjects\EnemyDefaultUserDataInfo.h" />
+    <ClInclude Include="GameObjects\StateMachine\StateManager.h" />
+    <ClInclude Include="GameObjects\StateMachine\State.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\StandingState.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\WalkingState.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\ParentPlayerState.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\PlayerState.h" />
+    <ClInclude Include="Component\Graphic.h" />
+    <ClInclude Include="DDD\GraphicsInfo.h" />
+    <ClInclude Include="GameObjects\Factory\PhysicsFactory.h" />
+    <ClInclude Include="GameObjects\Factory\GraphicsFactory.h" />
+    <ClInclude Include="GameObjects\StateMachine\PlayerStates\RunningState.h" />
   </ItemGroup>
 </Project>

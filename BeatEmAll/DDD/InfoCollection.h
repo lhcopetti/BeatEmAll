@@ -14,7 +14,7 @@ namespace DDD
 	public:
 		bool loadCategory(const std::string& filePath);
 		bool loadInfo(const std::string& filePath);
-		const GameObjectInfo* get(const std::string& name) const;
+		GameObjectInfo* get(const std::string& name) const;
 
 		static InfoCollection& getInstance();
 

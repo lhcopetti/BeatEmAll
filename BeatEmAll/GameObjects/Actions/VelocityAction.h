@@ -1,5 +1,7 @@
 #pragma once
+
 #include "GameObjects\Actions\Action.h"
+#include "Box2D\Box2D.h"
 
 namespace GameComponent
 {

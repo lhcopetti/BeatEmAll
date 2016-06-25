@@ -3,7 +3,6 @@
 
 #include "GameObjects\GameObject.h"
 
-#include "GameObjects\Actions\Action.h"
 #include "GameObjects\Weapon\Weapon.h"
 
 #include "Mouse\MouseListener.h"
@@ -16,20 +15,31 @@
 
 #include "IA\Steering\Steerable.h"
 
+#include "GameObjects\StateMachine\StateManager.h"
+
 #define PLAYER_VELOCITY 5.f
 
 namespace GA = GameComponent::GameActions;
 
 namespace GameComponent
 {
-	class Player : public GameObject, public IA::Steering::Steerable
+	class Player : public GameObject, 
+		public IA::Steering::Steerable, 
+		public Keys::KeyboardListener,
+		public MouseComponent::MouseListener
 	{
 	private:
-		std::vector<GA::Action*> _actions;
 		GameComponent::Weapons::Weapon* _weapon;
+
+		float _health;
+		const float _playerVelocity;
+		const float _playerRunningVelocity;
+		GameComponent::StateMachine::StateManager _stateManager;
 
 	public:
 		Player(GameObjectTypes type, b2World& world, 
+			float playerVelocity, float playerRunningVelocity,
+			float health,
 			Components::PhysicsComponent* physicsComponent,
 			Components::InputComponent* inputComponent,
 			Components::GraphicsComponent* graphicsComponent);
@@ -41,13 +51,17 @@ namespace GameComponent
 
 		virtual void doUpdate(float elapsedTime);
 
-		void addAction(GameActions::Action* action);
+		virtual void handleKeyboard(const std::map<Keys::KeyboardManager::KeyAction, bool>& keys);
+		virtual void handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked);
+
+		b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
+
+		float getMaximumVelocity() const { return _playerVelocity; }
+		float getRunningMaximumVelocity() const { return _playerRunningVelocity; }
 
 
-		virtual b2Vec2 getCurrentVelocity() const { return _physicsComponent->getBody()->GetLinearVelocity(); }
-		virtual float getMaximumVelocity() const { return 4.f; }
-		virtual b2Vec2 getCurrentPosition() const { return _physicsComponent->getBody()->GetPosition(); }
-		virtual float getMass() const { return _physicsComponent->getBody()->GetMass(); }
+		b2Vec2 getCurrentPosition() const { return _physicsComponent->getBody()->GetPosition(); }
+		float getMass() const { return _physicsComponent->getBody()->GetMass(); }
 
 	};
 }

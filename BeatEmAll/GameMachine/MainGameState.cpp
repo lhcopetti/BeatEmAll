@@ -4,6 +4,7 @@
 
 #include "GameObjects\TileMap.h"
 #include "GameObjects\Player.h"
+#include "GameObjects\Enemy.h"
 #include "GameObjects\GameObject.h"
 
 #include "Component\KeyboardInputComponent.h"
@@ -93,8 +94,10 @@ bool MainGameState::init()
 	_mouseManager.window(&_window);
 
 	DDD::InfoCollection::getInstance().loadCategory("Configuration\\CollisionCategories.xml");
+
 	DDD::InfoCollection::getInstance().loadInfo("Configuration\\Projectiles\\xml_bullet.xml");
 	DDD::InfoCollection::getInstance().loadInfo("Configuration\\GameCharacter\\xml_player.xml");
+	DDD::InfoCollection::getInstance().loadInfo("Configuration\\GameCharacter\\xml_enemydefault.xml");
 
 	GameComponent::Player* player = GameComponent::Factory::GOFactory::newPlayer(*_world, _keyManager, _mouseManager, sf::Vector2f(50, 50));
 	/* TODO: Add Component for enemy*/
@@ -103,6 +106,8 @@ bool MainGameState::init()
 	//	new Components::PlayerComponents::PlayerGraphicsComponent());
 	//_player->init();
 	_gameObjects.push_back(player);
+	_keysListener.push_back(player);
+	_mouseListener.push_back(player);
 
 	createBoundingBox(*_world, 1279.0, 639.0);
 
@@ -115,8 +120,8 @@ bool MainGameState::init()
 
 	//enemy->position(100.f, 100.f);
 	//enemy->init();
-
-	//_gameObjects.push_back(enemy);
+	GameComponent::Enemy* enemy = GameComponent::Factory::GOFactory::newEnemyDefault(*_world, sf::Vector2f(150, 150), &_window);
+	_gameObjects.push_back(enemy);
 
 	_contactListener = new Collision::ContactListener();
 	_world->SetContactListener(_contactListener);
@@ -175,13 +180,36 @@ static void setPolygon(b2PolygonShape& poly, float sfHeight, float sfWidth, sf::
 
 void MainGameState::step(float delta)
 {
+	_keyManager.update();
+	for (auto listener = _keysListener.begin(); listener != _keysListener.end(); ++listener)
+	{
+		(*listener)->handleKeyboard(_keyManager.keys());
+	}
+
+	_mouseManager.update();
+	const sf::Vector2i& mousePos = _mouseManager.mousePos();
+	bool left = _mouseManager.left();
+	bool right = _mouseManager.right();
+
+	for (auto listener = _mouseListener.begin(); listener != _mouseListener.end(); ++listener)
+	{
+		(*listener)->handleMouse(mousePos, left, right);
+	}
+
+	/* Add the children from last pass to the gameObjectList */
+	for each(GameComponent::GameObject* child in _newChildren)
+	{
+		child->init();
+		_gameObjects.push_back(child);
+	}
+	_newChildren.clear();
+
 	std::vector<GameComponent::GameObject*>::iterator gOIterator = _gameObjects.begin();
-	std::vector<GameComponent::GameObject*> newChildren;
 
 	while (gOIterator != _gameObjects.end())
 	{
 		GameComponent::GameObject* gO = *gOIterator;
-		updateGameObject(*gO, delta, newChildren);
+		updateGameObject(*gO, delta, _newChildren);
 
 		if (gO->isAlive())
 			++gOIterator;
@@ -190,12 +218,6 @@ void MainGameState::step(float delta)
 			gOIterator = _gameObjects.erase(gOIterator);
 			delete gO;
 		}
-	}
-
-	for each(GameComponent::GameObject* child in newChildren)
-	{
-		child->init();
-		_gameObjects.push_back(child);
 	}
 
 	_world->Step(delta, 8, 3);

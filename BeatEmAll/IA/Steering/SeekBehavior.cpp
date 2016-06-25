@@ -18,7 +18,7 @@ b2Vec2 SeekBehavior::compute(const IA::Steering::Steerable& steerable)
 	b2Vec2 steering = b2Vec2_zero;
 	steering = desiredVel - steerable.getCurrentVelocity();
 
-	steering = SteeringBehavior::truncate(steering, .1f);
+	steering = SteeringBehavior::truncate(steering, .05f);
 	steering = truncate(steerable.getCurrentVelocity() + steering, steerable.getMaximumVelocity());
 
 	return steering;

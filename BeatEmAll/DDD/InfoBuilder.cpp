@@ -3,7 +3,12 @@
 #include "DDD\Representation\DrawingRepresentation.h"
 #include "DDD\Representation\SpriteRepresentation.h"
 
+#include "DDD\GameObjects\EnemyDefaultUserDataInfo.h"
+#include "DDD\GameObjects\PlayerUserDataInfo.h"
 #include "DDD\Projectile\BulletUserDataInfo.h"
+
+#include "Component\GenericGraphicsComponent.h"
+
 #include "DebugBoxDraw\WorldConstants.h"
 
 #include "SFML\Graphics\Color.hpp"
@@ -45,12 +50,12 @@ bool InfoBuilder::load(const std::string& filePath)
 	DDD::PhysicsInfo* physics =  parsePhysics(physicsNode);
 
 	rapidxml::xml_node<>* graphicNode = physicsNode->next_sibling();
-	DDD::GraphicInfo* graphic = parseGraphic(graphicNode);
+	DDD::GraphicsInfo* graphics = parseGraphicCollection(graphicNode);
 
 	rapidxml::xml_node<>* userDataInfoNode = graphicNode->next_sibling();
 	DDD::UserDataInfo* userDataInfo = parseUserDataInfo(userDataInfoNode);
 
-	_gameInfo = new GameObjectInfo(physics, graphic, userDataInfo);
+	_gameInfo = new GameObjectInfo(physics, graphics, userDataInfo);
 
 	return true;
 }
@@ -86,6 +91,10 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 {
 	float density = getFloat(node, "density");
 	float restitution = getFloat(node, "restitution");
+	bool isSensor = false;
+
+	if (nullptr != node->first_node("isSensor"))
+		isSensor = true;
 
 	rapidxml::xml_node<>* filterNode = node->first_node("filter");
 	unsigned short category = _categories->getCategoryValue(getCategoryAttr(filterNode, "category"));
@@ -100,14 +109,14 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 	{
 		float radius = getPhysicsNodeValue(shapeNode, "radius");
 		b2Vec2 position = getCoordinate(shapeNode, "position", "x", "y");
-		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, radius, position);
+		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, isSensor, radius, position);
 	}
 	else if (shapeType == "box")
 	{
 		b2Vec2 halfLength = getCoordinate(shapeNode, "size", "width", "height");
 		b2Vec2 center = getCoordinate(shapeNode, "center", "x", "y");
 		float angle = getPhysicsAngle(shapeNode, "angle");
-		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, halfLength.x / 2.f, halfLength.y / 2.f, center, angle);
+		fixtureInfo = new FixtureInfo(density, restitution, category, maskBits, isSensor, halfLength.x / 2.f, halfLength.y / 2.f, center, angle);
 	}
 	else if (shapeType == "vertices")
 	{
@@ -118,7 +127,7 @@ DDD::FixtureInfo* InfoBuilder::parseFixtureInfo(rapidxml::xml_node<>* node)
 			b2Vec2 vertice = getCoordinate(node, "x", "y");
 			vertices.push_back(vertice);
 		}
-		fixtureInfo = FixtureInfo::newVerticesFixture(density, restitution, category, maskBits, vertices);
+		fixtureInfo = FixtureInfo::newVerticesFixture(density, restitution, category, maskBits, isSensor, vertices);
 	}
 
 	return fixtureInfo;
@@ -129,12 +138,15 @@ bool to_bool(char* c)
 	return strcmp(c, "true") == 0;
 }
 
-DDD::GraphicInfo* InfoBuilder::parseGraphic(rapidxml::xml_node<>* node)
+DDD::GraphicInfo* InfoBuilder::parseGraphic(rapidxml::xml_node<>* node, std::string& keyName)
 {
+	keyName = node->first_attribute("key")->value();
+
 	rapidxml::xml_node<>* originNode = node->first_node("origin");
 
 	float originX = std::stof(originNode->first_attribute("x")->value());
 	float originY = std::stof(originNode->first_attribute("y")->value());
+	sf::Vector2f origin = sf::Vector2f(originX, originY);
 
 	bool followRotation = to_bool(originNode->next_sibling()->value());
 
@@ -163,11 +175,24 @@ DDD::GraphicInfo* InfoBuilder::parseGraphic(rapidxml::xml_node<>* node)
 		rapidxml::xml_node<>* scaleNode = repNode->first_node("scale");
 		float scaleX = std::stof(scaleNode->first_attribute("factorX")->value());
 		float scaleY = std::stof(scaleNode->first_attribute("factorY")->value());
-
 		repInfo = new DDD::SpriteRepresentation(SPRITE, filePath, scaleX, scaleY);
 	}
 
 	return new DDD::GraphicInfo(repInfo, sf::Vector2f(originX, originY), followRotation);
+}
+
+DDD::GraphicsInfo* InfoBuilder::parseGraphicCollection(rapidxml::xml_node<>* node)
+{
+	DDD::GraphicsInfo* _graphicsInfo = new DDD::GraphicsInfo;
+
+	for (rapidxml::xml_node<>* graphicNode = node->first_node("graphic"); graphicNode; graphicNode = graphicNode->next_sibling())
+	{
+		std::string keyName;
+		DDD::GraphicInfo* graphic = parseGraphic(graphicNode, keyName);
+		_graphicsInfo->addGraphic(keyName, graphic);
+	}
+
+	return _graphicsInfo;
 }
 
 DDD::UserDataInfo* InfoBuilder::parseUserDataInfo(rapidxml::xml_node<>* node)
@@ -176,6 +201,8 @@ DDD::UserDataInfo* InfoBuilder::parseUserDataInfo(rapidxml::xml_node<>* node)
 		return parseBulletInfo(node);
 	else if (_infoName == "PlayerInfo")
 		return parsePlayerInfo(node);
+	else if (_infoName == "EnemyDefault")
+		return parseEnemyInfo(node);
 	return nullptr;
 }
 
@@ -188,7 +215,17 @@ UserDataInfo* InfoBuilder::parseBulletInfo(rapidxml::xml_node<>* node)
 
 UserDataInfo* InfoBuilder::parsePlayerInfo(rapidxml::xml_node<>* node)
 {
-	return nullptr;
+	float velocity = getFloat(node, "velocity");
+	float runningVelocity = getFloat(node, "runningVelocity");
+	float health = getFloat(node, "health");
+	return new DDD::GameComponent::PlayerUserDataInfo(velocity, runningVelocity, health);
+}
+
+UserDataInfo* InfoBuilder::parseEnemyInfo(rapidxml::xml_node<>* node)
+{
+	float velocity = getFloat(node, "velocity");
+	float health = getFloat(node, "health");
+	return new DDD::GameComponent::EnemyDefaultUserDataInfo(velocity, health);
 }
 
 std::string InfoBuilder::readAllText(const std::string& filePath)

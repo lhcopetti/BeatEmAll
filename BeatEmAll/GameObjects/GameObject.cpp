@@ -38,16 +38,25 @@ GameObject::~GameObject()
 
 void GameObject::update(float elapsedTime)
 {
+	if (_inputComponent)
+		_inputComponent->update(*this);
+
+	auto iter = _actions.begin();
+	while (iter != _actions.end())
+	{
+		(*iter)->execute(*this);
+		delete *iter;
+		iter = _actions.erase(iter);
+	}
+
 	if (_physicsComponent)
 		_physicsComponent->update(*this);
 
-	if (_inputComponent)
-		_inputComponent->update(*this);
+	doUpdate(elapsedTime);
 
 	if (_graphicsComponent)
 		_graphicsComponent->update(*this);
 
-	doUpdate(elapsedTime);
 }
 
 void GameObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -76,4 +85,9 @@ void GameObject::position(float x, float y)
 {
 	_x = x;
 	_y = y;
+}
+
+void GameObject::addAction(GameActions::Action* action)
+{
+	_actions.push_back(action);
 }

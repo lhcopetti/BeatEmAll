@@ -1,6 +1,9 @@
 #pragma once
 #include "DDD\PhysicsInfo.h"
-#include "DDD\GraphicInfo.h"
+
+#include "DDD\GraphicsInfo.h"
+#include "Component\GraphicsComponent.h"
+
 #include "DDD\UserDataInfo.h"
 
 namespace DDD
@@ -8,13 +11,13 @@ namespace DDD
 	class GameObjectInfo
 	{
 	public:
-		GameObjectInfo(DDD::PhysicsInfo* p, DDD::GraphicInfo* g, DDD::UserDataInfo* u) :
+		GameObjectInfo(DDD::PhysicsInfo* p, DDD::GraphicsInfo* g, DDD::UserDataInfo* u) :
 			_physicsInfo(p),
-			_graphicInfo(g),
+			_graphicsInfo(g),
 			_userDataInfo(u) {}
 
 		const DDD::PhysicsInfo* _physicsInfo;
-		const DDD::GraphicInfo* _graphicInfo;
+		const DDD::GraphicsInfo* _graphicsInfo;
 		const DDD::UserDataInfo* _userDataInfo;
 	};
 }

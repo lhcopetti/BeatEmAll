@@ -1,6 +1,5 @@
 #pragma once
 
-#include "GameObjects\Player.h"
 #include "IA\Steering\WanderBehavior.h"
 
 namespace IA
@@ -10,7 +9,7 @@ namespace IA
 		class SteeringManager
 		{
 		private:
-			GameComponent::Player* _player;
+			IA::Steering::Steerable* _steerable;
 			b2Vec2 _steering;
 
 			b2Vec2 doSeek(b2Vec2 position);
@@ -23,7 +22,7 @@ namespace IA
 			SteeringManager() : _wander(8.f)
 			{
 				_steering = b2Vec2_zero;
-				_player = nullptr;
+				_steerable = nullptr;
 			}
 
 			~SteeringManager();
@@ -32,7 +31,7 @@ namespace IA
 
 			b2Vec2 getSteering() const { return _steering; }
 
-			void setPlayer(GameComponent::Player* player) { _player = player; }
+			void setGameObject(IA::Steering::Steerable* steerable) { _steerable = steerable; }
 
 		};
 	}

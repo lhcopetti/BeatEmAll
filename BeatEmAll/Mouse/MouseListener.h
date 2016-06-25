@@ -7,6 +7,6 @@ namespace MouseComponent
 	class MouseListener
 	{
 	public:
-		virtual void handleMouse(const sf::Vector2i vector, bool leftClicked, bool rightClicked) = 0;
+		virtual void handleMouse(const sf::Vector2i& vector, bool leftClicked, bool rightClicked) = 0;
 	};
 }

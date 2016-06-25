@@ -29,13 +29,15 @@
 		 </fixtures>
 	</physics>
 
-	<graphic>
+<graphics>
+	<graphic key="BULLET">
 		<origin x="0" y="0" />
 		<followRotation>false</followRotation>
 		<representation repType="drawing">
 			<circle radius="5.0" r="0" g="255" b="0" a="255"></circle>
 		</representation>
 	</graphic>
+</graphics>	
 
 	<userData>
 		<lifeTime>33.f</lifeTime>
