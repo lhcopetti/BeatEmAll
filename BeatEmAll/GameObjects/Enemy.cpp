@@ -19,6 +19,8 @@ Enemy::Enemy(b2World& world,
 	_x = 50;
 	_y = 50;
 	_tracking = nullptr;
+
+	_graphicsComponent->setActiveGraphic("STANDING");
 }
 
 void Enemy::init()
@@ -48,13 +50,19 @@ void Enemy::doUpdate(float elapsedTime)
 void Enemy::beginContact(GameComponent::GameObject* other, b2Contact* contact)
 {
 	int x = 0;
-	if (other && other->type() == GameObjectTypes::PLAYER)
-		_tracking = other;
+	if (!other || other->type() != GameObjectTypes::PLAYER)
+		return;
+
+	_tracking = other;
+	_graphicsComponent->setActiveGraphic("CHASING");
 }
 
 void Enemy::endContact(GameComponent::GameObject* other, b2Contact* contact) 
 {
 	int x = 0;
-	if (other && other->type() == GameObjectTypes::PLAYER)
-		_tracking = nullptr;
+	if (!other || other->type() != GameObjectTypes::PLAYER)
+		return;
+
+	_tracking = nullptr;
+	_graphicsComponent->setActiveGraphic("STANDING");
 }
